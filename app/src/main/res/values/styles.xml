@@ -1,0 +1,52 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+    <style name="PrimaryFlatButton" parent="Theme.AppCompat">
+
+        <item name="colorButtonNormal">@color/colorLogoDark</item>
+        <item name="colorControlHighlight">@color/colorLogoLight</item>
+
+    </style>
+
+    <!--&lt;!&ndash;    SplashScreen &ndash;&gt;-->
+
+    <!--    <style name="splashScreenTheme" parent="Theme.MaterialComponents.Light.NoActionBar">-->
+
+    <!--        <item name="android:windowBackground">@drawable/splash_image</item>-->
+    <!--        <item name="android:statusBarColor">@color/black</item>-->
+    <!--    </style>-->
+    <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/MyCustomTabTextAppearance</item>
+        <!--    background dhe tabBackground jane te njejta...    -->
+        <!--        <item name="android:background">@color/colorLogoLight</item>-->
+        <item name="tabTextColor">@color/black</item>
+        <item name="tabSelectedTextColor">@color/planetPurple</item>
+        <item name="tabIndicatorColor">@color/planetPurple</item>
+        <item name="tabBackground">@color/white</item>
+
+    </style>
+    <style name="MyCustomTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">13sp</item>
+        <item name="textAllCaps">false</item>
+    </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/BottomSheetStyle</item>
+    </style>
+
+    <style name="BottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+</resources>

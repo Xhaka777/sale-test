@@ -1,0 +1,274 @@
+<resources>
+    <string name="app_name">Sale Agent - Planet Accounting</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="ky_u">Kyçu</string>
+    <string name="terms_policy">Όροι και Πολιτική Απορρήτου</string>
+    <string name="icon_heart">&#xf004;</string>
+    <string name="server_solid">&#xf233;</string>
+
+    <string name="world_solid">&#xf0ac;</string>
+
+    <!-- categotryIcon -->
+
+    <string name="fatura_icon">&#xf298;</string>
+    <string name="Stoku_icon">&#xf1b3;</string>
+    <string name="Inkasim_icon">&#xf3d1;</string>
+    <string name="Depozitat_icon">&#xf19c;</string>
+    <string name="Raportet_icon">&#xf15c;</string>
+    <string name="Kthim_i_mallit_icon">&#xf064;</string>
+    <string name="Transferet">&#xf362;</string>
+    <string name="Klientet">&#xf0c0;</string>
+    <string name="Targeti">&#xf201;</string>
+    <string name="Porosit">&#xf274;</string>
+    <string name="Ngarkimet">&#xf4de;</string>
+    <string name="Shpenzimet">&#xf07a;</string>
+    <string name="Aksionet">&#xff295;</string>
+
+    <string name="update">εκμοντερνίζω</string>
+    <string name="please_write_email_and_password">Εισαγάγετε email και κωδικό πρόσβασης</string>
+    <string name="password_or_email_is_wrong">Ο κωδικός πρόσβασης ή το email είναι λάθος</string>
+    <string name="please_connected_to_internet">Παρακαλούμε συνδεθείτε στο Διαδίκτυο!</string>
+    <string name="please_connected_to_intertnet_for_make_order">Παρακαλούμε συνδεθείτε online για να παραγγείλετε!</string>
+    <string name="please_connected_to_intertnet_for_make_sell">Προετοιμάστε την εφαρμογή πωλήσεων</string>
+    <string name="device_hase_internet_connected">Η συσκευή έχει πρόσβαση στο Διαδίκτυο</string>
+    <string name="please_sync_invoice">Συγχρονίστε τα τιμολόγιά σας!</string>
+    <string name="do_you_want_to_logout">A dëshironi të ç\'kyqeni</string>
+    <string name="no">δεν</string>
+    <string name="yes">Ναί</string>
+
+    <string name="message_notification_channel_name">ΜΕΤΑΦΟΡΑ</string>
+    <string name="message_notification_channel_id" translatable="false">message_notification_channel_id</string>
+
+    <string name="hello_blank_fragment">Γεια σου κενό κομμάτι</string>
+    <string name="state">κατάσταση</string>
+
+    <string name="action_disconnect">Disconnected</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_connect">Connect</string>
+    <string name="do_you_want_to_delete_this_article">Θέλετε να διαγράψετε το άρθρο?</string>
+
+    <!--    Main part... -->
+    <string name="log_out">Αποσύνδεση</string>
+    <string name="njesia">Μονάδα</string>
+    <string name="pazari_ditor">Καθημερινή Έκπτωση</string>
+    <string name="ambulatori">Ambulator</string>
+    <string name="mbyll_arken">Κλείστε τα φορολογικά μετρητά</string>
+    <string name="pregadit_arken">Ετοιμάστε τα μετρητά του φόρου</string>
+
+    <string name="title_fatura">Τιμολόγιο</string>
+    <string name="title_stoku">Στοκ</string>
+    <string name="title_inkasimi">Συλλογή</string>
+    <string name="title_depozita">Καταθέσεις</string>
+    <string name="title_raportet">Αναφορές</string>
+    <string name="title_kthimMalli">Επιστροφή εμπορευμάτων</string>
+    <string name="title_transfere">Μεταγραφές</string>
+    <string name="title_klientet">Πελάτες</string>
+    <string name="title_target">Στόχος</string>
+    <string name="title_porositeInterne">Παραγγελίες/Intern</string>
+    <string name="title_ngarkimet">Μεταφόρτωση</string>
+    <string name="title_shpenzimet">έξοδα</string>
+    <string name="title_aksionet">μερίδια</string>
+
+
+    <!--    Pjesa per Invoice... -->
+    <string name="faturë">τιμολόγιο</string>
+    <string name="inv_fatura">τιμολόγιο</string>
+    <string name="inv_porosia">Σειρά</string>
+    <string name="nr_fatures">Nr. του Τιμολογίου</string>
+    <string name="klienti">Πελάτης</string>
+    <string name="data">Δεδομένα </string>
+    <string name="btn_shto">Προσθήκη</string>
+    <string name="vlera_pa_tvsh">Αξία χωρίς ΦΠΑ: 0</string>
+    <string name="vlera_zbritur">Αφαιρούμενη αξία: 0</string>
+    <string name="vlera_tvsh">Η αξία του ΦΠΑ: 0</string>
+    <string name="vlera_totale">Συνολική αξία: 0</string>
+    <string name="kupon_fiskal">Δημοσιονομικό Κουπόνι</string>
+
+
+    <!--    Pjesa per Stokun-->
+    <string name="lista_artikujt">Κατάλογος άρθρων</string>
+    <string name="kerko">Αναζήτηση</string>
+    <string name="printo">Τυπώνω</string>
+    <string name="foto">φωτογραφία</string>
+    <string name="shifra">Ψηφίο</string>
+    <string name="artikulli">Αρθρο</string>
+    <string name="sasia">Ποσότητα</string>
+    <string name="vlera">αξία</string>
+
+
+    <!--    Pjesa per Inkasim-->
+    <string name="shuma">Ποσό</string>
+    <string name="komenti">Σχόλιο</string>
+    <string name="btn_inkaso">Εξαργύρωση</string>
+
+
+    <!--    Pjesa per Depozit-->
+    <string name="depozit">Κατάθεση</string>
+    <string name="bank">Τράπεζα </string>
+    <string name="nr_reference">Αρ. αναφοράς.</string>
+    <string name="reference_hint">Reference number</string>
+    <string name="branch">Κλαδί</string>
+    <string name="btn_proceso">διαδικασία</string>
+
+    <!--    Pjesa e  Raporteve -->
+
+    <string name="raportet">Αναφορές</string>
+    <string name="lista_faturave">Κατάλογος Τιμολογίων</string>
+    <string name="lista_porosive">Κατάλογος Παραγγελιών</string>
+    <string name="lista_inkasimeve">Κατάλογος Συλλογών</string>
+    <string name="lista_shpenzimeve">κατάλογος εξόδων</string>
+    <string name="lista_depozitave">κατάλογος καταθέσεων</string>
+    <string name="lista_ngarkimeve">λίστα μεταφορτώσεων</string>
+    <string name="l_kthimMalli">L.of επιστροφή των εμπορευμάτων</string>
+
+
+    <!-- Raport per faturat  -->
+
+    <string name="nr_fatura">Αριθμός τιμολογίου</string>
+    <string name="njesia_klientit">Μονάδα πελάτη</string>
+    <string name="ruajtur">σώθηκε</string>
+    <string name="numri_faqes">αριθμός σελίδας</string>
+
+    <string name="barcode">Barcode</string>
+    <string name="emri">Ονομα</string>
+    <string name="cmimi">Τιμή</string>
+
+    <string name="depo">Αποθήκη</string>
+    <string name="tipi">τύπος</string>
+    <string name="furnitori">προμηθευτής</string>
+    <string name="lloji">τύπος</string>
+
+    <!--  /////////////////   -->
+
+    <string name="shitje_me_fature">πώληση με τιμολόγιο</string>
+    <string name="shitje_me_kupon_fiskal">πώληση με φορολογικό κουπόνι</string>
+    <string name="depozitet">καταθέσεις</string>
+    <string name="cash">μετρητά</string>
+    <string name="inkasimet">συλλογές</string>
+    <string name="shpenzimet">έξοδα</string>
+    <string name="borxh">χρέος</string>
+    <string name="total">σύνολο</string>
+
+    <!--    Pjesa per transfere Transfere   -->
+
+    <string name="transferet">ΜΕΤΑΦΟΡΑ</string>
+    <string name="transferet_e_kerkuara">Transfers ζητείται</string>
+    <string name="nr">Οχι.</string>
+    <string name="transferet_e_kerkuara_nga_une">ΜΕΤΑΦΟΡΑ ζητείται από εμένα</string>
+    <string name="krijo_transfer">δημιουργώ μεταφορά</string>
+    <string name="dergo_transfere">στείλτε τη μεταφορά</string>
+    <string name="pershkrimi">περιγραφή</string>
+
+    <!--    Pjesa per Klinetet  -->
+    <string name="numri_unik">όχι. μοναδικός</string>
+    <string name="kontakt">Επικοινωνία</string>
+    <string name="bilanci">ισορροπία</string>
+    <string name="roli_klient">ρόλος: πελάτης</string>
+    <string name="lloji_kompania">τύπος: Εταιρία</string>
+    <string name="from">από</string>
+    <string name="to">προς την</string>
+    <string name="valuta">νόμισμα</string>
+    <string name="printo_kartelen">εκτυπώστε την κάρτα</string>
+    <string name="nr_tvsh">αριθμός ΦΠΑ :</string>
+    <string name="adresa">διεύθυνση :</string>
+    <string name="qyteti">πόλη :</string>
+    <string name="shteti">κατάσταση :</string>
+    <string name="tel">Tel :</string>
+    <string name="fax">Fax :</string>
+    <string name="web">Web :</string>
+
+    <!--    Pjesa per Target...-->
+
+    <string name="targeti">στόχος</string>
+    <string name="muaji">μήνας: 01</string>
+    <string name="viti">έτος: 2018</string>
+    <string name="targeti_inkasim">συλλογή στόχων</string>
+    <string name="realizimi">πραγματοποίηση</string>
+    <string name="perqindja">το ποσοστό</string>
+    <string name="benefiti">όφελος</string>
+    <string name="targeti_total">συνολικός στόχος</string>
+    <string name="targeti_sku">στόχος sku</string>
+    <string name="targeti_brende">στόχος επωνυμίας</string>
+    <string name="targeti_artikuj">στόχος άρθρου</string>
+    <string name="targeti_per_artikuj">στόχος για αντικείμενα</string>
+    <string name="emertimi">Ονομα</string>
+    <string name="targeti_10">στόχος: 100000</string>
+    <string name="realizimi_10">πραγματοποίηση: 100000</string>
+    <string name="perqindje_10">το ποσοστό: 100000</string>
+    <string name="perfitimi_10">όφελος: 100000</string>
+    <string name="brendi">μάρκα</string>
+    <string name="realizimi_ditor">καθημερινή πραγματοποίηση</string>
+    <string name="perqindja_ditore">ημερήσιο ποσοστό</string>
+
+
+    <!--    Pjesa per ngarkime -->
+
+    <string name="nga_depo">από την αποθήκη</string>
+    <string name="te_depo">στην αποθήκη</string>
+    <string name="nga_puntori">από εργάτη</string>
+    <string name="te_puntori">στον εργάτη</string>
+
+    <!--    Pjesa per shpenzimet -->
+
+    <string name="shpenzimi">έξοδα</string>
+
+    <!--    Pjesa e aksioneve -->
+
+    <string name="lista_aksioneve">λίστα μετοχών</string>
+    <string name="aksionet_me_produkte">μετοχές με προϊόντα</string>
+    <string name="aksionet_me_brend">μετοχές με το εμπορικό σήμα</string>
+    <string name="aksionet_me_kombinim">μετοχές με συνδυασμό</string>
+    <string name="aksionet_me_kategori">μετοχές με κατηγορία</string>
+    <string name="kategoria">κατηγορία</string>
+    <string name="kombinim">συνδυασμός</string>
+    <string name="device_hase_not_internet_connected">η συσκευή δεν έχει πρόσβαση στο διαδίκτυο</string>
+    <string name="lista_klienteve">Λίστα πελατών</string>
+    <string name="aksioni">δράση </string>
+    <string name="action_type">τύπος δράσης</string>
+    <string name="action_name">όνομα δράσης</string>
+    <string name="statusi">κατάσταση </string>
+    <string name="zbritja">έκπτωση %</string>
+    <string name="aktiv">ενεργός</string>
+
+
+    <!--    Pjesa per TOASTs   -->
+
+    <string name="language_already_selected">Η γλώσσα έχει ήδη επιλεγεί</string>
+    <string name="depozita_u_krye_me_sukses">Η κατάθεση έγινε με επιτυχία</string>
+    <string name="inkasimi_u_ruajt">Η συλλογή σώθηκε</string>
+    <string name="nuk_ka_te_dhena">Δεν υπάρχουν δεδομένα</string>
+    <string name="nje_ose_me_shume_artikuj_kan_sasine_zero">Ένα ή περισσότερα είδη έχουν μηδενική ποσότητα</string>
+    <string name="shtoni_se_paku_nje_artikull">Προσθέστε τουλάχιστον ένα στοιχείο!</string>
+    <string name="sheno_sasin">Εισαγάγετε την ποσότητα</string>
+    <string name="nuk_keni_sasi_te_mjaftueshme_ne_depo">Δεν έχετε αρκετό απόθεμα στην αποθήκη</string>
+    <string name="artikulli_eshte_ne_stok">Το προϊόν είναι σε απόθεμα!</string>
+    <string name="porosia_u_krye_me_sukses">Η παραγγελία ολοκληρώθηκε με επιτυχία!</string>
+    <string name="order_was_canceled">Η παραγγελία ακυρώθηκε</string>
+    <string name="connection_failed">Αποτυχημένη σύνδεση</string>
+    <string name="inkasimi_u_krye_me_sukses">Η συλλογή ολοκληρώθηκε με επιτυχία</string>
+    <string name="inkasimi_nuk_u_ruajt_me_sukses">Η πληρωμή δεν αποθηκεύτηκε στον διακομιστή!</string>
+    <string name="nuk_stok_te_mjaftueshem">Δεν υπάρχει αρκετό απόθεμα</string>
+    <string name="jipeni_sasin">Δώστε την ποσότητα</string>
+    <string name="zbritja_maksimale">Έκπτωση πελάτη:  </string>
+    <string name="fatura_esht_ruajtur_dhe_sinkronizuar">Το τιμολόγιο αποθηκεύεται και συγχρονίζεται!</string>
+    <string name="fatura_esht_ruajtur_por_nuk_esht_sinkronizuar">το τιμολόγιο αποθηκεύεται αλλά δεν συγχρονίζεται!</string>
+    <string name="diqka_shkoj_gabim">Κάτι πάει στραβά!</string>
+    <string name="duhet_te_inkasohet_se_paku">Θα πρέπει να συλλέγεται τουλάχιστον</string>
+    <string name="kthim_mallit_esht_ruajtur_dhe_sinkronizuar">Η επιστροφή των εμπορευμάτων αποθηκεύεται και συγχρονίζεται</string>
+    <string name="kthim_mallit_esht_ruajtur_por_nuk_esht_sinkronizuar">Η επιστροφή των αγαθών αποθηκεύεται αλλά δεν συγχρονίζεται</string>
+    <string name="shpenzimi_nuk_u_ruajt_ne_server">Η δαπάνη δεν αποθηκεύτηκε στον διακομιστή!</string>
+    <string name="shpenzimi_u_ruajt_me_sukses_ne_server">Η δαπάνη αποθηκεύτηκε με επιτυχία στον διακομιστή!</string>
+    <string name="nuk_keni_targete_per_kete_muaj">Δεν έχετε στόχο για αυτόν τον μήνα!</string>
+    <string name="transferi_u_dergua_per_shqyrtim">Η μεταφορά στάλθηκε για έλεγχο</string>
+    <string name="pershkrim_i_transferit">Περιγραφή της Μεταβίβασης</string>
+    <string name="shkruaj_nje_pershkrim_opcionale">γράψτε μια περιγραφή (προαιρετικό)</string>
+    <string name="paisja_nuk_ka_bluetooth">Η συσκευή δεν διαθέτει bluetooth</string>
+    <string name="ju_lutem_zgjedhni_klientin">Επιλέξτε έναν πελάτη πριν προσθέσετε στοιχεία</string>
+    <string name="ju_lutem_zgjidhni_nje_banke">Επιλέξτε τράπεζα</string>
+    <string name="ju_lutem_jepni_vleren_e_paguar">Εισαγάγετε την καταβληθείσα αξία</string>
+    <string name="ju_lutem_kyçuni_ne_internet_që_të_shikoni_porositë">Παρακαλούμε συνδεθείτε για να δείτε τις παραγγελίες!</string>
+    <string name="ju_lutem_plotesoni_te_gjitha_fushat">Παρακαλώ συμπληρώστε όλα τα πεδία</string>
+    <string name="zbritja_maksimale_eshte">Η μέγιστη έκπτωση είναι :</string>
+
+</resources>

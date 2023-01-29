@@ -1,0 +1,290 @@
+<resources>
+    <string name="app_name">Sale Agent - Planet Accounting</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="ky_u">Kyçu</string>
+    <string name="terms_policy">Terms  and Privacy Policy</string>
+    <string name="icon_heart">&#xf004;</string>
+    <string name="server_solid">&#xf233;</string>
+
+    <string name="world_solid">&#xf0ac;</string>
+
+    <!-- categotryIcon -->
+
+    <string name="fatura_icon">&#xf298;</string>
+    <string name="Stoku_icon">&#xf1b3;</string>
+    <string name="Inkasim_icon">&#xf3d1;</string>
+    <string name="Depozitat_icon">&#xf19c;</string>
+    <string name="Raportet_icon">&#xf15c;</string>
+    <string name="Kthim_i_mallit_icon">&#xf064;</string>
+    <string name="Transferet">&#xf362;</string>
+    <string name="Klientet">&#xf0c0;</string>
+    <string name="Targeti">&#xf201;</string>
+    <string name="Porosit">&#xf274;</string>
+    <string name="Ngarkimet">&#xf4de;</string>
+    <string name="Shpenzimet">&#xf07a;</string>
+    <string name="Aksionet">&#xff295;</string>
+    <string name="update">UPDATE</string>
+    <string name="please_write_email_and_password">Ju lutem shkruani Email dhe Password</string>
+    <string name="password_or_email_is_wrong">Fjalekalimi ose Emaili eshte gabim</string>
+    <string name="please_connected_to_internet">Ju lutem kyquni ne internet!</string>
+    <string name="please_connected_to_intertnet_for_make_order">Ju lutem kyçuni në internet që të bëni porosi!</string>
+    <string name="please_connected_to_intertnet_for_make_sell">Ju lutem pregaditni aplikacionin për shitje</string>
+    <string name="device_hase_internet_connected">Paisja ka qasje ne Internet</string>
+    <string name="device_hase_not_internet_connected">Paisja nuk ka qasje ne Internet</string>
+    <string name="please_sync_invoice">Ju lutem sinkronizoni faturat!</string>
+    <string name="do_you_want_to_logout">A dëshironi të ç\'kyqeni</string>
+    <string name="no">JO</string>
+    <string name="yes">PO</string>
+
+
+    <string name="message_notification_channel_name">Transfer</string>
+
+    <string name="message_notification_channel_id" translatable="false">message_notification_channel_id</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="state">State</string>
+
+    <string name="action_disconnect">Disconnect</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_connect">Connect</string>
+    <string name="do_you_want_to_delete_this_article">A dëshironi të fshini artikullin ?</string>
+
+    <!--    Main part...-->
+    <string name="log_out">QKYQU</string>
+    <string name="njesia">Njesia</string>
+    <string name="pazari_ditor">Pazari ditor</string>
+    <string name="ambulatori">Ambulatori</string>
+    <string name="mbyll_arken">Mbyll Arken Fiskale</string>
+    <string name="pregadit_arken">Pregadit Arken Fiskale</string>
+
+    <string name="title_fatura">Fatura</string>
+    <string name="title_stoku">Stoku</string>
+    <string name="title_inkasimi">Inkasimi</string>
+    <string name="title_depozita">Depozitat</string>
+    <string name="title_raportet">Raportet</string>
+    <string name="title_kthimMalli">Kthim malli</string>
+    <string name="title_transfere">Transfere</string>
+    <string name="title_klientet">Klientet</string>
+    <string name="title_target">Targeti</string>
+    <string name="title_porositeInterne">Porositë/Interne</string>
+    <string name="title_ngarkimet">Ngarkime</string>
+    <string name="title_shpenzimet">Shpenzimet</string>
+    <string name="title_aksionet">Aksionet</string>
+
+    <!--    <string-array name="main_titles">-->
+    <!--        <item>@string/title_fatura</item>-->
+    <!--        <item>@string/title_stoku</item>-->
+    <!--        <item>@string/title_depozita</item>-->
+    <!--        <item>@string/title_raportet</item>-->
+    <!--        <item>@string/title_kthimMalli</item>-->
+    <!--        <item>@string/title_transfere</item>-->
+    <!--        <item>@string/title_target</item>-->
+    <!--        <item>@string/title_porositeInterne</item>-->
+    <!--        <item>@string/title_ngarkimet</item>-->
+    <!--        <item>@string/title_shpenzimet</item>-->
+    <!--        <item>@string/title_aksionet</item>-->
+    <!--    </string-array>-->
+
+    <!--    Pjesa per Invoice... -->
+    <string name="faturë">Faturë</string>
+    <string name="inv_fatura">Fatura</string>
+    <string name="inv_porosia">Porosia</string>
+    <string name="nr_fatures">Nr. Fatures</string>
+    <string name="klienti">Klienti</string>
+    <string name="data">Data </string>
+    <string name="btn_shto">SHTO</string>
+    <string name="vlera_pa_tvsh">Vlera pa TVSH: 0</string>
+    <string name="vlera_zbritur">Vlera e zbritur: 0</string>
+    <string name="vlera_tvsh">Vlera e TVSH-së: 0</string>
+    <string name="vlera_totale">Vlera totale: 0</string>
+    <string name="kupon_fiskal">KUPON FISKAL</string>
+
+    <!--    Pjesa per Stokun-->
+
+    <string name="lista_artikujt">Lista e Artikujve</string>
+    <string name="kerko">Kerko</string>
+    <string name="printo">Printo</string>
+    <string name="foto">Foto</string>
+    <string name="shifra">Shifra</string>
+    <string name="artikulli">Artikulli</string>
+    <string name="sasia">Sasia</string>
+    <string name="vlera">Vlera</string>
+
+    <!--    Pjesa per Inkasim-->
+
+    <string name="shuma">Shuma</string>
+    <string name="komenti">komenti</string>
+    <string name="btn_inkaso">Inkaso</string>
+
+    <!--    Pjesa per Depozit-->
+
+    <string name="depozit">Depozit</string>
+    <string name="bank">Bank </string>
+    <string name="nr_reference">Refernce Nr.</string>
+    <string name="reference_hint">Numri References</string>
+    <string name="branch">Branch</string>
+    <string name="btn_proceso">Proceso</string>
+
+    <!--    Pjesa e  Raporteve -->
+
+    <string name="raportet">Raportet</string>
+    <string name="lista_faturave">Lista e Faturave</string>
+    <string name="lista_porosive">Lista e Porosive</string>
+    <string name="lista_inkasimeve">Lista e Inkasimeve</string>
+    <string name="lista_shpenzimeve">Lista e Shpenzimeve</string>
+    <string name="lista_depozitave">Lista e Depozitave</string>
+    <string name="lista_ngarkimeve">Lista e Ngarkimeve</string>
+    <string name="l_kthimMalli">L.E Kthimit te Mallit</string>
+    <string name="lista_klienteve">Lista e Klienteve</string>
+
+
+    <!-- Raport per faturat  -->
+
+    <string name="nr_fatura">Lista e faturave</string>
+    <string name="njesia_klientit">Njesia e klientit</string>
+    <string name="ruajtur">Ruajtur</string>
+    <string name="numri_faqes">Numri i faqes</string>
+
+    <string name="barcode">Barkodi</string>
+    <string name="emri">Emri</string>
+    <string name="cmimi">Cmimi</string>
+
+    <string name="depo">Depo</string>
+    <string name="tipi">Tipi</string>
+    <string name="furnitori">Furnitori</string>
+    <string name="lloji">Lloji</string>
+
+    <string name="shitje_me_fature">Shitje me fature</string>
+    <string name="shitje_me_kupon_fiskal">Shitje me kupon fiskal</string>
+    <string name="depozitet">Depozitet</string>
+    <string name="cash">Kesh</string>
+    <string name="inkasimet">Inkasimet</string>
+    <string name="shpenzimet">Shpenzimet</string>
+    <string name="borxh">Borxh</string>
+    <string name="total">Total</string>
+
+    <!--    Pjesa per transfere Transfere   -->
+
+    <string name="transferet">Transferet</string>
+    <string name="transferet_e_kerkuara">Transferet e kerkuara</string>
+    <string name="nr">Nr.</string>
+    <string name="transferet_e_kerkuara_nga_une">Transferet e kerkuara nga une</string>
+    <string name="krijo_transfer">Krijo nje transfer</string>
+    <string name="dergo_transfere">Dergo Transferin</string>
+    <string name="pershkrimi">Pershkrim</string>
+
+    <!--    Pjesa per Klinetet  -->
+    <string name="numri_unik">Nr. Unik</string>
+    <string name="kontakt">Kontakt</string>
+    <string name="bilanci">Bilanci</string>
+    <string name="roli_klient">Roli: Klienti</string>
+    <string name="lloji_kompania">Lloji: Kompania</string>
+    <string name="from">Nga</string>
+    <string name="to">Deri</string>
+    <string name="valuta">Valuta</string>
+    <string name="printo_kartelen">Printo Kartelen</string>
+    <string name="nr_tvsh">Nr. TVSH-së:</string>
+    <string name="adresa">Adresa :</string>
+    <string name="qyteti">Qyteti :</string>
+    <string name="shteti">Shteti :</string>
+    <string name="tel">Tel :</string>
+    <string name="fax">Fax :</string>
+    <string name="web">Web :</string>
+
+    <!--    Pjesa per Target...-->
+
+    <string name="targeti">Targeti</string>
+    <string name="muaji">Muaji: 01</string>
+    <string name="viti">Viti: 2018</string>
+    <string name="targeti_inkasim">Targeti Inkasim</string>
+    <string name="realizimi">Realizimi</string>
+    <string name="perqindja">Perqindja</string>
+    <string name="benefiti">Benefiti</string>
+    <string name="targeti_total">Targeti Total</string>
+    <string name="targeti_sku">Targeti SKU</string>
+    <string name="targeti_brende">Targeti Brende</string>
+    <string name="targeti_artikuj">Targeti Artikuj</string>
+    <string name="targeti_per_artikuj">TARGETI PER ARTIKUJ</string>
+    <string name="emertimi">Emertimi</string>
+    <string name="targeti_10">Targeti: 100000</string>
+    <string name="realizimi_10">Realizimi: 100000</string>
+    <string name="perqindje_10">Perqindja: 100000</string>
+    <string name="perfitimi_10">Perfitimi: 100000</string>
+    <string name="brendi">Brendi</string>
+    <string name="realizimi_ditor">Realizimi Ditor</string>
+    <string name="perqindja_ditore">Perqindja Ditore</string>
+
+
+    <!--    Pjesa per ngarkime -->
+
+    <string name="nga_depo">Nga depo</string>
+    <string name="te_depo">Te Depo</string>
+    <string name="nga_puntori">Nga puntori</string>
+    <string name="te_puntori">Te puntori</string>
+
+
+    <!--    Pjesa per shpenzimet -->
+
+    <string name="shpenzimi">Shpenzim</string>
+
+    <!--    Pjesa e aksioneve -->
+
+    <string name="lista_aksioneve">Lista e Aksioneve</string>
+    <string name="aksionet_me_produkte">Aksionet me produkte</string>
+    <string name="aksionet_me_brend">Aksionet me Brend</string>
+    <string name="aksionet_me_kombinim">Aksionet me kombinim</string>
+    <string name="aksionet_me_kategori">Aksionet me kategori</string>
+    <string name="kategoria">Kategoria</string>
+    <string name="kombinim">Kombinim</string>
+    <string name="aksioni">Aksioni</string>
+    <string name="action_type">Action Type</string>
+    <string name="action_name">Action Name</string>
+    <string name="statusi">Statusi </string>
+    <string name="zbritja">Zbritja %</string>
+    <string name="aktiv">Aktiv</string>
+
+
+    <!--    Pjesa per TOASTs   -->
+
+    <string name="language_already_selected">Gjuha është tashmë e zgjedhur</string>
+    <string name="ju_lutem_zgjidhni_nje_banke">Ju lutemi zgjidhni një bankë</string>
+    <string name="depozita_u_krye_me_sukses">Depozita u krye me sukses</string>
+    <string name="inkasimi_u_ruajt">Inkasimi u ruajt</string>
+    <string name="nuk_ka_te_dhena">Nuk ka te dhena</string>
+    <string name="nje_ose_me_shume_artikuj_kan_sasine_zero">Një ose më shum artikuj kan sasine zero</string>
+    <string name="shtoni_se_paku_nje_artikull">Shtoni së paku një artikull!</string>
+    <string name="sheno_sasin">Sheno sasin</string>
+    <string name="nuk_keni_sasi_te_mjaftueshme_ne_depo">Nuk keni sasi te mjaftueshem ne depo</string>
+    <string name="artikulli_eshte_ne_stok">Artikulli është në stok!</string>
+    <string name="porosia_u_krye_me_sukses">Porosia u krye me sukses!</string>
+    <string name="order_was_canceled">Order was canceled</string>
+    <string name="connection_failed">Connection failed</string>
+    <string name="inkasimi_u_krye_me_sukses">Inkasimi u krye me sukses</string>
+    <string name="inkasimi_nuk_u_ruajt_me_sukses">Inkasimi nuk u rujat ne server!</string>
+    <string name="ju_lutem_zgjedhni_klientin">Ju lutem zgjedhni klientin para se ti shtoni artikujt</string>
+    <string name="nuk_stok_te_mjaftueshem">Nuk ka stok te mjaftueshem</string>
+    <string name="jipeni_sasin">Jipeni sasin</string>
+    <string name="zbritja_maksimale">Zbritja e klientit:  </string>
+    <string name="fatura_esht_ruajtur_dhe_sinkronizuar">Fatura esht ruajtur dhe sinkronizuar!</string>
+    <string name="fatura_esht_ruajtur_por_nuk_esht_sinkronizuar">Fatura esht ruajtur por nuk esht sinkronizuar!</string>
+    <string name="diqka_shkoj_gabim">Diqka shkoj gabim!</string>
+    <string name="duhet_te_inkasohet_se_paku">Duhet te inkasohet se paku</string>
+    <string name="ju_lutem_jepni_vleren_e_paguar">Ju lutem jepni vleren e paguar</string>
+    <string name="kthim_mallit_esht_ruajtur_dhe_sinkronizuar">Kthimi i mallit esht ruajtur dhe sinkronizuar</string>
+    <string name="kthim_mallit_esht_ruajtur_por_nuk_esht_sinkronizuar">Kthimi i mallit esht ruajtur por nuk esht i sinkronizuar</string>
+    <string name="ju_lutem_kyçuni_ne_internet_që_të_shikoni_porositë"> Ju lutem kyçuni në internet që të shikoni porositë!</string>
+    <string name="shpenzimi_nuk_u_ruajt_ne_server">Shpenzimi nuk u ruajt ne server!</string>
+    <string name="shpenzimi_u_ruajt_me_sukses_ne_server">Shpenzimi u ruajt me sukses ne server!</string>
+    <string name="ju_lutem_plotesoni_te_gjitha_fushat">Ju lutem plotesoni te gjitha fushat</string>
+    <string name="nuk_keni_targete_per_kete_muaj">Nuk keni target per kete muaj!</string>
+    <string name="transferi_u_dergua_per_shqyrtim">Transferi u dergua per shqyrtim</string>
+    <string name="pershkrim_i_transferit">Pershkrim i Transferit</string>
+    <string name="shkruaj_nje_pershkrim_opcionale">shkruaj nje pershkrim(Opcionale)</string>
+    <string name="paisja_nuk_ka_bluetooth">Paisja nuk ka bluetooth</string>
+    <string name="ju_lutem_zgjedhni_produktin">Ju lutem zgjedhni produktin</string>
+    <string name="zbritja_maksimale_eshte">Zbritja maksimale eshte :</string>
+
+
+</resources>

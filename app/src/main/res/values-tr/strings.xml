@@ -1,0 +1,278 @@
+<resources>
+    <string name="app_name">Sale Agent - Planet Accounting</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="ky_u">Kyçu</string>
+    <string name="terms_policy">Şartlar ve Gizlilik Politikası</string>
+    <string name="icon_heart">&#xf004;</string>
+    <string name="server_solid">&#xf233;</string>
+
+    <string name="world_solid">&#xf0ac;</string>
+
+    <!-- categotryIcon -->
+
+    <string name="fatura_icon">&#xf298;</string>
+    <string name="Stoku_icon">&#xf1b3;</string>
+    <string name="Inkasim_icon">&#xf3d1;</string>
+    <string name="Depozitat_icon">&#xf19c;</string>
+    <string name="Raportet_icon">&#xf15c;</string>
+    <string name="Kthim_i_mallit_icon">&#xf064;</string>
+    <string name="Transferet">&#xf362;</string>
+    <string name="Klientet">&#xf0c0;</string>
+    <string name="Targeti">&#xf201;</string>
+    <string name="Porosit">&#xf274;</string>
+    <string name="Ngarkimet">&#xf4de;</string>
+    <string name="Shpenzimet">&#xf07a;</string>
+    <string name="Aksionet">&#xff295;</string>
+
+    <string name="update">GÜNCELLEŞTİRME</string>
+    <string name="please_write_email_and_password">Lütfen E-posta ve Şifre giriniz</string>
+    <string name="password_or_email_is_wrong">Şifre veya E-posta yanlış</string>
+    <string name="please_connected_to_internet">lütfen internete bağlanın</string>
+    <string name="please_connected_to_intertnet_for_make_order">Lütfen sipariş vermek için çevrimiçi giriş yapın!</string>
+    <string name="please_connected_to_intertnet_for_make_sell">Lütfen başvuruyu satışa hazırlayın</string>
+    <string name="device_hase_internet_connected">Cihazın internete erişimi var</string>
+    <string name="device_hase_not_internet_connected">Cihazın internete erişimi yok</string>
+    <string name="please_sync_invoice">Lütfen faturalarınızı senkronize edin!</string>
+    <string name="do_you_want_to_logout">A dëshironi të ç\'kyqeni</string>
+    <string name="no">hayır</string>
+    <string name="yes">evet</string>
+
+    <string name="message_notification_channel_name">Aktar</string>
+    <string name="message_notification_channel_id" translatable="false">message_notification_channel_id</string>
+
+    <string name="hello_blank_fragment">Merhaba boş parça</string>
+    <string name="state">durum</string>
+
+    <string name="action_disconnect">Disconneted</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_connect">Connect</string>
+
+    <string name="do_you_want_to_delete_this_article">Makaleyi silmek istiyor musunuz?</string>
+
+
+    <!--    Main part... -->
+    <string name="log_out">Çıkış Yap</string>
+    <string name="njesia">Birim</string>
+    <string name="pazari_ditor">Günlük Satış</string>
+    <string name="ambulatori">Ambulator</string>
+    <string name="mbyll_arken">Mali Nakit Kapatın</string>
+    <string name="pregadit_arken">Mali nakit hazırlayın</string>
+
+    <string name="title_fatura">Invoice</string>
+    <string name="title_stoku">Stoklamak</string>
+    <string name="title_inkasimi">Toplamak</string>
+    <string name="title_depozita">Mevduat</string>
+    <string name="title_raportet">Raporlar</string>
+    <string name="title_kthimMalli">Malların dönüşü</string>
+    <string name="title_transfere">Transferler</string>
+    <string name="title_klientet">Müşteriler</string>
+    <string name="title_target">Hedef</string>
+    <string name="title_porositeInterne">Emirler/Stajyer</string>
+    <string name="title_ngarkimet">Yüklemek</string>
+    <string name="title_shpenzimet">Masraflar</string>
+    <string name="title_aksionet">Hisseler</string>
+
+
+    <!--    Pjesa per Invoice... -->
+    <string name="faturë">Fatura</string>
+    <string name="inv_fatura">Fatura</string>
+    <string name="inv_porosia">Emir</string>
+    <string name="nr_fatures">No. fatura</string>
+    <string name="klienti">Müşteri</string>
+    <string name="data">Veri </string>
+    <string name="btn_shto">Ekle</string>
+    <string name="vlera_pa_tvsh">KDVsiz değer: 0</string>
+    <string name="vlera_zbritur">Indirimli değer: 0</string>
+    <string name="vlera_tvsh">KDV nin değeri: 0</string>
+    <string name="vlera_totale">Toplam değer: 0</string>
+    <string name="kupon_fiskal">Mali Kupon</string>
+
+    <!--    Pjesa per Stokun-->
+    <string name="lista_artikujt">Makale Listesi</string>
+    <string name="kerko">Arama</string>
+    <string name="printo">Yazdır</string>
+    <string name="foto">Fotoğraf</string>
+    <string name="shifra">Hane</string>
+    <string name="artikulli">Madde</string>
+    <string name="sasia">Miktar</string>
+    <string name="vlera">Değer</string>
+
+    <!--    Pjesa per Inkasim-->
+
+    <string name="shuma">Tutar</string>
+    <string name="komenti">Yorum</string>
+    <string name="btn_inkaso">Nakit</string>
+
+    <!--    Pjesa per Depozit-->
+
+    <string name="depozit">Depozito</string>
+    <string name="bank">Banka </string>
+    <string name="nr_reference">Referans numarası.</string>
+    <string name="reference_hint">Reference number</string>
+    <string name="branch">Dal</string>
+    <string name="btn_proceso">İşlem</string>
+
+    <!--    Pjesa e  Raporteve -->
+
+    <string name="raportet">Reports</string>
+    <string name="lista_faturave">fatura listesi</string>
+    <string name="lista_porosive">sipariş listesi</string>
+    <string name="lista_inkasimeve">koleksiyon listesi</string>
+    <string name="lista_shpenzimeve">gider listesi</string>
+    <string name="lista_depozitave">mevduat listesi</string>
+    <string name="lista_ngarkimeve">yükleme listesi</string>
+    <string name="l_kthimMalli">L.of malların dönüşü</string>
+
+    <!-- Raport per faturat  -->
+
+    <string name="nr_fatura">Fatura numarası</string>
+    <string name="njesia_klientit">Müşteri Birimi</string>
+    <string name="ruajtur">kaydedildi</string>
+    <string name="numri_faqes">sayfa numarası</string>
+
+    <string name="barcode">Barkod</string>
+    <string name="emri">isim</string>
+    <string name="cmimi">Fiyat</string>
+
+    <string name="depo">depo</string>
+    <string name="tipi">tip</string>
+    <string name="furnitori">Tedarikçi</string>
+    <string name="lloji">tip</string>
+
+    <!--  /////////////////   -->
+
+    <string name="shitje_me_fature">faturalı satış</string>
+    <string name="shitje_me_kupon_fiskal">mali kupon ile satış</string>
+    <string name="depozitet">mevduat</string>
+    <string name="cash">nakit</string>
+    <string name="inkasimet">koleksiyonlar</string>
+    <string name="shpenzimet">masraflar</string>
+    <string name="borxh">borç</string>
+    <string name="total">Toplam</string>
+
+
+    <!--    Pjesa per transfere Transfere   -->
+
+    <string name="transferet">Transferler</string>
+    <string name="transferet_e_kerkuara">Talep edilen transferler</string>
+    <string name="nr">No.</string>
+    <string name="transferet_e_kerkuara_nga_une">Benden istenen transferler</string>
+    <string name="krijo_transfer">transfer oluştur</string>
+    <string name="dergo_transfere">transferi gönder</string>
+    <string name="pershkrimi">tanım</string>
+
+    <!--    Pjesa per Klinetet  -->
+    <string name="numri_unik">Hayır. Benzersiz</string>
+    <string name="kontakt">İletişim</string>
+    <string name="bilanci">Denge</string>
+    <string name="roli_klient">Rol: Müşteri</string>
+    <string name="lloji_kompania">Tip : Şirket</string>
+    <string name="from">itibaren</string>
+    <string name="to">ile</string>
+    <string name="valuta">para birimi</string>
+    <string name="printo_kartelen">baskı kartı</string>
+    <string name="nr_tvsh">hayır. KDV:</string>
+    <string name="adresa">adres :</string>
+    <string name="qyteti">Kent :</string>
+    <string name="shteti">durum :</string>
+    <string name="tel">Tel :</string>
+    <string name="fax">Fax :</string>
+    <string name="web">Web :</string>
+
+
+    <!--    Pjesa per Target...-->
+
+    <string name="targeti">Hedef</string>
+    <string name="muaji">ay: 01</string>
+    <string name="viti">yıl: 2018</string>
+    <string name="targeti_inkasim">hedef Koleksiyon</string>
+    <string name="realizimi">gerçekleşme</string>
+    <string name="perqindja">yüzde</string>
+    <string name="benefiti">fayda</string>
+    <string name="targeti_total">toplam hedef</string>
+    <string name="targeti_sku">sku hedefi</string>
+    <string name="targeti_brende">hedef marka</string>
+    <string name="targeti_artikuj">makale hedefi</string>
+    <string name="targeti_per_artikuj">öğeler için hedef</string>
+    <string name="emertimi">isim</string>
+    <string name="targeti_10">Hedef: 100000</string>
+    <string name="realizimi_10">Gerçekleşme: 100000</string>
+    <string name="perqindje_10">Yüzde: 100000</string>
+    <string name="perfitimi_10">Fayda: 100000</string>
+    <string name="brendi">Marka</string>
+    <string name="realizimi_ditor">günlük gerçekleşme</string>
+    <string name="perqindja_ditore">günlük yüzde</string>
+
+
+
+    <!--    Pjesa per ngarkime -->
+
+    <string name="nga_depo">depodan</string>
+    <string name="te_depo">depoya</string>
+    <string name="nga_puntori">işçiden</string>
+    <string name="te_puntori">işçiye</string>
+
+    <!--    Pjesa per shpenzimet -->
+
+    <string name="shpenzimi">masraflar</string>
+
+    <!--    Pjesa e aksioneve -->
+
+    <string name="lista_aksioneve">hisse listesi</string>
+    <string name="aksionet_me_produkte">Ürünlerle paylaşımlar</string>
+    <string name="aksionet_me_brend">Marka ile paylaşımlar</string>
+    <string name="aksionet_me_kombinim">Kombinasyonlu paylaşımlar</string>
+    <string name="aksionet_me_kategori">Kategoriye göre paylaşımlar</string>
+    <string name="kategoria">kategori</string>
+    <string name="kombinim">kombinasyon</string>
+    <string name="lista_klienteve">Müşteri listesi</string>
+    <string name="aksioni">Eylem </string>
+    <string name="action_type">Eylem Türü</string>
+    <string name="action_name">Eylem Adı</string>
+    <string name="statusi">Durum </string>
+    <string name="zbritja">Indirim %</string>
+    <string name="aktiv">aktif</string>
+
+
+    <!--    Pjesa per TOASTs   -->
+
+    <string name="language_already_selected">Dil zaten seçili</string>
+    <string name="depozita_u_krye_me_sukses">Depozito başarıyla yapıldı</string>
+    <string name="inkasimi_u_ruajt">Koleksiyon kaydedildi</string>
+    <string name="nuk_ka_te_dhena">Veri yok</string>
+    <string name="nje_ose_me_shume_artikuj_kan_sasine_zero">Bir veya daha fazla öğenin miktarı sıfır</string>
+    <string name="shtoni_se_paku_nje_artikull">En az bir öğe ekleyin!</string>
+    <string name="sheno_sasin">miktarı girin</string>
+    <string name="nuk_keni_sasi_te_mjaftueshme_ne_depo">Depoda yeterli stoğunuz yok</string>
+    <string name="artikulli_eshte_ne_stok">Ürün stokta!</string>
+    <string name="porosia_u_krye_me_sukses">Sipariş başarıyla tamamlandı!</string>
+    <string name="order_was_canceled">sipariş iptal edildi</string>
+    <string name="connection_failed">Bağlantı başarısız</string>
+    <string name="inkasimi_u_krye_me_sukses">Koleksiyon başarıyla tamamlandı</string>
+    <string name="inkasimi_nuk_u_ruajt_me_sukses">Ödeme sunucuya kaydedilmedi!</string>
+    <string name="nuk_stok_te_mjaftueshem">TYeterli stok yok</string>
+    <string name="jipeni_sasin">miktarı ver</string>
+    <string name="zbritja_maksimale">Müşteri indirimi:  </string>
+    <string name="fatura_esht_ruajtur_dhe_sinkronizuar">Fatura kaydedilir ve senkronize edilir!</string>
+    <string name="fatura_esht_ruajtur_por_nuk_esht_sinkronizuar">Fatura kaydedilir ancak senkronize edilmez!</string>
+    <string name="diqka_shkoj_gabim">Birşeyler yanlış gidiyor!</string>
+    <string name="duhet_te_inkasohet_se_paku">En azından toplanmalı</string>
+    <string name="kthim_mallit_esht_ruajtur_dhe_sinkronizuar">Malların iadesi kaydedilir ve senkronize edilir</string>
+    <string name="kthim_mallit_esht_ruajtur_por_nuk_esht_sinkronizuar">Malların iadesi kaydedilir ancak senkronize edilmez</string>
+    <string name="shpenzimi_nuk_u_ruajt_ne_server">Masraf sunucuya kaydedilmedi!</string>
+    <string name="shpenzimi_u_ruajt_me_sukses_ne_server">Masraf başarıyla sunucuya kaydedildi!</string>
+    <string name="nuk_keni_targete_per_kete_muaj">Bu ay için bir hedefiniz yok!</string>
+    <string name="transferi_u_dergua_per_shqyrtim">Aktarım incelenmek üzere gönderildi</string>
+    <string name="pershkrim_i_transferit">Transferin Açıklaması</string>
+    <string name="shkruaj_nje_pershkrim_opcionale">bir açıklama yazın (isteğe bağlı)</string>
+    <string name="paisja_nuk_ka_bluetooth">Cihazda bluetooth yok</string>
+    <string name="ju_lutem_zgjedhni_klientin">Lütfen ürün eklemeden önce bir müşteri seçin</string>
+    <string name="ju_lutem_zgjidhni_nje_banke">Lütfen bir banka seçin</string>
+    <string name="ju_lutem_jepni_vleren_e_paguar">Lütfen ödenen değeri girin</string>
+    <string name="ju_lutem_kyçuni_ne_internet_që_të_shikoni_porositë">Siparişleri görüntülemek için lütfen giriş yapın!</string>
+    <string name="ju_lutem_plotesoni_te_gjitha_fushat">lütfen bütün boşlukları doldurun</string>
+    <string name="zbritja_maksimale_eshte">Maksimum indirim :</string>
+
+
+</resources>
