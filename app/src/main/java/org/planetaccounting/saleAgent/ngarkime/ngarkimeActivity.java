@@ -11,7 +11,6 @@ import android.view.View;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.planetaccounting.saleAgent.Kontabiliteti;
-import org.planetaccounting.saleAgent.OrderListDetail;
 import org.planetaccounting.saleAgent.R;
 import org.planetaccounting.saleAgent.api.ApiService;
 import org.planetaccounting.saleAgent.databinding.ActivityNgarkimeBinding;

@@ -23,8 +23,8 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
     private Context mContext;
     Listener listener;
 
-    private String[] title  = {"Fatura", "Kupon Fiskal" , "Porosi" ,"Stoku","Inkasimi","Depozitat","Raportet","Kthim malli","Transfere","Klientet","Targeti","Ngarkime","Shpenzimet","Aksionet",};
-    private int[] icon  = {R.drawable.ic_fatura, R.drawable.ic_kupon ,R.drawable.ic_prosit ,R.drawable.ic_stokut,R.drawable.ic_inkasimet,R.drawable.ic_bank,R.drawable.ic_raportet,R.drawable.ic_return,R.drawable.ic_transferet,R.drawable.ic_klientet,R.drawable.ic_targetet,R.drawable.ic_ngarkesat,R.drawable.ic_shpenzim,R.drawable.ic_action};
+    private String[] title  = {"Fatura", "Kupon Fiskal" , "Porosi" ,"Stoku","Inkasimi","Depozitat","Raportet","Kthim malli","Transfere","Klientet","Targeti","Shpenzimet","Aksionet",};
+    private int[] icon  = {R.drawable.ic_fatura, R.drawable.ic_kupon ,R.drawable.ic_prosit ,R.drawable.ic_stokut,R.drawable.ic_inkasimet,R.drawable.ic_bank,R.drawable.ic_raportet,R.drawable.ic_return,R.drawable.ic_transferet,R.drawable.ic_klientet,R.drawable.ic_targetet,R.drawable.ic_shpenzim,R.drawable.ic_action};
 
     private ArrayList<MainAdaperModel> rols =  new ArrayList<>();
 

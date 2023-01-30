@@ -8,13 +8,13 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
-import org.planetaccounting.saleAgent.OrdersListActivity;
 import org.planetaccounting.saleAgent.PazariDitorActivity;
 import org.planetaccounting.saleAgent.R;
 import org.planetaccounting.saleAgent.clients.ClientsListActivity;
 import org.planetaccounting.saleAgent.databinding.RaportActivityBinding;
 import org.planetaccounting.saleAgent.invoice.InvoiceListActivity;
 import org.planetaccounting.saleAgent.ngarkime.ngarkimeActivity;
+import org.planetaccounting.saleAgent.order.OrdersListActivity;
 
 import static org.planetaccounting.saleAgent.MainActivity.isConnected;
 
@@ -30,13 +30,13 @@ public class RaportetActivity extends Activity {
         binding = DataBindingUtil.setContentView(this, R.layout.raport_activity);
         binding.listaFaturaveButton.setOnClickListener(view -> openInvoicesActivity());
         binding.listaPorosiveButton.setOnClickListener(view -> openOrderListActivity());
-        binding.listaKlienteveButton.setOnClickListener(view -> openClientListActivity());
+        binding.listaKlientave.setOnClickListener(view -> openClientListActivity());
         binding.listaShpenzimeve.setOnClickListener(view -> openVendorListActivity());
         binding.listaInkasimeve.setOnClickListener(view -> openInkasimiActivity());
         binding.listaDepozitave.setOnClickListener(view -> openDepozitActivity());
         binding.returnList.setOnClickListener(view -> openReturnsActivity() );
         binding.dailyMarket.setOnClickListener(view -> openDailyMarket());
-        binding.ngarkimeButton.setOnClickListener(view -> openLoadListActivity());
+        binding.listaNgarkimeve.setOnClickListener(view -> openLoadListActivity());
     }
     private void openInvoicesActivity() {
         Log.d("Hap Listen e faturav - ", " InvoiceListActivity");

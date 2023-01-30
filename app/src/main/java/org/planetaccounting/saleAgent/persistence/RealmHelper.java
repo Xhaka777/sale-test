@@ -413,33 +413,33 @@ public class RealmHelper {
         return realm.where(Client.class).equalTo("name", name).findAll().get(0);
     }
 
-//    public int getAutoIncrementIfForInvoice() {
-//        Number currentIdNum = realm.where(InvoicePost.class).equalTo("type","inv").max("id");
-//        int nextId;
-//        if (currentIdNum == null) {
-//            nextId = preferences.getLastInvoiceNumber();
-//        } else {
-//            nextId = currentIdNum.intValue() + 1;
-//        }
-//        return nextId;
-//    }
-
-
-    public String getAutoIncrementIfForInvoice(){
-        String nextId;
-        try{
-            //initValue
-            Number currentIdNum = realm.where(InvoicePost.class).max("id");
-            if (currentIdNum != null){
-                nextId = String.valueOf((currentIdNum.intValue()) + 1);//245
-            }else {
-                nextId = preferences.getLastInvoiceNumber();//244
-            }
-        }catch (ArrayIndexOutOfBoundsException e){
-            return "";
+    public int getAutoIncrementIfForInvoice() {
+        Number currentIdNum = realm.where(InvoicePost.class).equalTo("type","inv").max("id");
+        int nextId;
+        if (currentIdNum == null) {
+            nextId = preferences.getLastInvoiceNumber();
+        } else {
+            nextId = currentIdNum.intValue() + 1;
         }
-        return nextId;//245
+        return nextId;
     }
+
+
+//    public String getAutoIncrementIfForInvoice(){
+//        String nextId;
+//        try{
+//            //initValue
+//            Number currentIdNum = realm.where(InvoicePost.class).max("id");
+//            if (currentIdNum != null){
+//                nextId = String.valueOf((currentIdNum.intValue()) + 1);//245
+//            }else {
+//                nextId = preferences.getLastInvoiceNumber();//244
+//            }
+//        }catch (ArrayIndexOutOfBoundsException e){
+//            return "";
+//        }
+//        return nextId;//245
+//    }
 
     public int getAutoIncrementIfForReturn() {
         Number currentIdNum = realm.where(InvoicePost.class).equalTo("type","ret").max("id");

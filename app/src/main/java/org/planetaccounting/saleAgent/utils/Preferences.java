@@ -149,20 +149,20 @@ public class Preferences {
         return preferences.getString(EMPLOY_NUMBER, "");
     }
 
-    public void saveLastInvoiceNumber(String invoiceNumber) {
-//        userPreferences.edit().putInt(LAST_INVOICE_NUMBER, invoiceNumber).commit();
-        userPreferences.edit().putString(LAST_INVOICE_NUMBER, invoiceNumber).commit();
+    public void saveLastInvoiceNumber(int invoiceNumber) {
+        userPreferences.edit().putInt(LAST_INVOICE_NUMBER, invoiceNumber).commit();
+//        userPreferences.edit().putString(LAST_INVOICE_NUMBER, invoiceNumber).commit();
     }
 
-//    public int getLastInvoiceNumber() {
-//        int last = preferences.getInt(LAST_INVOICE_NUMBER, 0);
-//        return last + 1;
+    public int getLastInvoiceNumber() {
+        int last = preferences.getInt(LAST_INVOICE_NUMBER, 0);
+        return last + 1;
+    }
+
+//    public String getLastInvoiceNumber() {
+//        String last = preferences.getString(LAST_INVOICE_NUMBER, "");
+//        return String.valueOf(Integer.parseInt(last) + 1);
 //    }
-
-    public String getLastInvoiceNumber() {
-        String last = preferences.getString(LAST_INVOICE_NUMBER, "");
-        return String.valueOf(Integer.parseInt(last) + 1);
-    }
 
     public void saveFisclNumber(String fiscalNumber) {
         userPreferences.edit().putString(FISCAL_NUMBER, fiscalNumber).commit();
