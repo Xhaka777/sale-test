@@ -31,6 +31,7 @@ public class InvoiceItemPost extends RealmObject {
     boolean isAction;
     boolean isCollection;
     String base_quantity;
+    String quantity_base;
 
     String amount_no_vat;
 
@@ -44,6 +45,14 @@ public class InvoiceItemPost extends RealmObject {
 
     public String getBase_quantity() {
         return base_quantity;
+    }
+
+    public String getQuantity_base() {
+        return quantity_base;
+    }
+
+    public void setQuantity_base(String quantity_base) {
+        this.quantity_base = quantity_base;
     }
 
     public void setRelacioni(String relacioni) {

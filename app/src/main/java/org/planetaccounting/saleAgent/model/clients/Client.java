@@ -6,6 +6,8 @@ import android.os.Parcelable;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import org.planetaccounting.saleAgent.raportet.raportmodels.ReportsList;
+
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -20,6 +22,7 @@ public class Client extends RealmObject implements Parcelable {
     @SerializedName("id")
     @Expose
     public String id;
+
     @SerializedName("is_company")
     @Expose
     public String isCompany;
@@ -29,6 +32,9 @@ public class Client extends RealmObject implements Parcelable {
     @SerializedName("name")
     @Expose
     public String name;
+    @SerializedName("unique_number")
+    @Expose
+    public String unique_number;
     @SerializedName("balance")
     @Expose
     public String balance;
@@ -100,8 +106,16 @@ public class Client extends RealmObject implements Parcelable {
         return name;
     }
 
+    public String getUnique_number() {
+        return unique_number;
+    }
+
     public String getBalance() {
         return balance;
+    }
+
+    public void setBalance(String balance) {
+        this.balance = balance;
     }
 
     public String getLogo() {
@@ -114,6 +128,10 @@ public class Client extends RealmObject implements Parcelable {
 
     public String getNumberBusniess() {
         return numberBusniess;
+    }
+
+    public void setNumberBusniess(String numberBusniess) {
+        this.numberBusniess = numberBusniess;
     }
 
     public String getNumberVat() {
@@ -156,8 +174,19 @@ public class Client extends RealmObject implements Parcelable {
         return stations;
     }
 
+    public void setStations(RealmList<Station> stations) {
+        this.stations = stations;
+    }
+
+    public void setStations() {
+    }
+
     public String getDiscount() {
         return discount;
+    }
+
+    public void setDiscount(String discount){
+        this.discount = discount;
     }
 
     public String getLimitBalance() {
@@ -179,6 +208,18 @@ public class Client extends RealmObject implements Parcelable {
     public Client() {
     }
 
+    public Client(Client client) {
+        this.id = client.id;
+        this.isCompany = client.isCompany;
+        this.name = client.name;
+        this.unique_number = client.unique_number;
+        this.balance = client.balance;
+        this.logo = client.logo;
+        this.numberFiscal = client.numberFiscal;
+        this.numberBusniess = client.numberBusniess;
+        this.stations = client.stations;
+    }
+
 
     @Override
     public int describeContents() {
@@ -191,6 +232,7 @@ public class Client extends RealmObject implements Parcelable {
         dest.writeString(this.isCompany);
         dest.writeString(this.number);
         dest.writeString(this.name);
+        dest.writeString(this.unique_number);
         dest.writeString(this.balance);
         dest.writeString(this.logo);
         dest.writeString(this.numberFiscal);
@@ -217,6 +259,7 @@ public class Client extends RealmObject implements Parcelable {
         this.isCompany = in.readString();
         this.number = in.readString();
         this.name = in.readString();
+        this.unique_number = in.readString();
         this.balance = in.readString();
         this.logo = in.readString();
         this.numberFiscal = in.readString();
@@ -238,6 +281,15 @@ public class Client extends RealmObject implements Parcelable {
         in.readList(this.stations, Station.class.getClassLoader());
     }
 
+//    public void setClientFromReports(ReportsList reports){
+//
+//        this.logo = reports.logo;
+//        this.number = reports.docNumber;
+//        this.name = reports.partieName;
+//        this.c
+//        this.unique_number = unique_number;
+//    }
+
     public static final Creator<Client> CREATOR = new Creator<Client>() {
         @Override
         public Client createFromParcel(Parcel source) {
@@ -249,4 +301,5 @@ public class Client extends RealmObject implements Parcelable {
             return new Client[size];
         }
     };
+
 }

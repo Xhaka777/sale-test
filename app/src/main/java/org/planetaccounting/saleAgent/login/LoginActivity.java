@@ -129,7 +129,7 @@ public class LoginActivity extends Activity {
                         registerDevice(preferences.getNotification());
                         // re-check
                         if (TextUtils.isDigitsOnly(loginResponse.getData().getLast_invoice_number()) ){
-                            preferences.saveLastInvoiceNumber((loginResponse.getData().getLast_invoice_number()));
+                            preferences.saveLastInvoiceNumber(Integer.parseInt(loginResponse.getData().getLast_invoice_number()));
                             }
 
                         preferences.saveLastReturnInvoiceNumber(Integer.parseInt(loginResponse.getData().getLastReturnInvoiceNumber()));

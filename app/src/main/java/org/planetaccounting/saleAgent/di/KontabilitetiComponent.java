@@ -2,8 +2,6 @@ package org.planetaccounting.saleAgent.di;
 
 import org.planetaccounting.saleAgent.DepozitaActivity;
 import org.planetaccounting.saleAgent.MainActivity;
-import org.planetaccounting.saleAgent.OrderListDetail;
-import org.planetaccounting.saleAgent.OrdersListActivity;
 import org.planetaccounting.saleAgent.PazariDitorActivity;
 import org.planetaccounting.saleAgent.aksionet.ActionActivity;
 import org.planetaccounting.saleAgent.aksionet.ActionCollectionDetailActivity;
@@ -23,6 +21,8 @@ import org.planetaccounting.saleAgent.login.LoginActivity;
 import org.planetaccounting.saleAgent.ngarkime.UploadDetailActivity;
 import org.planetaccounting.saleAgent.ngarkime.ngarkimeActivity;
 import org.planetaccounting.saleAgent.order.OrderActivityOriginal;
+import org.planetaccounting.saleAgent.order.OrderListDetail;
+import org.planetaccounting.saleAgent.order.OrdersListActivity;
 import org.planetaccounting.saleAgent.persistence.RealmHelper;
 import org.planetaccounting.saleAgent.raportet.ReportDetailActivity;
 import org.planetaccounting.saleAgent.services.MyFirebaseMessagingService;

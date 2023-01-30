@@ -56,6 +56,8 @@ import org.planetaccounting.saleAgent.model.ErrorPost;
 import org.planetaccounting.saleAgent.model.NotificationPost;
 import org.planetaccounting.saleAgent.model.invoice.InvoicePost;
 import org.planetaccounting.saleAgent.model.invoice.InvoicePostObject;
+import org.planetaccounting.saleAgent.model.pazari.PazarData;
+import org.planetaccounting.saleAgent.model.pazari.PazarResponse;
 import org.planetaccounting.saleAgent.model.role.Main;
 import org.planetaccounting.saleAgent.model.stock.StockPost;
 import org.planetaccounting.saleAgent.ngarkime.ngarkimeActivity;
@@ -98,6 +100,7 @@ import javax.inject.Inject;
 
 import io.realm.RealmResults;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity implements MainActivityAdapter.Listener {
@@ -127,6 +130,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
 
     private int gmsize = 2;
 
+    String dailyStation = "2";
+    List<PazarData> pazarDataList = new ArrayList<>();
 
     //Keshi i marr nga shitjet + Inkasimi - Shpenzimet - Depozitat = Bilanci Ditore.
     @SuppressLint("StaticFieldLeak")
@@ -186,6 +191,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
         Utils.requestLocationPermission(this);
 
         getcompanyInfo();
+
+        getPazariDitor();
 
         cLogo = (ImageView) findViewById(R.id.cLogoImg);
 
@@ -626,15 +633,35 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(clientsResponse -> {
-//                            Glide.with(getApplicationContext()).load(clientsResponse.getCompanyInfo().getLogo()).into(binding.cLogoImg);
+                            Glide.with(getApplicationContext()).load(clientsResponse.getCompanyInfo().getLogo()).into(binding.cLogoImg);
                             realmHelper.saveCompanyInfo(clientsResponse.getCompanyInfo());
                             try {
                                 saveCompanyPic(clientsResponse.getCompanyInfo().getLogo());
                             } catch (Exception e) {
                                 e.printStackTrace();
+                                System.out.println("Nuk po vjen fotoja per logo....");
                             }
                         },
                         throwable -> hideLoader());
+    }
+    //Pazari ditor...
+    private void getPazariDitor() {
+
+        StockPost stockPost = new StockPost(preferences.getToken(), preferences.getUserId());
+
+        stockPost.setData(dDate);
+        apiService.getPazariDitor(stockPost)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<PazarResponse>() {
+                    @Override
+                    public void call(PazarResponse pazarResponse) {
+
+                        pazarDataList = pazarResponse.getData();
+                        dailyStation = pazarDataList.get(0).getTotal();
+                        binding.pazariDitor.setText(dailyStation);
+                    }
+                });
     }
 
     private void logoutUser() {

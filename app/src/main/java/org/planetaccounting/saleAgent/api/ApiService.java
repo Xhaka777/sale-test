@@ -94,7 +94,7 @@ public interface ApiService {
     @POST("api/get_daily_sales__sale_agent")
     Observable<PazarResponse> getPazariDitor(@Body StockPost stockPost);
 
- @POST("api/get_purchase_type_list")
+    @POST("api/get_purchase_type_list")
     Observable<VendorTypeResponse> getVendorTypes(@Body StockPost stockPost);
 
     @POST("api/get_vendor_agent_saler_list")
@@ -132,6 +132,7 @@ public interface ApiService {
 
     @POST("api/send_invoice_agent_saler")
     Observable<InvoiceUploadResponse> postFaturat(@Body InvoicePostObject invoicePostObject);
+
     @POST("api/set_return_invoice_agent_saler")
     Observable<InvoiceUploadResponse> postReturn(@Body ReturnPostObject returnPostObject);
 
@@ -140,6 +141,7 @@ public interface ApiService {
 
     @POST("api/send_order_agent_saler")
     Observable<InvoiceUploadResponse> postOrder(@Body OrderObject orderObject);
+
     @POST("api/check_item_quantity_agent_saler")
     Observable<OrderCheckQuantityResponse> checkQuantity(@Body CheckQuantity checkQuantity);
 

@@ -1,23 +1,56 @@
 package org.planetaccounting.saleAgent.clients;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.Target;
+
+import org.planetaccounting.saleAgent.api.ApiService;
 import org.planetaccounting.saleAgent.databinding.ClientsListItemBinding;
 import org.planetaccounting.saleAgent.events.OpenClientsCardEvent;
 import org.planetaccounting.saleAgent.model.clients.Client;
 
 import org.greenrobot.eventbus.EventBus;
+import org.planetaccounting.saleAgent.model.clients.ClientsResponse;
+import org.planetaccounting.saleAgent.model.invoice.InvoicePost;
+import org.planetaccounting.saleAgent.model.stock.StockPost;
+import org.planetaccounting.saleAgent.persistence.RealmHelper;
+import org.planetaccounting.saleAgent.utils.Preferences;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
+import java.util.logging.LogRecord;
+
+import javax.inject.Inject;
+
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by macb on 13/12/17.
@@ -37,19 +70,21 @@ public class ClientsListAdapter extends RecyclerView.Adapter<ClientsListAdapter.
         return new ViewHolder(binding);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         ClientsListItemBinding binding = holder.binding;
 
+        double pBilanci = Double.parseDouble(clients.get(position).getBalance());
+
         binding.numberTextview.setText(clients.get(position).getNumber());
+        binding.uniqueNumberTextview.setText(clients.get(position).getUnique_number());
         binding.emriTextview.setText(clients.get(position).getName());
         binding.kontaktTextview.setText(clients.get(position).getPhone());
-        binding.bilanciTextview.setText(clients.get(position).getBalance());
-        binding.bilanciTextview.setText(clients.get(position).getBalance());
-        Glide.with(ctx).load("http://" + clients.get(position).getLogo()).into(binding.image);
+        binding.bilanciTextview.setText("" + round(BigDecimal.valueOf(pBilanci)));
+        Glide.with(ctx).load(clients.get(position).getLogo()).into(binding.imageClient);
         if (clients.get(position).getPhone() != null) {
             if (clients.get(position).getPhone().length() > 0) {
-
                 binding.dail.setVisibility(View.VISIBLE);
             } else {
                 binding.dail.setVisibility(View.GONE);
@@ -85,5 +120,12 @@ public class ClientsListAdapter extends RecyclerView.Adapter<ClientsListAdapter.
             this.binding = binding;
 
         }
+    }
+    public double cutTo2(double value){
+        return Double.parseDouble(String.format(Locale.ENGLISH, "%.2f", value));
+    }
+
+    public static BigDecimal round(BigDecimal number){
+        return number.setScale(2, RoundingMode.HALF_UP);
     }
 }

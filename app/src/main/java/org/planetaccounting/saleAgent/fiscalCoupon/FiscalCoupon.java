@@ -1108,7 +1108,7 @@ public class FiscalCoupon extends AppCompatActivity {
     private void createPostItem(boolean isPrint) {
         this.isPrint = isPrint;
         InvoicePost invoicePost = new InvoicePost();
-        invoicePost.setId(Integer.parseInt(realmHelper.getAutoIncrementIfForInvoice()));
+        invoicePost.setId((realmHelper.getAutoIncrementIfForInvoice()));
         invoicePost.setType("inv");
         invoicePost.setFiscal_number(FISCAL_NUMBER);
         invoicePost.setDevice_serial_number(DEVICE_SERIAL_NUMBER);
@@ -1216,7 +1216,7 @@ public class FiscalCoupon extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void createPostItem() {
         InvoicePost invoicePost = new InvoicePost();
-        invoicePost.setId(Integer.parseInt(realmHelper.getAutoIncrementIfForInvoice()));
+        invoicePost.setId((realmHelper.getAutoIncrementIfForInvoice()));
         invoicePost.setType("inv");
         invoicePost.setFiscal_number(FISCAL_NUMBER);
         invoicePost.setDevice_serial_number(DEVICE_SERIAL_NUMBER);
