@@ -14,8 +14,10 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
@@ -34,6 +36,7 @@ import org.planetaccounting.saleAgent.model.InvoiceItem;
 import org.planetaccounting.saleAgent.model.clients.Client;
 import org.planetaccounting.saleAgent.model.invoice.InvoiceItemPost;
 import org.planetaccounting.saleAgent.model.invoice.InvoicePost;
+import org.planetaccounting.saleAgent.model.order.CheckQuantity;
 import org.planetaccounting.saleAgent.model.role.InvoiceRole;
 import org.planetaccounting.saleAgent.persistence.RealmHelper;
 import org.planetaccounting.saleAgent.utils.PlanetLocationManager;
@@ -41,6 +44,7 @@ import org.planetaccounting.saleAgent.utils.Preferences;
 import org.planetaccounting.saleAgent.utils.ReturnPrintUtil;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -52,6 +56,7 @@ import javax.inject.Inject;
 
 import io.realm.RealmList;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 import static org.planetaccounting.saleAgent.utils.ActivityPrint.DEVICE_SERIAL_NUMBER;
@@ -150,12 +155,12 @@ public class ktheMallin extends AppCompatActivity {
                     }
                 });
             } else {
-                binding.njersiaEdittext.setText("--");
+                binding.njersiaEdittext.setText("");
+                binding.njersiaEdittext.setHint("");
                 binding.njersiaEdittext.setEnabled(false);
             }
             binding.zbritjaKlientit.setText("Zbritja e klientit: " + client.getDiscount() + " %");
         });
-
 
 
         binding.shtoTextview.setOnClickListener(view -> {
@@ -301,7 +306,7 @@ public class ktheMallin extends AppCompatActivity {
                 calculateVleraPaTvsh();
                 calculateVleraETVSH();
 
-                    }
+            }
 
             @Override
             public void afterTextChanged(Editable editable) {
@@ -336,8 +341,8 @@ public class ktheMallin extends AppCompatActivity {
         itemBinding.njesiaTextview.setText(invoiceItem.getSelectedUnit());
 
         List<Double> amontAndPrice = calculateValueOfItem(invoiceItem);
-        itemBinding.vlera.setText("" + String.format(Locale.ENGLISH,"%.3f", new BigDecimal(amontAndPrice.get(0))));
-        itemBinding.cmimiTvsh.setText("" + String.format(Locale.ENGLISH,"%.3f", new BigDecimal(amontAndPrice.get(1))));
+        itemBinding.vlera.setText("" + String.format(Locale.ENGLISH, "%.3f", new BigDecimal(amontAndPrice.get(0))));
+        itemBinding.cmimiTvsh.setText("" + String.format(Locale.ENGLISH, "%.3f", new BigDecimal(amontAndPrice.get(1))));
         itemBinding.basePrice.setText(invoiceItem.getBasePrice() + "");
     }
 
@@ -389,13 +394,13 @@ public class ktheMallin extends AppCompatActivity {
 
     private List<Double> calculateValueOfItem(InvoiceItem invoiceItem) {
         double amount_with_vat = 0.000;
-        BigDecimal priceSale =BigDecimal.valueOf(amount_with_vat);
+        BigDecimal priceSale = BigDecimal.valueOf(amount_with_vat);
         try {
             // Quantity
             BigDecimal quantity = new BigDecimal(invoiceItem.getSasia());
 
             // Price Sale (with VAT) untouchable
-             priceSale = new BigDecimal(invoiceItem.getChildList().get(invoiceItem.getSelectedPosition()).getPriceVatSale());
+            priceSale = new BigDecimal(invoiceItem.getChildList().get(invoiceItem.getSelectedPosition()).getPriceVatSale());
 
 
             // VAT Rate
@@ -482,9 +487,6 @@ public class ktheMallin extends AppCompatActivity {
             invoiceItem.setCmimiNeArk(priceSale.doubleValue());
 
 
-
-
-
         } catch (Exception e) {
             System.out.println(" Error :" + e.getMessage());
 
@@ -497,7 +499,7 @@ public class ktheMallin extends AppCompatActivity {
 
         finalValues.add(amount_with_vat);
         finalValues.add(priceSale.doubleValue());
-        return  finalValues;
+        return finalValues;
     }
 
     public void calculateVleraPaTvsh() {
@@ -505,10 +507,9 @@ public class ktheMallin extends AppCompatActivity {
         for (int i = 0; i < stockItems.size(); i++) {
             vleraPaTvsh += stockItems.get(i).getVleraPaTvsh();
         }
-        this.vleraPaTvsh = String.valueOf(cutTo2(vleraPaTvsh));
-        binding.vleraPaTvsh.setText("Vlera pa TVSH: " + cutTo2(vleraPaTvsh));
+        this.vleraPaTvsh = String.valueOf(BigDecimal.valueOf(vleraPaTvsh));
+        binding.vleraPaTvsh.setText("Vlera pa TVSH: " + BigDecimal.valueOf(vleraPaTvsh));
     }
-
 
 
     public void calculateVleraETVSH() {
@@ -516,8 +517,8 @@ public class ktheMallin extends AppCompatActivity {
         for (int i = 0; i < stockItems.size(); i++) {
             vleraETvsh += stockItems.get(i).getVleraETvsh();
         }
-        this.vleraETvsh = String.valueOf(cutTo2(vleraETvsh));
-        binding.vleraETvsh.setText("Vlera e TVSH-së: " + cutTo2(vleraETvsh));
+        this.vleraETvsh = String.valueOf(BigDecimal.valueOf(vleraETvsh));
+        binding.vleraETvsh.setText("Vlera e TVSH-së: " + BigDecimal.valueOf(vleraETvsh));
     }
 
     public void calculateTotal() {
@@ -525,16 +526,20 @@ public class ktheMallin extends AppCompatActivity {
         for (int i = 0; i < stockItems.size(); i++) {
             total += stockItems.get(i).getVleraTotale();
         }
-        this.totaliFatures = String.valueOf(cutTo2(total));
-        binding.vleraTotale.setText("Vlera Totale: " + cutTo2(total));
+        this.totaliFatures = String.valueOf(BigDecimal.valueOf(total));
+        binding.vleraTotale.setText("Vlera Totale: " + BigDecimal.valueOf(total));
     }
 
     public double cutTo5(double value) {
-        return Double.parseDouble(String.format(Locale.ENGLISH,"%.5f", value));
+        return Double.parseDouble(String.format(Locale.ENGLISH, "%.5f", value));
     }
 
     public double cutTo2(double value) {
-        return Double.parseDouble(String.format(Locale.ENGLISH,"%.2f", value));
+        return Double.parseDouble(String.format(Locale.ENGLISH, "%.2f", value));
+    }
+
+    public static BigDecimal round(BigDecimal number){
+        return number.setScale(2, RoundingMode.HALF_DOWN);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -577,7 +582,7 @@ public class ktheMallin extends AppCompatActivity {
             InvoiceItemPost invoiceItemPost = new InvoiceItemPost();
             invoiceItemPost.setId(stockItems.get(i).getId());
 
-            invoiceItemPost.setAmount_no_vat(String.valueOf( stockItems.get(i).getVleraPaTvsh()));
+            invoiceItemPost.setAmount_no_vat(String.valueOf(stockItems.get(i).getVleraPaTvsh()));
             invoiceItemPost.setNo_order(String.valueOf(i));
             invoiceItemPost.setNo(stockItems.get(i).selectedItemCode);
             invoiceItemPost.setId_item_group(stockItems.get(i).getId());
@@ -601,6 +606,7 @@ public class ktheMallin extends AppCompatActivity {
             invoiceItemPost.setBarcode(stockItems.get(i).getBarcode());
             invoiceItemPost.setAction(stockItems.get(i).isAction());
             invoiceItemPost.setCollection(stockItems.get(i).isCollection());
+            invoiceItemPost.setType(stockItems.get(i).getType());
             invoiceItemPosts.add(invoiceItemPost);
         }
         invoicePost.setTotal_without_discount(String.valueOf(totalNoDiscount));
@@ -632,8 +638,6 @@ public class ktheMallin extends AppCompatActivity {
                     realmHelper.returnInvoice(invoicePost);
                     Toast.makeText(getApplicationContext(), "Kthimi i mallit eshte ruajtur por nuk eshte sinkronizuar!", Toast.LENGTH_SHORT).show();
                 });
-
-
     }
 
 
@@ -671,6 +675,58 @@ public class ktheMallin extends AppCompatActivity {
 
     private void hideLoader() {
         binding.loader.setVisibility(View.GONE);
+    }
+
+
+    //qitu e marr sasine aktuale te artikullit ne stock
+    private void checkedQuantity() {
+
+        binding.loader.setVisibility(View.VISIBLE);
+
+        if (stockItems.size() > 0) {
+            InvoiceItem stock = stockItems.get(stockItems.size() - 1);
+            String stockItemId = stockItems.get(stockItems.size() - 1).getItems().get(stockItems.get(stockItems.size() - 1).getSelectedPosition()).getId();
+
+            CheckQuantity checkQuantity = new CheckQuantity(
+                    preferences.getUserId(),
+                    preferences.getToken(),
+                    stock.getSasia(),
+                    stationID,
+                    dDate,
+                    stockItemId
+            );
+
+            apiService.checkQuantity(checkQuantity)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(invoiceUploadResponse -> {
+
+                        final int childCount = binding.invoiceItemHolder.getChildCount();
+                        ViewGroup v = (ViewGroup) binding.invoiceItemHolder.getChildAt(childCount - 1);
+
+                        ViewGroup v2 = (ViewGroup) v.getChildAt(0);
+                        ViewGroup v3 = (ViewGroup) v2.getChildAt(0);
+                        ViewGroup v4 = (ViewGroup) v3.getChildAt(1);
+                        ViewGroup v5 = (ViewGroup) v4.getChildAt(1);
+                        View v6 = v5.getChildAt(1);
+
+                        AutoCompleteTextView sasia_depo = (AutoCompleteTextView) v6;
+                        sasia_depo.setText(String.valueOf(BigDecimal.valueOf(invoiceUploadResponse.getCurrentQuantity())));
+                        if (!invoiceUploadResponse.getSuccess()) {
+                            Toast.makeText(this, invoiceUploadResponse.getError().getText(), Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(this, R.string.artikulli_eshte_ne_stok, Toast.LENGTH_SHORT).show();
+                        }
+                        binding.loader.setVisibility(View.GONE);
+                    }, new Action1<Throwable>() {
+                        @Override
+                        public void call(Throwable throwable) {
+                            throwable.printStackTrace();
+                        }
+                    });
+        } else {
+            binding.loader.setVisibility(View.GONE);
+        }
     }
 
 }
