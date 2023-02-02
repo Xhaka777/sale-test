@@ -26,10 +26,13 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -56,29 +59,67 @@ public class StockPrintUtil {
         this.companyInfo = realmHelper.getCompanyInfo();
         this.stockItemst = mstockItemst;
         System.out.println(companyInfo.toString());
-        final String timeFormatString = "dd-MM-yyyy HH:mm:ss";
+        final String timeFormatString = "dd-MM-yyyy";
+        final String secTimeFormatString = "dd-M-yyyy hh:mm:ss";
 
         line = ReadFromfile("stock_list.html", ctx);
         line = line.replace("sellerName", companyInfo.getName() + "");
         line = line.replace("sellerFiscal", companyInfo.getFiscalNumber() + "");
-        line = line.replace("sellerTel", companyInfo.getPhone() + "");
-        line = line.replace("sellerEmail", companyInfo.getEmail() + "");
-        line = line.replace("sellerBussines", companyInfo.getBusniessNumber() + "");
-        line = line.replace("sellerTvshNumber", companyInfo.getVatNumber() + "");
-        line = line.replace("sellerAdress", companyInfo.getAddress() + "");
-        line = line.replace("sellerCity", companyInfo.getCity() + "");
-        line = line.replace("sellerState", companyInfo.getState() + "");
+        if (companyInfo.phone != null) {
+            line = line.replace("sellerTel", companyInfo.getPhone() + "");
+        } else {
+            line = line.replace("sellerTel", "");
+        }
+        if (companyInfo.email != null) {
+            line = line.replace("sellerEmail", companyInfo.getEmail() + "");
+        } else {
+            line = line.replace("sellerEmail", "");
+        }
+        if (companyInfo.busniessNumber != null) {
+            line = line.replace("sellerBussines", companyInfo.getBusniessNumber() + "");
+        } else {
+            line = line.replace("sellerBussines", "");
+        }
+        if (companyInfo.vatNumber != null) {
+            line = line.replace("sellerTvshNumber", companyInfo.getVatNumber() + "");
+        } else {
+            line = line.replace("sellerTvshNumber", "");
+        }
+        if (companyInfo.address != null) {
+            line = line.replace("sellerAdress", companyInfo.getAddress() + "");
+        } else {
+            line = line.replace("sellerAdress", "");
+        }
+
+        if(companyInfo.zip != null){
+            line = line.replace("sellerZip", companyInfo.getZip() + "");
+        }else {
+            line = line.replace("sellerZip", "");
+        }
+
+        if (companyInfo.city != null) {
+            line = line.replace("sellerCity", companyInfo.getCity() + "");
+        } else {
+            line = line.replace("sellerCity", "");
+        }
+        if (companyInfo.state_name != null ) {
+            line = line.replace("sellerState", companyInfo.getState_name() + "");
+        } else {
+            line = line.replace("sellerState", "");
+        }
         line = line.replace(".no_invoice_hide { display: none;}", "");
 
 
         Date date = new Date();
 
         line = line.replace("timestamp", android.text.format.DateFormat.format(timeFormatString, date));
-        line = line.replace("timestamp2", android.text.format.DateFormat.format(timeFormatString, date));
+        line = line.replace("timestamp2", android.text.format.DateFormat.format(secTimeFormatString, date));
 
 
         line = line.replace("cardItems", createArticleHtml(stockItemst));
-        line = line.replace("balance", String.format(Locale.ENGLISH,"%.2f", balance));
+        line = line.replace("sasia", String.format(Locale.ENGLISH, "%.2f", quantityBalance));
+        line = line.replace("balance", String.format(Locale.ENGLISH, "%.2f", balance));
+
 
         WebView baseWebView = new WebView(ctx);
         swebView = baseWebView;
@@ -89,6 +130,7 @@ public class StockPrintUtil {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 return false;
             }
+
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             public void onPageFinished(WebView view, String url) {
                 createWebPrintJob(view);
@@ -151,9 +193,9 @@ public class StockPrintUtil {
                 printAdapter = webView.createPrintDocumentAdapter();
             }
             String fileName = "listaeartikujve.pdf";
-            this.file = path+"/" + fileName;
+            this.file = path + "/" + fileName;
             pdfPrint.printNew(printAdapter, path, fileName, ctx.getCacheDir().getPath());
-            System.out.println("pathiiii "+ getFile());
+            System.out.println("pathiiii " + getFile());
             new Handler().postDelayed(() -> {
                 PrintJob printJob = printManager.print("Planet Accounting", new PDFPrintDocumentAdapter(ctx, "Kartela.pdf", getFile()), null);
             }, 1000);
@@ -165,29 +207,40 @@ public class StockPrintUtil {
     public String getFile() {
         return file;
     }
+
     double balance = 0;
+    double quantityBalance = 0;
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     String createArticleHtml(List<Item> stockItem) {
-        List<SubItem> subItems ;
         String finalCode = "";
         double balance = 0.0;
+        double quantityBalance = 0.0;
         for (int i = 0; i < stockItem.size(); i++) {
-            subItems = stockItem.get(i).getItems();
-            try{
-                balance += Double.parseDouble( stockItem.get(i).getAmount().replace(",",""));
-            }catch (Exception e){
+            try {
+                balance += Double.parseDouble(stockItem.get(i).getAmount().replace(",", ""));
+                quantityBalance += Double.parseDouble(stockItem.get(i).getQuantity().replace(",", ""));
+            } catch (Exception e) {
 
             }
-            finalCode = finalCode + "<tr >" +
-                    "<td class=\"text-center\">"+ (i+1)+"</td >"+
-                    "<td class=\"text-center\">"+ stockItem.get(i).getNumber() +"</td >"+
-                     "<td class=\"text-center\">"+
-                    "<td class=\"t-c\">"+ stockItem.get(i).getName() +"</td >"+
-                    "<td>"+ stockItem.get(i).getDefaultUnit() +"</td >"+
-                    "<td class=\"text-right number_fs\">"+  stockItem.get(i).getQuantity() +"</td >"+
-                    "<td class=\"text-right number_fs\">"+ stockItem.get(i).getAmount() +"</td >"+
-                    "</tr >";
+            List<SubItem> subItems = stockItem.get(i).getItems();
+
+            for (int j = 0; j < subItems.size(); j++) {
+
+                finalCode = finalCode + "<tr >" +
+                        "<td class=\"text-center\">" + (i + 1) + "</td >" +
+                        "<td class=\"text-center\">" + stockItem.get(i).getNumber() + "</td >" +
+                        "<td class=\"text-center\">" + subItems.get(j).getBarcode() + "</td >" +
+                        "<td class=\"t-c\">" + stockItem.get(i).getName() + "</td >" +
+                        "<td>" + stockItem.get(i).getDefaultUnit() + "</td >" +
+                        "<td class=\"text-right number_fs\">" + round(BigDecimal.valueOf(Double.parseDouble(stockItem.get(i).getQuantity()))) + "</td >" +
+                        "<td class=\"text-right number_fs\">" + round(BigDecimal.valueOf(Double.parseDouble(stockItem.get(i).getAmount()))) + "</td >" +
+                        "</tr >";
+            }
         }
+
         this.balance = balance;
+        this.quantityBalance = quantityBalance;
         return finalCode;
     }
 
@@ -199,5 +252,13 @@ public class StockPrintUtil {
                     + " : " + companyInfo.getBankAccounts().get(i).getBankAccountNumber() + "</b></div>";
         }
         return finalCode;
-}
+    }
+
+    public double cutTo2(double value) {
+        return Double.parseDouble(String.format(Locale.ENGLISH, "%.3f", value));
+    }
+
+    public static BigDecimal round(BigDecimal number) {
+        return number.setScale(2, RoundingMode.HALF_DOWN);
+    }
 }

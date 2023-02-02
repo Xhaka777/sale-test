@@ -185,7 +185,7 @@ public class ReportDetailActivity extends Activity {
                     if (s.length() > 0) {
                         adapter = new RaportetListAdapter(0);
                         adapter.setVendorPosts(vendorSearchResults);
-                        binding.pageLayout.setVisibility(View.GONE);
+//                        binding.pageLayout.setVisibility(View.GONE);
                         binding.recycler.setAdapter(adapter);
                     } else if (s.length() <= 0) {
                         adapter.setVendorPosts(vendorPosts);
@@ -194,7 +194,7 @@ public class ReportDetailActivity extends Activity {
                     } else {
                         adapter.setVendorPosts(vendorPosts);
                         adapter = new RaportetListAdapter(0);
-                        binding.pageLayout.setVisibility(View.VISIBLE);
+//                        binding.pageLayout.setVisibility(View.VISIBLE);
                         binding.recycler.setAdapter(adapter);
                     }
                 }
@@ -226,7 +226,7 @@ public class ReportDetailActivity extends Activity {
                     if (s.length() > 0) {
                         adapter = new RaportetListAdapter(1);
                         adapter.setInkasimiDetails(inkasimiSearchResults);
-                        binding.pageLayout.setVisibility(View.GONE);
+//                        binding.pageLayout.setVisibility(View.GONE);
                         binding.recycler.setAdapter(adapter);
                     } else if (s.length() <= 0) {
                         adapter.setInkasimiDetails(inkasimiDetails);
@@ -235,7 +235,7 @@ public class ReportDetailActivity extends Activity {
                     } else {
                         adapter.setInkasimiDetails(inkasimiDetails);
                         adapter = new RaportetListAdapter(1);
-                        binding.pageLayout.setVisibility(View.VISIBLE);
+//                        binding.pageLayout.setVisibility(View.VISIBLE);
                         binding.recycler.setAdapter(adapter);
                     }
                 }
@@ -268,7 +268,7 @@ public class ReportDetailActivity extends Activity {
                     if (s.length() > 0) {
                         adapter = new RaportetListAdapter(2);
                         adapter.setDepositPosts(depositSearchResults);
-                        binding.pageLayout.setVisibility(View.GONE);
+//                        binding.pageLayout.setVisibility(View.GONE);
                         binding.recycler.setAdapter(adapter);
                     } else if (s.length() <= 0) {
                         adapter.setDepositPosts(depositPosts);
@@ -277,7 +277,7 @@ public class ReportDetailActivity extends Activity {
                     } else {
                         adapter.setDepositPosts(depositPosts);
                         adapter = new RaportetListAdapter(2);
-                        binding.pageLayout.setVisibility(View.VISIBLE);
+//                        binding.pageLayout.setVisibility(View.VISIBLE);
                         binding.recycler.setAdapter(adapter);
                     }
 

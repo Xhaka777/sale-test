@@ -22,12 +22,14 @@ import org.planetaccounting.saleAgent.model.clients.Client;
 import org.planetaccounting.saleAgent.model.invoice.InvoicePost;
 import org.planetaccounting.saleAgent.persistence.RealmHelper;
 
-import org.planetaccounting.saleAgent.invoice.InvoiceActivity;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.Date;
+import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -57,6 +59,7 @@ public class InvoicePrintUtil {
         this.printManager = printManager;
         this.invoicePost = minvoicePost;
         System.out.println(companyInfo.toString());
+        final String timeFormatString = "dd-Mm-yyyy HH:mm:ss";
 //        Environment.getExternalStorageDirectory()
 //                .getAbsolutePath() + "/Planet Accounting Faturat/logo.png"
         line = ReadFromfile("test.html", ctx);
@@ -72,32 +75,105 @@ public class InvoicePrintUtil {
         line = line.replace("fullName", preferences.getFullName() + "");
         line = line.replace("clientName", invoicePost.getPartie_name() + "");
         line = line.replace("stationName", invoicePost.getPartie_station_name() + "");
-        line = line.replace("clientAdress", invoicePost.getPartie_address() + "");
-        line = line.replace("valueWithoutDiscount", invoicePost.getTotal_without_discount() + "");
-        line = line.replace("discountValue", invoicePost.getAmount_discount() + "");
-        line = line.replace("clientContact", client.getPhone() + "");
-        line = line.replace("clientFiscalNumber", client.getNumberFiscal() + "");
-        line = line.replace("clientBussinessNumber", client.getNumberBusniess() + "");
-        line = line.replace("clientVatNumber", client.getNumberVat() + "");
+
+        if (companyInfo.address != null) {
+            line = line.replace("clientAdress", invoicePost.getPartie_address() + "");
+        } else {
+            line = line.replace("clientAdress", "");
+        }
+
+        line = line.replace("valueWithoutDiscount", round(BigDecimal.valueOf(Double.parseDouble(invoicePost.getTotal_without_discount()))) + "");
+        line = line.replace("discountValue", round(BigDecimal.valueOf(Double.parseDouble(invoicePost.getAmount_discount()))) + "");
+        if (client.phone != null) {
+            line = line.replace("clientContact", client.getPhone() + "");
+        } else {
+            line = line.replace("clientContact", "");
+        }
+
+        if (client.numberFiscal != null) {
+            line = line.replace("clientFiscalNumber", client.getNumberFiscal() + "");
+        } else {
+            line = line.replace("clientFiscalNumber", "");
+        }
+        if (client.numberBusniess != null) {
+            line = line.replace("clientBussinessNumber", client.getNumberBusniess() + "");
+        } else {
+            line = line.replace("clientBussinessNumber", "");
+        }
+        if (client.numberVat != null) {
+            line = line.replace("clientVatNumber", client.getNumberVat() + "");
+        } else {
+            line = line.replace("clientVatNumber", "");
+        }
+
+        if (client.unique_number != null){
+            line = line.replace("clientUniqueNumber", client.getUnique_number() + "");
+        }else {
+            line = line.replace("clientUniqueNumber", "");
+        }
         line = line.replace("invoiceItems", createArticleHtml(invoicePost, client) + "");
-        line = line.replace("discountAmount", invoicePost.getAmount_discount() + "");
-        line = line.replace("amountNoVat", invoicePost.getAmount_no_vat() + "");
-        line = line.replace("amountOfVat", invoicePost.getAmount_of_vat() + "");
-        line = line.replace("totali", invoicePost.getAmount_with_vat() + "");
+        line = line.replace("discountAmount", round(BigDecimal.valueOf(Double.parseDouble(invoicePost.getAmount_discount()))) + "");
+        line = line.replace("amountNoVat", round(BigDecimal.valueOf(Double.parseDouble(invoicePost.getAmount_no_vat()))) + "");
+        line = line.replace("amountOfVat", round(BigDecimal.valueOf(Double.parseDouble(invoicePost.getAmount_of_vat()))) + "");
+        line = line.replace("totali", round(BigDecimal.valueOf(Double.parseDouble(invoicePost.getAmount_with_vat()))) + "");
         line = line.replace("sellerName", companyInfo.getName() + "");
         line = line.replace("sellerFiscal", companyInfo.getFiscalNumber() + "");
-        line = line.replace("sellerTel", companyInfo.getPhone() + "");
-        line = line.replace("sellerEmail", companyInfo.getEmail() + "");
-        line = line.replace("sellerBussines", companyInfo.getBusniessNumber() + "");
-        line = line.replace("sellerTvshNumber", companyInfo.getVatNumber() + "");
-        line = line.replace("sellerContactPerson", companyInfo.getContactPerson() + "");
-        line = line.replace("sellerAdress", companyInfo.getAddress() + "");
-        line = line.replace("sellerCity", companyInfo.getCity() + "");
-        line = line.replace("sellerState", companyInfo.getState() + "");
+        if (companyInfo.phone != null) {
+            line = line.replace("sellerTel", companyInfo.getPhone() + "");
+        } else {
+            line = line.replace("sellerTel", "");
+        }
+        if (companyInfo.email != null) {
+            line = line.replace("sellerEmail", companyInfo.getEmail() + "");
+        } else {
+            line = line.replace("sellerEmail", "");
+        }
+
+        if (companyInfo.busniessNumber != null) {
+            line = line.replace("sellerBussines", companyInfo.getBusniessNumber() + "");
+        } else {
+            line = line.replace("sellerBussines", "");
+        }
+        if (companyInfo.vatNumber != null) {
+            line = line.replace("sellerTvshNumber", companyInfo.getVatNumber() + "");
+        } else {
+            line = line.replace("sellerTvshNumber", "");
+        }
+        if (companyInfo.contactPerson != null) {
+            line = line.replace("sellerContactPerson", companyInfo.getContactPerson() + "");
+        } else {
+            line = line.replace("sellerContactPerson", "");
+        }
+        if (companyInfo.address != null) {
+            line = line.replace("sellerAdress", companyInfo.getAddress() + "");
+        } else {
+            line = line.replace("sellerAdress", "");
+        }
+
+        if (companyInfo.zip != null) {
+            line = line.replace("sellerZip", companyInfo.getZip() + "");
+        } else {
+            line = line.replace("sellerZip", "");
+        }
+
+        if (companyInfo.city != null) {
+            line = line.replace("sellerCity", companyInfo.getCity() + "");
+        } else {
+            line = line.replace("sellerCity", "");
+        }
+        if (companyInfo.state != null && companyInfo.state.equals("22")) {
+            line = line.replace("sellerState", "Kosovë");
+        } else {
+            line = line.replace("sellerState", "");
+        }
+        Date date = new Date();
+        line = line.replace("timestamp", android.text.format.DateFormat.format(timeFormatString, date));
+
         line = line.replace("cashMoney", createCashHoles(companyInfo) + "");
         if (invoicePost.getIs_bill().equalsIgnoreCase("0")) {
             line = line.replace(".no_invoice_hide { display: none;}", "");
         }
+
 
         WebView baseWebView = new WebView(ctx);
         swebView = baseWebView;
@@ -113,7 +189,7 @@ public class InvoicePrintUtil {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             public void onPageFinished(WebView view, String url) {
 //                webView.bringToFront();
-                    createWebPrintJob(view,invoicePost);
+                createWebPrintJob(view, invoicePost);
                 swebView = null;
             }
 
@@ -158,7 +234,7 @@ public class InvoicePrintUtil {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    private void createWebPrintJob(WebView webView,InvoicePost invoicePost) {
+    private void createWebPrintJob(WebView webView, InvoicePost invoicePost) {
 
         try {
             PrintDocumentAdapter printAdapter;
@@ -180,15 +256,14 @@ public class InvoicePrintUtil {
             }
 
             String nm = invoicePost.getNo_invoice();
-            String fileName = "Fatura_"+nm+".pdf";
+            String fileName = "Fatura_" + nm + ".pdf";
             this.file = path + "/" + fileName;
             pdfPrint.printNew(printAdapter, path, fileName, ctx.getCacheDir().getPath());
             System.out.println("pathiiii " + getFile());
             new Handler().postDelayed(() -> {
                 PrintJob printJob = printManager.print("Planet Accounting", new PDFPrintDocumentAdapter(ctx, "Fatura.pdf", getFile()), null);
                 System.out.println("print job " + printJob.isCompleted());
-                }, 1000);
-
+            }, 1000);
 
 
         } catch (Exception e) {
@@ -224,18 +299,18 @@ public class InvoicePrintUtil {
             int pos = i + 1;
             finalCode = finalCode + "<tr >" +
                     "<td class=\"text-left\" style=\"width:30px\">" + pos + "</td>" +
-                    "<td>" + invoicePost.getItems().get(i).getNo_order() + "</td>" +
+                    "<td>" + invoicePost.getItems().get(i).getNumber() + "</td>" +
                     "<td>" + invoicePost.getItems().get(i).getBarcode() + "</td>" +
                     "<td style=\"min-width:250px;\">" + invoicePost.getItems().get(i).getName() + "</td>" +
                     "<td class=\"text-right\" >" + invoicePost.getItems().get(i).getUnit() + "</td>" +
-                    "<td class=\"text-right \">" + sasia + "</td>" +
-                    "<td class=\"text-right \">" + Double.parseDouble(invoicePost.getItems().get(i).getQuantity()) * Double.parseDouble(invoicePost.getItems().get(i).getRelacioni()) + "" + "</td>" +
-                    "<td class=\"text-right\">" + invoicePost.getItems().get(i).getPrice() + "</td>" +
+                    "<td class=\"text-right\">" + round(BigDecimal.valueOf(Double.parseDouble(invoicePost.getItems().get(i).getQuantity()))) + "</td>" +
+                    "<td class=\"text-right\">" + round(BigDecimal.valueOf(Double.parseDouble(invoicePost.getItems().get(i).getQuantity_base()))) + "</td>" +
+                    "<td class=\"text-right\">" + round(BigDecimal.valueOf(Double.parseDouble(invoicePost.getItems().get(i).getPrice()))) + "</td>" +
                     "<td class=\"text-center\" >" + discount + "</td>" +
-                    "<td class=\"text-center\" >" + invoicePost.getItems().get(i).getDiscount() + "</td>" +
-                    "<td class=\"text-center\">" + invoicePost.getItems().get(i).getVat_rate() + "</td>" +
-                    "<td class=\"text-right\">" + invoicePost.getItems().get(i).getPrice_vat() + "</td>" +
-                    "<td class=\"text-right\">" + invoicePost.getItems().get(i).getTotalPrice() + "</td>" +
+                    "<td class=\"text-center\" >" + round(BigDecimal.valueOf(Double.parseDouble(invoicePost.getItems().get(i).getDiscount()))) + "</td>" +
+                    "<td class=\"text-center\">" + round(BigDecimal.valueOf(Double.parseDouble(invoicePost.getItems().get(i).getVat_rate()))) + "</td>" +
+                    "<td class=\"text-right\">" + round(BigDecimal.valueOf(Double.parseDouble(invoicePost.getItems().get(i).getPrice_vat()))) + "</td>" +
+                    "<td class=\"text-right\">" + round(BigDecimal.valueOf(Double.parseDouble(invoicePost.getItems().get(i).getTotalPrice()))) + "</td>" +
                     "</tr >";
         }
         return finalCode;
@@ -250,5 +325,12 @@ public class InvoicePrintUtil {
         }
         return finalCode;
     }
-}
 
+    public double cutTo2(double value) {
+        return Double.parseDouble(String.format(Locale.ENGLISH, "%.3f", value));
+    }
+
+    public static BigDecimal round(BigDecimal number) {
+        return number.setScale(2, RoundingMode.HALF_DOWN);
+    }
+}

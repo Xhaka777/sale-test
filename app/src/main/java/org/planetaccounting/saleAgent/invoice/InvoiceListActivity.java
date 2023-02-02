@@ -1,6 +1,7 @@
 package org.planetaccounting.saleAgent.invoice;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.os.Build;
 import android.os.Bundle;
 import android.print.PrintManager;
@@ -16,6 +17,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.WebView;
@@ -32,6 +35,7 @@ import com.google.gson.reflect.TypeToken;
 import org.planetaccounting.saleAgent.Kontabiliteti;
 import org.planetaccounting.saleAgent.R;
 import org.planetaccounting.saleAgent.api.ApiService;
+import org.planetaccounting.saleAgent.databinding.InvoiceListActivityBinding;
 import org.planetaccounting.saleAgent.escpostprint.EscPostPrintFragment;
 import org.planetaccounting.saleAgent.events.RePrintInvoiceEvent;
 import org.planetaccounting.saleAgent.model.clients.Client;
@@ -64,6 +68,9 @@ import rx.schedulers.Schedulers;
  */
 
 public class InvoiceListActivity extends AppCompatActivity {
+
+    InvoiceListActivityBinding binding;
+
     @Inject
     RealmHelper realmHelper;
     @Inject
@@ -79,6 +86,7 @@ public class InvoiceListActivity extends AppCompatActivity {
     ArrayList<InvoicePost> inv;
     List<InvoicePost> invoicePosts = new ArrayList<>();
     List<InvoicePost> unSyncedList = new ArrayList<>();
+    ArrayList<InvoicePost> searchResults = new ArrayList<>();
     InvoicePost invoicePost;
     WebView webView;
     RelativeLayout loader;
@@ -95,7 +103,7 @@ public class InvoiceListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.invoice_list_activity);
+      binding = DataBindingUtil.setContentView(this ,R.layout.invoice_list_activity);
 
         from = getIntent().getStringExtra("from");
         if (from.equals("ret")){
@@ -112,7 +120,7 @@ public class InvoiceListActivity extends AppCompatActivity {
         webView = (WebView) findViewById(R.id.web);
         loader = findViewById(R.id.loader);
         fragment = findViewById(R.id.fragment);
-         mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
@@ -142,8 +150,8 @@ public class InvoiceListActivity extends AppCompatActivity {
                 shuma += Double.parseDouble(inv.get(i).getAmount_with_vat());
             }
         }
-        TextView shuma = findViewById(R.id.totali);
-        shuma.setText("Totali i faturuar me daten " + dDate + " eshte: " + this.shuma);
+//        TextView shuma = findViewById(R.id.totali);
+//        shuma.setText("Totali i faturuar me daten " + dDate + " eshte: " + this.shuma);
         String invoices = realmHelper.getInvoicesString();
         Gson gson = new Gson();
         savedInvoices = (ArrayList<InvoicePost>) gson.fromJson(invoices,
@@ -157,6 +165,33 @@ public class InvoiceListActivity extends AppCompatActivity {
         }
         Button button = findViewById(R.id.sync);
         button.setOnClickListener(view -> uploadInvoices());
+
+        binding.searchEdittext.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                searchResults.clear();
+                for (int j = 0; j < inv.size(); j++){
+                    if (inv.get(j).getPartie_name().toLowerCase().startsWith(s.toString().toLowerCase())){
+                        searchResults.add(inv.get(j));
+                    }
+                }
+                if (s.length() > 0){
+                    adapter.setCompanies(searchResults);
+                }else{
+                    adapter.setCompanies(inv);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
 //        Button congifBtn = findViewById(R.id.configBtn);
 //        congifBtn.setOnClickListener(new View.OnClickListener() {
@@ -382,7 +417,6 @@ public class InvoiceListActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), throwable.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
 
                 });
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)

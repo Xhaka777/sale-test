@@ -8,6 +8,7 @@ import android.os.ParcelFileDescriptor;
 import android.print.PageRange;
 import android.print.PrintAttributes;
 import android.print.PrintDocumentAdapter;
+import android.print.PrintDocumentInfo;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 
@@ -52,35 +53,36 @@ public class PdfPrint {
                 .build();
     }
 
-  /*  public void print(final PrintDocumentAdapter printAdapter, final File path, final String fileName) {
-        printAdapter.onLayout(null, printAttributes, null, new PrintDocumentAdapter.LayoutResultCallback() {
-            @Override
-            public void onLayoutFinished(PrintDocumentInfo info, boolean changed) {
-
-
-                try {
-                    PrintDocumentAdapter.WriteResultCallback callback = getWriteResultCallback(new InvocationHandler() {
-                        @Override
-                        public Object invoke(Object o, Method method, Object[] objects) throws Throwable {
-                            if (method.getName().equals("onWriteFinished")) {
-                                //                            pdfCallback.onPdfCreated();
-                            } else {
-                                Log.e(TAG, "Layout failed");
-                                //                            pdfCallback.onPdfFailed();
-                            }
-                            return null;
-                        }
-                    }, null);
-
-                    printAdapter.onWrite(new PageRange[]{PageRange.ALL_PAGES}, getOutputFile(path, fileName), new CancellationSignal(), callback);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-
-            }
-        }, null);
-    }*/
+//  @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+//  public void print(final PrintDocumentAdapter printAdapter, final File path, final String fileName) {
+//        printAdapter.onLayout(null, printAttributes, null, new PrintDocumentAdapter.LayoutResultCallback() {
+//            @Override
+//            public void onLayoutFinished(PrintDocumentInfo info, boolean changed) {
+//
+//
+//                try {
+//                    PrintDocumentAdapter.WriteResultCallback callback = getWriteResultCallback(new InvocationHandler() {
+//                        @Override
+//                        public Object invoke(Object o, Method method, Object[] objects) throws Throwable {
+//                            if (method.getName().equals("onWriteFinished")) {
+////                                                            pdfCallback.onPdfCreated();
+//                            } else {
+//                                Log.e(TAG, "Layout failed");
+//                                //                            pdfCallback.onPdfFailed();
+//                            }
+//                            return null;
+//                        }
+//                    }, null);
+//
+//                    printAdapter.onWrite(new PageRange[]{PageRange.ALL_PAGES}, getOutputFile(path, fileName), new CancellationSignal(), callback);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//
+//
+//            }
+//        }, null);
+//    }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void printNew(final PrintDocumentAdapter printAdapter, final File path, final String fileName, final String fileNamenew) {

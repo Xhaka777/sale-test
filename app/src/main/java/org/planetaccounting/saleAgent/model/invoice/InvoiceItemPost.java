@@ -15,6 +15,7 @@ public class InvoiceItemPost extends RealmObject {
     String id_item_group;
     String id_item;
     String name;
+    String number;
     String quantity;
     String unit;
     String price;
@@ -32,8 +33,8 @@ public class InvoiceItemPost extends RealmObject {
     boolean isCollection;
     String base_quantity;
     String quantity_base;
-
     String amount_no_vat;
+    String type;
 
     public String getPrice_base() {
         return price_base;
@@ -83,6 +84,10 @@ public class InvoiceItemPost extends RealmObject {
         this.name = name;
     }
 
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
     public void setQuantity(String quantity) {
         this.quantity = quantity;
     }
@@ -127,6 +132,10 @@ public class InvoiceItemPost extends RealmObject {
         this.amount_of_discount = amount_of_discount;
     }
 
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public void setId(String id) {
         this.id = id;
     }
@@ -153,6 +162,10 @@ public class InvoiceItemPost extends RealmObject {
 
     public String getName() {
         return name;
+    }
+
+    public String getNumber() {
+        return number;
     }
 
     public String getQuantity() {
@@ -221,6 +234,10 @@ public class InvoiceItemPost extends RealmObject {
 
     public void setAmount_no_vat(String amount_no_vat) {
         this.amount_no_vat = amount_no_vat;
+    }
+
+    public String getType() {
+        return type;
     }
 
     @Override

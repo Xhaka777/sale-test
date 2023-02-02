@@ -145,6 +145,7 @@
             android:layout_marginLeft="8dp"
             android:layout_marginRight="2dp"
             android:layout_gravity="center"
+            android:enabled="false"
 
 
             android:padding="15dp"

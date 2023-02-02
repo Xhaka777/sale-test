@@ -1,5 +1,6 @@
 package org.planetaccounting.saleAgent.invoice;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
@@ -16,6 +17,8 @@ import org.planetaccounting.saleAgent.model.invoice.InvoicePost;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 
 import io.realm.RealmResults;
@@ -41,13 +44,15 @@ public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.
         return new InvoiceListAdapter.ViewHolder(binding);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(InvoiceListAdapter.ViewHolder holder, int position) {
         InvoiceListItemBinding binding = holder.binding;
         binding.companyNameTextview.setText(invoices.get(position).getPartie_name());
+        binding.companyUnitTextview.setText(invoices.get(position).getPartie_station_name());
         binding.data.setText(invoices.get(position).getInvoice_date());
         binding.invoiceNr.setText(invoices.get(position).getNo_invoice());
-        binding.vlera.setText(invoices.get(position).getAmount_with_vat());
+        binding.vlera.setText(round(BigDecimal.valueOf(Double.parseDouble(invoices.get(position).getAmount_with_vat()))) + "");
         if (invoices.get(position).getSynced()) {
             binding.syncedIndicator.setImageResource(R.drawable.ic_green);
 
@@ -79,5 +84,9 @@ public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.
             this.binding = binding;
 
         }
+    }
+
+    public static BigDecimal round(BigDecimal number){
+        return number.setScale(2, RoundingMode.HALF_DOWN);
     }
 }

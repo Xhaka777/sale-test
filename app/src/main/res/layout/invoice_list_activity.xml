@@ -242,26 +242,26 @@
             android:background="#fff"
             android:paddingBottom="40dp" />
 
-        <LinearLayout
-            android:id="@+id/page_layout"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_alignParentBottom="true"
-            android:background="#fff"
-            android:gravity="center">
+<!--        <LinearLayout-->
+<!--            android:id="@+id/page_layout"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:background="#fff"-->
+<!--            android:gravity="center">-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/numri_faqes"
-                android:textColor="#000" />
+<!--&lt;!&ndash;            <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:text="@string/numri_faqes"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:textColor="#000" />&ndash;&gt;-->
 
-            <TextView
-                android:id="@+id/totali"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#000" />
-        </LinearLayout>
+<!--            <TextView-->
+<!--                android:id="@+id/totali"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:textColor="#000" />-->
+<!--        </LinearLayout>-->
 
         <RelativeLayout
             android:id="@+id/loader"
@@ -319,7 +319,8 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="30dp"
-                        android:layout_marginBottom="6dp" />
+                        android:layout_marginBottom="6dp"
+                        android:src="@drawable/ic_down" />
 
                     <ImageView
                         android:layout_width="match_parent"
