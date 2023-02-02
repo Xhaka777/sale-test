@@ -83,20 +83,21 @@ public class ClientsListAdapter extends RecyclerView.Adapter<ClientsListAdapter.
         binding.kontaktTextview.setText(clients.get(position).getPhone());
         binding.bilanciTextview.setText("" + round(BigDecimal.valueOf(pBilanci)));
         Glide.with(ctx).load(clients.get(position).getLogo()).into(binding.imageClient);
-        if (clients.get(position).getPhone() != null) {
-            if (clients.get(position).getPhone().length() > 0) {
-                binding.dail.setVisibility(View.VISIBLE);
-            } else {
-                binding.dail.setVisibility(View.GONE);
-            }
-        } else {
-            binding.dail.setVisibility(View.GONE);
-        }
-        binding.dail.setOnClickListener(view -> {
-            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + clients.get(position).getPhone()));
-            ctx.startActivity(intent);
 
-        });
+//        if (clients.get(position).getPhone() != null) {
+//            if (clients.get(position).getPhone().length() > 0) {
+//                binding.dail.setVisibility(View.VISIBLE);
+//            } else {
+//                binding.dail.setVisibility(View.GONE);
+//            }
+//        } else {
+//            binding.dail.setVisibility(View.GONE);
+//        }
+//        binding.dail.setOnClickListener(view -> {
+//            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + clients.get(position).getPhone()));
+//            ctx.startActivity(intent);
+//
+//        });
         binding.getRoot().setOnClickListener(view -> EventBus.getDefault().post(new OpenClientsCardEvent(clients.get(position))));
 
     }

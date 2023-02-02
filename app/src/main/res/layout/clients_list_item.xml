@@ -96,11 +96,11 @@
                     android:gravity="center"
                     android:textColor="#000" />
 
-                <ImageButton
-                    android:id="@+id/dail"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@android:drawable/stat_sys_phone_call" />
+<!--                <ImageButton-->
+<!--                    android:id="@+id/dail"-->
+<!--                    android:layout_width="30dp"-->
+<!--                    android:layout_height="30dp"-->
+<!--                    android:src="@android:drawable/stat_sys_phone_call" />-->
 
                 <ImageView
                     android:layout_width="1dp"

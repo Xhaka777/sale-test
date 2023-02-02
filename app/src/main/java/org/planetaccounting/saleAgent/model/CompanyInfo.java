@@ -32,6 +32,9 @@ public class CompanyInfo extends RealmObject {
     @SerializedName("state")
     @Expose
     public String state;
+    @SerializedName("state_name")
+    @Expose
+    public String state_name;
     @SerializedName("zip")
     @Expose
     public String zip;
@@ -90,6 +93,8 @@ public class CompanyInfo extends RealmObject {
     public String getState() {
         return state;
     }
+
+    public String getState_name() { return state_name; }
 
     public String getZip() {
         return zip;

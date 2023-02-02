@@ -60,21 +60,32 @@ public class ClientCardPrintUtil {
         line = line.replace("sellerName", companyInfo.getName());
         line = line.replace("clientId", client.getId());
         line = line.replace("clientName", client.getName());
-        line = line.replace("clientFiscalNumber", client.getNumberFiscal());
-        line = line.replace("clientBussinessNumber", client.getNumberBusniess());
-        line = line.replace("clientAdress", client.getAddress()+" "+
-                client.getCity()+" "+client.getZip());
+        if (client.numberFiscal != null) {
+            line = line.replace("clientFiscalNumber", client.getNumberFiscal() + "");
+        } else {
+            line = line.replace("clientFiscalNumber", "");
+        }
+
+        if (client.numberBusniess != null) {
+            line = line.replace("clientBussinessNumber", client.getNumberBusniess() + "");
+        } else {
+            line = line.replace("clientBussinessNumber", "");
+        }
+        line = line.replace("clientAdress", client.getAddress() + " " +
+                client.getCity() + " " + client.getZip());
         line = line.replace("cardItems", createArticleHtml(cardItemst));
-        line = line.replace("balance", String.format(Locale.ENGLISH,"%.2f", balance));
+        line = line.replace("balance", String.format(Locale.ENGLISH, "%.2f", balance));
 
         WebView baseWebView = new WebView(ctx);
-        swebView = baseWebView;        String base_url = "file:///android_asset/";
+        swebView = baseWebView;
+        String base_url = "file:///android_asset/";
         baseWebView.loadDataWithBaseURL(base_url, line, "text/html", "UTF-8", null);
         baseWebView.setWebViewClient(new WebViewClient() {
 
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 return false;
             }
+
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             public void onPageFinished(WebView view, String url) {
 
@@ -139,12 +150,12 @@ public class ClientCardPrintUtil {
                 printAdapter = webView.createPrintDocumentAdapter();
             }
             String fileName = "Kartela.pdf";
-            this.file = path+"/" + fileName;
+            this.file = path + "/" + fileName;
             pdfPrint.printNew(printAdapter, path, fileName, ctx.getCacheDir().getPath());
-            System.out.println("pathiiii "+ getFile());
+            System.out.println("pathiiii " + getFile());
             new Handler().postDelayed(() -> {
                 PrintJob printJob = printManager.print("Planet Accounting", new PDFPrintDocumentAdapter(ctx, "Kartela.pdf", getFile()), null);
-                }, 1000);
+            }, 1000);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -153,24 +164,26 @@ public class ClientCardPrintUtil {
     public String getFile() {
         return file;
     }
+
     double balance = 0;
+
     String createArticleHtml(List<CardItem> cardItems) {
         String finalCode = "";
         double balance = 0.0;
         for (int i = 0; i < cardItems.size(); i++) {
-            try{
+            try {
                 balance += cardItems.get(i).getAmount();
-            }catch (Exception e){
+            } catch (Exception e) {
 
             }
             finalCode = finalCode + "<tr >" +
-                    "<td class=\"text-center\">"+ cardItems.get(i).getData() +"</td >"+
-                    "<td class=\"text-center\">"+ cardItems.get(i).getDocumentNumber() +"</td >"+
-                    "<td >"+ cardItems.get(i).getDescription() +"</td >"+
-                    "<td class=\"t-c\">"+ preferences.getFullName() +"</td >"+
-                    "<td class=\"text-center danger\">"+ cardItems.get(i).getPaymentDate() +"</td >"+
-                    "<td class=\"text-right number_fs\">"+ String.format(Locale.ENGLISH,"%.2f", cardItems.get(i).getAmount()) +"</td >"+
-                    "<td class=\"text-right number_fs\">"+ String.format(Locale.ENGLISH,"%.2f", balance) +"</td >"+
+                    "<td class=\"text-center\">" + cardItems.get(i).getData() + "</td >" +
+                    "<td class=\"text-center\">" + cardItems.get(i).getDocumentNumber() + "</td >" +
+                    "<td >" + cardItems.get(i).getDescription() + "</td >" +
+                    "<td class=\"t-c\">" + preferences.getFullName() + "</td >" +
+                    "<td class=\"text-center danger\">" + cardItems.get(i).getPaymentDate() + "</td >" +
+                    "<td class=\"text-right number_fs\">" + String.format(Locale.ENGLISH, "%.2f", cardItems.get(i).getAmount()) + "</td >" +
+                    "<td class=\"text-right number_fs\">" + String.format(Locale.ENGLISH, "%.2f", balance) + "</td >" +
                     "</tr >";
         }
         this.balance = balance;
@@ -187,4 +200,3 @@ public class ClientCardPrintUtil {
         return finalCode;
     }
 }
-
