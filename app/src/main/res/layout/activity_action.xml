@@ -11,15 +11,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:background="@android:color/white"
+            android:background="#EFEFEF"
             android:gravity="center_vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-                android:text="Lisa e Aksioneve"
-                android:textColor="#000" />
+                android:text="Lista e Aksioneve"
+                android:textColor="#000"
+                android:textSize="14sp"/>
         </LinearLayout>
 
         <ScrollView xmlns:tools="http://schemas.android.com/tools"
@@ -98,7 +99,9 @@
                         android:layout_weight="1"
                         android:text="Deri"
                         android:textColor="#000"
-                        android:textSize="16dp" />
+                        android:textSize="16dp"
+                        android:textAlignment="center"
+                        android:gravity="center_horizontal" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -166,7 +169,8 @@
                         android:layout_weight="1"
                         android:text="Deri"
                         android:textColor="#000"
-                        android:textSize="16dp" />
+                        android:textSize="16dp"
+                        android:gravity="center_horizontal"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -233,7 +237,9 @@
                         android:layout_weight="1"
                         android:text="Deri"
                         android:textColor="#000"
-                        android:textSize="16dp" />
+                        android:textSize="16dp"
+                        android:textAlignment="center"
+                        android:gravity="center_horizontal"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -301,7 +307,9 @@
                         android:layout_weight="1"
                         android:text="Deri"
                         android:textColor="#000"
-                        android:textSize="16dp" />
+                        android:textSize="16dp"
+                        android:textAlignment="center"
+                        android:gravity="center_horizontal"/>
                 </LinearLayout>
 
                 <LinearLayout
