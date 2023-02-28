@@ -34,7 +34,8 @@
                     android:layout_marginLeft="20dp"
                     android:text="@string/lista_faturave"
                     android:textColor="#000"
-                    android:textSize="17sp"/>
+                    android:textSize="17sp"
+                    android:fontFamily="@font/lato_regular"/>
 
                 <EditText
                     android:id="@+id/search_edittext"
@@ -43,7 +44,8 @@
                     android:layout_weight="1"
                     android:imeOptions="flagNoFullscreen"
                     android:drawableLeft="@drawable/ic_search"
-                    android:hint="@string/kerko" />
+                    android:hint="@string/kerko"
+                    android:fontFamily="@font/lato_regular"/>
 
                 <Button
                     android:id="@+id/congif_btn"
@@ -98,7 +100,8 @@
                     android:text="Print"
                     android:textColor="#000"
                     android:textSize="16dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/lato_regular"/>
 
 <!--                <ImageView-->
 <!--                    android:layout_width="1dp"-->
@@ -116,7 +119,8 @@
                     android:text="@string/nr_fatura"
                     android:textColor="#000"
                     android:textSize="16dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/lato_regular"/>
 
 <!--                <ImageView-->
 <!--                    android:layout_width="1dp"-->
@@ -134,7 +138,8 @@
                     android:text="@string/klienti"
                     android:textColor="#000"
                     android:textSize="16dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/lato_regular"/>
 
 <!--                <ImageView-->
 <!--                    android:layout_width="1dp"-->
@@ -152,7 +157,8 @@
                     android:text="@string/njesia_klientit"
                     android:textColor="#000"
                     android:textSize="16dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/lato_regular"/>
 
 <!--                <ImageView-->
 <!--                    android:layout_width="1dp"-->
@@ -170,7 +176,8 @@
                     android:text="@string/data"
                     android:textColor="#000"
                     android:textSize="16dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/lato_regular"/>
 
 <!--                <ImageView-->
 <!--                    android:layout_width="1dp"-->
@@ -188,7 +195,8 @@
                     android:text="@string/vlera"
                     android:textColor="#000"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/lato_regular"/>
 
 <!--                <ImageView-->
 <!--                    android:layout_width="1dp"-->
@@ -225,7 +233,8 @@
                     android:text="@string/ruajtur"
                     android:textColor="#000"
                     android:textSize="16dp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/lato_regular"/>
 
             </LinearLayout>
 
@@ -290,7 +299,8 @@
                         android:layout_marginLeft="19dp"
                         android:text="Konfiguro Listen"
                         android:textColor="@color/colorPrimaryDark"
-                        android:textSize="17sp" />
+                        android:textSize="17sp"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <ImageView
                         android:id="@+id/close_btn"
@@ -334,7 +344,8 @@
                             android:text="Print"
                             android:textAllCaps="false"
                             android:textColor="@color/colorPrimaryDark"
-                            android:textSize="17sp" />
+                            android:textSize="17sp"
+                            android:fontFamily="@font/lato_regular"/>
 
                         <Switch
                             android:id="@+id/print_switch"
@@ -361,7 +372,8 @@
                             android:text="Numri Fatures"
                             android:textAllCaps="false"
                             android:textColor="@color/colorPrimaryDark"
-                            android:textSize="17sp" />
+                            android:textSize="17sp"
+                            android:fontFamily="@font/lato_regular"/>
 
                         <Switch
                             android:id="@+id/nr_invoice_switch"
@@ -388,7 +400,8 @@
                             android:text="Klienti"
                             android:textAllCaps="false"
                             android:textColor="@color/colorPrimaryDark"
-                            android:textSize="17sp" />
+                            android:textSize="17sp"
+                            android:fontFamily="@font/lato_regular"/>
 
                         <Switch
                             android:id="@+id/client_switch"
@@ -415,7 +428,8 @@
                             android:text="Njesia e Klientit"
                             android:textAllCaps="false"
                             android:textColor="@color/colorPrimaryDark"
-                            android:textSize="17sp" />
+                            android:textSize="17sp"
+                            android:fontFamily="@font/lato_regular"/>
 
                         <Switch
                             android:id="@+id/client_unit_switch"
@@ -442,7 +456,8 @@
                             android:text="Data"
                             android:textAllCaps="false"
                             android:textColor="@color/colorPrimaryDark"
-                            android:textSize="17sp" />
+                            android:textSize="17sp"
+                            android:fontFamily="@font/lato_regular"/>
 
                         <Switch
                             android:id="@+id/data_switch"
@@ -469,7 +484,8 @@
                             android:text="Vlera"
                             android:textAllCaps="false"
                             android:textColor="@color/colorPrimaryDark"
-                            android:textSize="17sp" />
+                            android:textSize="17sp"
+                            android:fontFamily="@font/lato_regular"/>
 
                         <Switch
                             android:id="@+id/amount_switch"
@@ -496,7 +512,8 @@
                             android:text="Komenti"
                             android:textAllCaps="false"
                             android:textColor="@color/colorPrimaryDark"
-                            android:textSize="17sp" />
+                            android:textSize="17sp"
+                            android:fontFamily="@font/lato_regular"/>
 
                         <Switch
                             android:id="@+id/comment_switch"
@@ -523,7 +540,8 @@
                             android:text="Ruajtur"
                             android:textAllCaps="false"
                             android:textColor="@color/colorPrimaryDark"
-                            android:textSize="17sp" />
+                            android:textSize="17sp"
+                            android:fontFamily="@font/lato_regular"/>
 
                         <Switch
                             android:id="@+id/save_switch"
