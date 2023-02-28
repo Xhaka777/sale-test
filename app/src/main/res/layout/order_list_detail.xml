@@ -25,7 +25,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:text="@string/lista_porosive"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/lato_regular"/>
 
             </LinearLayout>
 
@@ -55,7 +57,8 @@
                     android:layout_weight="1"
 
                     android:text="@string/shifra"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato_regular"/>
 
 
                 <ImageView
@@ -74,7 +77,8 @@
                     android:layout_weight="1"
 
                     android:text="@string/barcode"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato_regular"/>
 
                 <ImageView
                     android:layout_width="1dp"
@@ -92,7 +96,8 @@
                     android:layout_weight="1"
 
                     android:text="@string/emri"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato_regular"/>
 
                 <ImageView
                     android:layout_width="1dp"
@@ -110,7 +115,8 @@
                     android:layout_weight="1"
 
                     android:text="@string/njesia"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato_regular"/>
 
                 <ImageView
                     android:layout_width="1dp"
@@ -128,7 +134,8 @@
                     android:layout_weight="1"
 
                     android:text="@string/sasia"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato_regular"/>
 
                 <ImageView
                     android:layout_width="1dp"
@@ -146,7 +153,8 @@
 
                     android:layout_weight="1"
                     android:text="@string/cmimi"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato_regular"/>
 
                 <ImageView
                     android:layout_width="1dp"
@@ -164,7 +172,8 @@
 
                     android:layout_weight="1"
                     android:text="@string/vlera"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato_regular"/>
 
 
             </LinearLayout>

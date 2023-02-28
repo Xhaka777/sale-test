@@ -30,7 +30,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
                         android:text="@string/lista_porosive"
-                        android:textColor="#000" />
+                        android:textColor="#000"
+                        android:fontFamily="@font/lato_regular"
+                        android:textSize="18sp"/>
                 </LinearLayout>
 
                 <View
@@ -62,7 +64,8 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:text="Nr."
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato_bold"/>
 
                 <ImageView
                     android:layout_width="1dp"
@@ -80,7 +83,8 @@
                     android:layout_weight="1"
 
                     android:text="@string/data"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato_bold"/>
 
                 <ImageView
                     android:layout_width="1dp"
@@ -98,7 +102,8 @@
                     android:layout_weight="1"
 
                     android:text="@string/depo"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato_bold"/>
 
                 <ImageView
                     android:layout_width="1dp"
@@ -116,7 +121,8 @@
                     android:layout_weight="1"
 
                     android:text="@string/klienti"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato_bold"/>
                 <ImageView
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
@@ -133,7 +139,8 @@
                     android:layout_weight="1"
 
                     android:text="@string/njesia"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato_bold"/>
 
                 <ImageView
                     android:layout_width="1dp"
@@ -151,7 +158,8 @@
 
                     android:layout_marginRight="10dp"
                     android:text="@string/tipi"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato_bold"/>
                 <ImageView
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
@@ -168,7 +176,8 @@
 
                     android:layout_marginRight="10dp"
                     android:text="@string/vlera"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato_bold"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -181,7 +190,8 @@
                     android:padding="15dp"
                     android:text="Anulo"
                     android:textColor="@android:color/white"
-                    android:visibility="invisible" />
+                    android:visibility="invisible"
+                    android:fontFamily="@font/lato_bold"/>
 
             </LinearLayout>
 
