@@ -12,7 +12,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginTop="16dp"
             android:layout_marginLeft="16dp">
 
             <TextView
@@ -23,7 +22,16 @@
                 android:textStyle="bold"
                 android:text="nga"
                 android:layout_weight="1"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 />
+
+            <ImageView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#000"/>
 
             <TextView
                 android:id="@+id/to"
@@ -33,7 +41,16 @@
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:text="deri"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 />
+
+            <ImageView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#000"/>
 
             <TextView
                 android:id="@+id/discount"
@@ -43,6 +60,10 @@
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:text="Zbritja%"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 />
 
 

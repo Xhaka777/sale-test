@@ -31,7 +31,8 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="20dp"
                     android:text="Kthim malli"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:textSize="16sp"/>
 
                 <LinearLayout
                     android:id="@+id/data_l"
@@ -101,50 +102,50 @@
                     android:background="#E5E5E5" />
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="#fff"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+<!--            <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:background="#fff"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:orientation="horizontal">-->
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentEnd="true"-->
+<!--                    android:layout_alignParentRight="true"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:layout_marginEnd="8dp"-->
+<!--                    android:layout_marginRight="8dp">-->
 
-                    <LinearLayout
-                        android:id="@+id/reference_number_content"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp">
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/reference_number_content"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_alignParentEnd="true"-->
+<!--                        android:layout_alignParentRight="true"-->
+<!--                        android:layout_marginEnd="8dp"-->
+<!--                        android:layout_marginRight="8dp">-->
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Nr References : "
-                            android:textColor="#000" />
+<!--                        <TextView-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:text="Nr References : "-->
+<!--                            android:textColor="#000" />-->
 
-                        <AutoCompleteTextView
-                            android:id="@+id/numri_reference"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:enabled="false"
-                            android:hint="Nr fat"
-                            android:textColor="#000"
-                            android:backgroundTint="@color/darkGrey_1"/>
+<!--                        <AutoCompleteTextView-->
+<!--                            android:id="@+id/numri_reference"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:enabled="false"-->
+<!--                            android:hint="Nr fat"-->
+<!--                            android:textColor="#000"-->
+<!--                            android:backgroundTint="@color/darkGrey_1"/>-->
 
-                    </LinearLayout>
-                </LinearLayout>
+<!--                    </LinearLayout>-->
+<!--                </LinearLayout>-->
 
-            </RelativeLayout>
+<!--            </RelativeLayout>-->
 
 
             <ScrollView
@@ -390,9 +391,45 @@
                                 android:textColor="#000"
                                 android:textSize="20dp"
                                 android:textStyle="bold" />
-
                         </LinearLayout>
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginBottom="84dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="#C6C6C6" />
                     </RelativeLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginBottom="15dp">
+
+                        <TextView
+                            android:id="@+id/komenti_textView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Komenti"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="#b3414042"/>
+
+                        <AutoCompleteTextView
+                            android:id="@+id/komenti_edittext"
+                            android:layout_width="254dp"
+                            android:layout_height="86dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginRight="8dp"
+                            android:background="@drawable/edit_field_corner"
+                            android:hint="Komenti"
+                            android:gravity="left"/>
+
+                    </LinearLayout>
+
                 </LinearLayout>
             </ScrollView>
 
