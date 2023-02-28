@@ -86,13 +86,14 @@ public class ActionActivity extends AppCompatActivity {
                     articleIntent.putExtra("bar_title", "Aksionet me produkte");
                             articleIntent.putExtra("title", "Artikulli");
                             articleIntent.putExtra("title_count", subItem.getName());
-                            articleIntent.putExtra("status", "Activ");
+                            articleIntent.putExtra("status", "Aktiv");
                             articleIntent.putExtra("shifra", subItem.getNumber());
                             articleIntent.putExtra("type", articleItems1.getType());
                             articleIntent.putExtra("unit", "-/-");
                             articleIntent.putExtra("client", articleItems1.getClientCategoryName());
                             articleIntent.putExtra("discount", articleItems1.getDiscount());
                             articleIntent.putExtra("amount", articleItems1.getQuantity());
+                            articleIntent.putExtra("item_unit", articleItems1.getItem_unit());
                             articleIntent.putExtra("nga", articleItems1.getFrom());
                             articleIntent.putExtra("deri", articleItems1.getTo());
                             startActivity(articleIntent);
@@ -135,7 +136,7 @@ public class ActionActivity extends AppCompatActivity {
                         articleIntent.putExtra("bar_title","Aksionet me Brend");
                         articleIntent.putExtra("title","Brendi");
                         articleIntent.putExtra("title_count",actionBrandItem.getBrandName());
-                        articleIntent.putExtra("status","Activ");
+                        articleIntent.putExtra("status","Aktiv");
                         articleIntent.putExtra("shifra","-/-");
                         articleIntent.putExtra("type", actionBrandItem.getType());
                         articleIntent.putExtra("unit", actionBrandItem.getUnit());
@@ -172,7 +173,7 @@ public class ActionActivity extends AppCompatActivity {
                 articleIntent.putExtra("bar_title","Aksionet me Kategori");
                         articleIntent.putExtra("title","Kategoria");
                         articleIntent.putExtra("title_count",actionCategoryItem.getCategoryName());
-                        articleIntent.putExtra("status","Activ");
+                        articleIntent.putExtra("status","Aktiv");
                         articleIntent.putExtra("shifra","-/-");
                         articleIntent.putExtra("type", actionCategoryItem.getType());
                         articleIntent.putExtra("unit", actionCategoryItem.getUnit());

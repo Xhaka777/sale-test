@@ -28,6 +28,9 @@ public class ActionArticleItems extends RealmObject {
     @SerializedName("quantity")
     @Expose
     public String quantity;
+    @SerializedName("item_unit")
+    @Expose
+    public String item_unit;
     @SerializedName("discount")
     @Expose
     public String discount;
@@ -87,6 +90,10 @@ public class ActionArticleItems extends RealmObject {
 
     public String getQuantity() {
         return quantity;
+    }
+
+    public String getItem_unit(){
+        return item_unit;
     }
 
     public String getDiscount() {

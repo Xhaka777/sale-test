@@ -11,7 +11,8 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:gravity="center_vertical"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:background="#F6F6F6">
 
             <TextView
                 android:id="@+id/numri"
@@ -67,6 +68,11 @@
                 android:textColor="#000"
                 android:textSize="16dp" />
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E5E5E5"/>
 
     </LinearLayout>
 </layout>
