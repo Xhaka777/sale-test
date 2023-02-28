@@ -57,14 +57,14 @@
                     android:id="@+id/titleLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="7dp"
+                    android:layout_marginTop="8dp"
                     android:ellipsize="end"
                     android:gravity="center"
                     android:maxLines="1"
                     android:text="Baki Hanma"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:fontFamily="sans-serif"
+                    android:fontFamily="@font/lato_bold"
                     />
             </LinearLayout>
         </RelativeLayout>
