@@ -156,13 +156,6 @@ public class FiscalCoupon extends AppCompatActivity {
     int countNoName = 0;
     public String[] stations;
 
-    private Button button1, button2;
-    private Switch aSwitch1, aSwitch2;
-
-    private boolean isPrintPDF = true;
-    private boolean isPrint80mm = true;
-
-
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -173,18 +166,9 @@ public class FiscalCoupon extends AppCompatActivity {
 
         Kontabiliteti.getKontabilitetiComponent().inject(this);
 
-//        preferences = (Preferences) getApplicationContext();
-
         getStocksName();
         getStocksQuantity();
 
-//        initWidgets();
-//        initSettings();
-//        loadSharedPrefrences();
-//        initSwitcherListener();
-//        checkSwitches();
-//        showPrintStatus();
-//        invoiceRole = realmHelper.getRole().getInvoice();
         stockArticles = realmHelper.getStockItems();
 
         Date cDate = new Date();
@@ -230,9 +214,6 @@ public class FiscalCoupon extends AppCompatActivity {
                 binding.njersiaEdittext.setHint("");
                 binding.njersiaEdittext.setEnabled(false);
             }
-//            }if(realmHelper.getSubItemDiscount(subItem.getDiscount()).length > 0){
-//                binding.zbritjaKlientit.setText("Zbritja e klientit: " + client.getDiscount() + subItem.getDiscount());
-//            }else {
             binding.zbritjaKlientit.setText("Zbritja e klientit: " + client.getDiscount() + " %");
         });
         // Add item on form
@@ -247,19 +228,6 @@ public class FiscalCoupon extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), R.string.ju_lutem_zgjedhni_klientin, Toast.LENGTH_SHORT).show();
             }
         });
-        // Print Invoice
-//        binding.fatureButton.setOnClickListener(view -> {
-//            InvoiceActivity.isBill = "0";
-//            if (stockItems.size() > 0) {
-//                if (checkSasia()) {
-//                    showCashDialog();
-//                } else {
-//                    Toast.makeText(getApplicationContext(), R.string.nje_ose_me_shume_artikuj_kan_sasine_zero, Toast.LENGTH_SHORT).show();
-//                }
-//            } else {
-//                Toast.makeText(getApplicationContext(), R.string.shtoni_se_paku_nje_artikull, Toast.LENGTH_SHORT).show();
-//            }
-//        });
 
         printManager = (PrintManager) this.getSystemService(Context.PRINT_SERVICE);
         // Print Bill
@@ -276,20 +244,7 @@ public class FiscalCoupon extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), R.string.shtoni_se_paku_nje_artikull, Toast.LENGTH_SHORT).show();
             }
         });
-        // Send Order
-//        binding.porositButton.setOnClickListener(v ->
-//        {
-//
-//            if (stockItems.size() > 0) {
-//                if (checkSasia()) {
-//                    showBillDialog();
-//                } else {
-//                    Toast.makeText(getApplicationContext(), R.string.nje_ose_me_shume_artikuj_kan_sasine_zero, Toast.LENGTH_SHORT).show();
-//                }
-//            } else {
-//                Toast.makeText(getApplicationContext(), R.string.shtoni_se_paku_nje_artikull, Toast.LENGTH_SHORT).show();
-//            }
-//        });
+
         new Handler().postDelayed(() -> {
 
             binding.emriKlientit.showDropDown();
@@ -308,56 +263,10 @@ public class FiscalCoupon extends AppCompatActivity {
 
                 String f = new SimpleDateFormat("dd-MM-yyyy").format(calendar.getTime());
                 shDate = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(calendar.getTime());
-//                binding.dataShip.setText(f);
             }
         };
 
     }
-
-//    private void initWidgets() {
-//        button1 = findViewById(R.id.print_button);
-//        button2 = findViewById(R.id.print_80_button);
-//        aSwitch1 = findViewById(R.id.printerPdf_switch);
-//        aSwitch2 = findViewById(R.id.printer80_switch);
-//    }
-//
-//    private void initSettings(){
-//        isPrintPDF = preferences.getPrintPdf();
-//        isPrint80mm = preferences.getPrint80mm();
-//    }
-
-//    private void loadSharedPrefrences(){
-//        SharedPreferences sharedPreferences = getSharedPreferences(Preferences.PREFS, MODE_PRIVATE);
-//        String print = sharedPreferences.getString(Preferences.CUSTOM_PRINT, Preferences.PRINT_PDF);
-//        preferences.setCustomPrint(print);
-//    }
-
-//private void initSwitcherListener(){
-//        aSwitch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if(isChecked)
-//                    preferences.setCustomPrint(Preferences.PRINT_PDF);
-//                else
-//                    preferences.setCustomPrint("");
-//
-//                SharedPreferences.Editor editor = getSharedPreferences(Preferences.PREFS, MODE_PRIVATE).edit();
-//                editor.putString(Preferences.CUSTOM_PRINT, preferences.getCustomPrint());
-//                editor.apply();
-//                updateView();
-//            }
-//        });
-//}
-
-//    private void updateView(){
-//        if(preferences.getCustomPrint().equals(Preferences.PRINT_PDF)){
-//            button1.setVisibility(View.VISIBLE);
-//            aSwitch1.setChecked(true);
-//        }else{
-//            button1.setVisibility(View.GONE);
-//            aSwitch1.setChecked(false);
-//        }
-//    }
 
     public void setLocale(String localeName) {
         if (!localeName.equals(currentLang)) {
@@ -504,10 +413,9 @@ public class FiscalCoupon extends AppCompatActivity {
         InvoiceItemBinding itemBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.invoice_item, binding.invoiceItemHolder, false);
         // Set Name
 
-
         itemBinding.emertimiTextview.setAdapter(new ArrayAdapter<String>(this,
                 android.R.layout.simple_dropdown_item_1line, stocksName));
-//        setArticleRole(itemBinding);
+         //setArticleRole(itemBinding);
         // Change Item Name - Event
         itemBinding.emertimiTextview.setOnItemClickListener((adapterView, view, i, l) -> {
             invoiceItem[0] = new InvoiceItem(realmHelper.getItemsByName(itemBinding.emertimiTextview.getText().toString()));
@@ -689,6 +597,7 @@ public class FiscalCoupon extends AppCompatActivity {
                             calculateVleraPaTvsh();
                             calculateVleraEZbritur();
                             calculateVleraETVSH();
+
                         } else {
                             invoiceItem[0].setSasia("0");
                             itemBinding.sasiaTextview.setText("0");
@@ -877,11 +786,7 @@ public class FiscalCoupon extends AppCompatActivity {
         mBuilder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
 
-                //Kur te selektojm Po mu discount numri i artikujve te zgjedhur...
                 count++;
-//               count--;
-//               binding.artikujTeZgjedhur.setText("Nr. i artikujve te zgjedhur : " + count);
-
 
                 // Write your code here to invoke Yes event
                 doYouWantToDeleteThisArticleListener.Yes();
@@ -1105,7 +1010,7 @@ public class FiscalCoupon extends AppCompatActivity {
     Gson gson = new Gson();
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    private void createPostItem(boolean isPrint) {
+    private void createPostItem(boolean isPrint,String print_type) {
         this.isPrint = isPrint;
         InvoicePost invoicePost = new InvoicePost();
         invoicePost.setId((realmHelper.getAutoIncrementIfForInvoice()));
@@ -1169,7 +1074,10 @@ public class FiscalCoupon extends AppCompatActivity {
             invoiceItemPost.setAction(stockItems.get(i).isAction());
             invoiceItemPost.setCollection(stockItems.get(i).isCollection());
             invoiceItemPosts.add(invoiceItemPost);
+
         }
+        System.out.println(invoiceItemPosts.get(0) + "Receipt");
+        //tremol_receipt = invoiceItemPosts;
         invoicePost.setTotal_without_discount(String.valueOf(round(BigDecimal.valueOf(totalNoDiscount))));
         invoicePost.setItems(invoiceItemPosts);
         RealmList<InvoicePost> invoicePosts = new RealmList<>();
@@ -1179,15 +1087,17 @@ public class FiscalCoupon extends AppCompatActivity {
         invoicePostObject.setUser_id(preferences.getUserId());
         invoicePostObject.setInvoices(invoicePosts);
 
-        if (isPrint) {
-            InvoicePrintUtil util = new InvoicePrintUtil(invoicePost, binding.web, this, client, printManager);
-        } else {
-            binding.fragment.setVisibility(View.VISIBLE);
-            for (Fragment fragment : getSupportFragmentManager().getFragments()
-            ) {
-                getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+        if(print_type.equals("")) {
+            if (isPrint) {
+                InvoicePrintUtil util = new InvoicePrintUtil(invoicePost, binding.web, this, client, printManager);
+            } else {
+                binding.fragment.setVisibility(View.VISIBLE);
+                for (Fragment fragment : getSupportFragmentManager().getFragments()
+                ) {
+                    getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+                }
+                addFragment(R.id.fragment, EscPostPrintFragment.Companion.newInstace(invoicePost, preferences, realmHelper, client, cash));
             }
-            addFragment(R.id.fragment, EscPostPrintFragment.Companion.newInstace(invoicePost, preferences, realmHelper, client, cash));
         }
 
         apiService.postFaturat(invoicePostObject)
@@ -1196,9 +1106,15 @@ public class FiscalCoupon extends AppCompatActivity {
                 .subscribe(responseBody -> {
                     if (responseBody.getSuccess()) {
                         invoicePost.setSynced(true);
+                        if(print_type.equals("tremol")) {
+                            print_tremol_items(invoiceItemPosts);
+                        }
                         Toast.makeText(getApplicationContext(), R.string.fatura_esht_ruajtur_dhe_sinkronizuar, Toast.LENGTH_SHORT).show();
                     } else {
                         invoicePost.setSynced(false);
+                        if(print_type.equals("tremol")) {
+                            print_tremol_items(invoiceItemPosts);
+                        }
                         Toast.makeText(getApplicationContext(), R.string.fatura_esht_ruajtur_por_nuk_esht_sinkronizuar, Toast.LENGTH_SHORT).show();
                     }
                     realmHelper.saveInvoices(invoicePost);
@@ -1209,8 +1125,30 @@ public class FiscalCoupon extends AppCompatActivity {
                     //qitu pe gjun errorin...
                     Toast.makeText(getApplicationContext(), R.string.fatura_esht_ruajtur_por_nuk_esht_sinkronizuar, Toast.LENGTH_SHORT).show();
                 });
+    }
+
+    public void print_tremol_commands(String command){
+
+        PrintTremol coupon = new PrintTremol(false,command);
+        try {
+            coupon.print_coupon();
+        }catch (Exception e){
+            System.out.println(e);
+        }
+    }
 
 
+    void print_tremol_items(RealmList<InvoiceItemPost> tremol_receipt){
+//        print_tremol_commands("X");
+        PrintTremol coupon = new PrintTremol(false,"receipt");
+        System.out.println(tremol_receipt);
+        coupon.set_receipt_data(tremol_receipt);
+        try{
+            coupon.print_coupon();
+
+        }catch (Exception e){
+            System.out.println(e + "im here");
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -1277,7 +1215,10 @@ public class FiscalCoupon extends AppCompatActivity {
             invoiceItemPost.setAction(stockItems.get(i).isAction());
             invoiceItemPost.setCollection(stockItems.get(i).isCollection());
             invoiceItemPosts.add(invoiceItemPost);
+
+
         }
+        System.out.println(invoiceItemPosts+ "hello");
         invoicePost.setTotal_without_discount(String.valueOf(round(BigDecimal.valueOf(totalNoDiscount))));
         invoicePost.setItems(invoiceItemPosts);
         RealmList<InvoicePost> invoicePosts = new RealmList<>();
@@ -1360,7 +1301,19 @@ public class FiscalCoupon extends AppCompatActivity {
                     isPaid = "0";
                 }
                 if (InvoiceActivity.isBill.equalsIgnoreCase("1")) {
-                    openPrintingActivity();
+                    //select printer from settings
+                    String printer_type = "Tremol";
+                    //printeri psh tremol duhet me marr prej db...
+                    //ne if statement e vendosim printerin
+                    if(true){
+                        // dialog per prano ose anulo kuponin...
+                        showIlamDialog();
+                        Toast.makeText(this, "Kuponi fiskal u krye me sukses", Toast.LENGTH_SHORT).show();
+                        /// Krijo dialog box shfaqe printerin
+                    }else{
+                        openPrintingActivity();
+                    }
+
                 } else {
                     alertDialog.dismiss();
                     showPrintDialog();
@@ -1415,17 +1368,18 @@ public class FiscalCoupon extends AppCompatActivity {
         Button print = dialogView.findViewById(R.id.print_button);
         Button print80mm = dialogView.findViewById(R.id.print_80_button);
         Button regjistro = dialogView.findViewById(R.id.print_vazhdo);
+//        Button printo_tremol = dialogView.findViewById(R.id.print_tremol);
         LinearLayout buttonHolder = dialogView.findViewById(R.id.button_holder);
 
 
         AlertDialog alertDialog = dialogBuilder.create();
 
         print.setOnClickListener(view -> {
-            createPostItem(true);
+            createPostItem(true,"");
             alertDialog.dismiss();
         });
         print80mm.setOnClickListener(view -> {
-            createPostItem(false);
+            createPostItem(false,"");
             alertDialog.dismiss();
         });
         regjistro.setOnClickListener(view -> {
@@ -1433,6 +1387,39 @@ public class FiscalCoupon extends AppCompatActivity {
             alertDialog.dismiss();
             finish();
         });
+
+//        printo_tremol.setOnClickListener(view -> {
+//            createPostItem(true,"tremol");
+//            alertDialog.dismiss();
+//
+//        });
+//
+//
+        alertDialog.show();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    private void showIlamDialog() {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.select_tremol_dialog, null);
+        dialogBuilder.setView(dialogView);
+        Button printTremol = dialogView.findViewById(R.id.printo_tremol);
+        Button printCancle = dialogView.findViewById(R.id.print_cancle);
+
+        AlertDialog alertDialog = dialogBuilder.create();
+
+        printTremol.setOnClickListener(view -> {
+            createPostItem(true,"tremol");
+            alertDialog.dismiss();
+            finish();
+        });
+
+        printCancle.setOnClickListener(view -> {
+            Intent intent = new Intent(this, FiscalCoupon.class);
+            startActivity(intent);
+        });
+
 
         alertDialog.show();
     }
@@ -1443,7 +1430,7 @@ public class FiscalCoupon extends AppCompatActivity {
         super.onResume();
         if (InvoiceActivity.uploadThisMf) {
             InvoiceActivity.uploadThisMf = false;
-            createPostItem(isPrint);
+            createPostItem(isPrint,"");
         }
 //
 //        String invoices = realmHelper.getInvoicesString();

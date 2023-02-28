@@ -2,12 +2,9 @@ package org.planetaccounting.saleAgent.escpostprint
 
 
 import android.annotation.SuppressLint
-import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.os.Environment
 import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
 import android.text.format.DateFormat
 import android.view.LayoutInflater
 import android.view.View
@@ -21,20 +18,20 @@ import com.leerybit.escpos.Ticket
 import com.leerybit.escpos.TicketBuilder
 import com.leerybit.escpos.bluetooth.BTService
 import com.leerybit.escpos.widgets.TicketPreview
-
 import org.planetaccounting.saleAgent.R
 import org.planetaccounting.saleAgent.model.clients.Client
 import org.planetaccounting.saleAgent.model.invoice.InvoicePost
 import org.planetaccounting.saleAgent.persistence.RealmHelper
 import org.planetaccounting.saleAgent.utils.Preferences
-import java.io.File
 import java.io.IOException
-import java.lang.Exception
+import java.math.BigDecimal
+import java.math.RoundingMode
 import java.util.*
+
 
 class EscPostPrintFragment : Fragment() {
 
-    private var printer =  PosPrinter80mm(activity)
+    private var printer = PosPrinter80mm(activity)
     private val preview by lazy { view?.findViewById<TicketPreview>(R.id.ticket) }
     private val messageView by lazy { view?.findViewById<TextView>(R.id.tv_message) }
     private val stateView by lazy { view?.findViewById<TextView>(R.id.tv_state) }
@@ -45,16 +42,19 @@ class EscPostPrintFragment : Fragment() {
     private var isQuantity_UNIT = true
     private var isDiscount = true
     private var isDiscount_Extra = true
-    private var itemsString:List<String>? =null
+    private var itemsString: List<String>? = null
+    private var isName = true;
+    private var isVAT = true;
+
     companion object {
-        private var  minvoicePost: InvoicePost? = null
-      private var preferences: Preferences? = null
+        private var minvoicePost: InvoicePost? = null
+        private var preferences: Preferences? = null
         private var realmHelper: RealmHelper? = null
-        private var client: Client?= null
-        private var pay: String?= null
+        private var client: Client? = null
+        private var pay: String? = null
         private var isPrinted = false
 
-        fun newInstace(_invoicePost: InvoicePost, _preferences: Preferences? = null, _realmHelper: RealmHelper? = null,_client: Client,_pay:String): EscPostPrintFragment {
+        fun newInstace(_invoicePost: InvoicePost, _preferences: Preferences? = null, _realmHelper: RealmHelper? = null, _client: Client, _pay: String): EscPostPrintFragment {
             val fragment = EscPostPrintFragment()
             val b = Bundle()
             isPrinted = false
@@ -65,7 +65,7 @@ class EscPostPrintFragment : Fragment() {
             pay = null
 
             minvoicePost = _invoicePost
-            preferences =_preferences
+            preferences = _preferences
             realmHelper = _realmHelper
             client = _client
             pay = _pay
@@ -73,6 +73,7 @@ class EscPostPrintFragment : Fragment() {
             return fragment
         }
     }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -93,7 +94,7 @@ class EscPostPrintFragment : Fragment() {
             }
 
             override fun onFailure() {
-                Toast.makeText(context, "Connection failed", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, R.string.connection_failed, Toast.LENGTH_SHORT).show()
             }
 
             override fun onDisconnected() {
@@ -104,7 +105,9 @@ class EscPostPrintFragment : Fragment() {
         printer.setStateChangedListener { state, msg ->
             when (state) {
                 BTService.STATE_NONE -> setState("NONE", R.color.text)
-                BTService.STATE_CONNECTED ->{setState("CONNECTED", R.color.green)}
+                BTService.STATE_CONNECTED -> {
+                    setState("CONNECTED", R.color.green)
+                }
                 BTService.STATE_CONNECTING -> setState("CONNECTING", R.color.blue)
                 BTService.STATE_LISTENING -> setState("LISTENING", R.color.amber)
 
@@ -119,7 +122,7 @@ class EscPostPrintFragment : Fragment() {
             }
         }
 
-            printer.connect()
+        printer.connect()
 
         btnSearch.setOnClickListener {
             if (!printer.isConnected) printer.connect() else printer.disconnect()
@@ -128,31 +131,28 @@ class EscPostPrintFragment : Fragment() {
     }
 
 
-
     private fun printTicket() {
-        if (isPrinted){
+        if (isPrinted) {
             return
         }
         try {
             isPrinted = true
             val date = Date()
-            val ticket: Ticket
 
-            ticket = TicketBuilder(printer)
+            val ticket: Ticket = TicketBuilder(printer)
                     .isCyrillic(true)
-                    .image(getImage())
                     .feedLine(2)
                     .divider()
                     //
                     .text("Shitesi: ${realmHelper?.companyInfo?.name}")
-                    .text("Adresa: ${realmHelper?.companyInfo?.address}")
-                    .text("        ${realmHelper?.companyInfo?.city}")
-                    .text("        ${realmHelper?.companyInfo?.state}")
-                    .text(if (realmHelper?.companyInfo?.phone!= null||realmHelper?.companyInfo?.email!= null)"Kontant: ${realmHelper?.companyInfo?.phone}" else null)
-                    .text(if (realmHelper?.companyInfo?.phone!= null||realmHelper?.companyInfo?.email!= null)"       : ${realmHelper?.companyInfo?.email}" else null)
-                    .text(if (realmHelper?.companyInfo?.fiscalNumber!= null)"Nr.Fiskal: ${realmHelper?.companyInfo?.fiscalNumber}" else null)
-                    .text(if (realmHelper?.companyInfo?.busniessNumber!= null)"Nr. Biznesit: ${realmHelper?.companyInfo?.busniessNumber}" else null)
-                    .text(if (realmHelper?.companyInfo?.vatNumber!= null)"Nr. TVSH: ${realmHelper?.companyInfo?.vatNumber}" else null)
+                    .text(if (realmHelper?.companyInfo?.address != null) "Adresa : ${realmHelper?.companyInfo?.address}" else null)
+                    .text(if (realmHelper?.companyInfo?.city != null) "Qyteti: ${realmHelper?.companyInfo?.city}" else null)
+                    .text(if (realmHelper?.companyInfo?.state_name != null) "Shteti: ${realmHelper?.companyInfo?.state_name}" else null)
+                    .text(if (realmHelper?.companyInfo?.phone != null || realmHelper?.companyInfo?.email != null) "Kontant: ${realmHelper?.companyInfo?.phone}" else null)
+                    .text(if (realmHelper?.companyInfo?.phone != null || realmHelper?.companyInfo?.email != null) "       : ${realmHelper?.companyInfo?.email}" else null)
+                    .text(if (realmHelper?.companyInfo?.fiscalNumber != null) "Nr.Fiskal: ${realmHelper?.companyInfo?.fiscalNumber}" else null)
+                    .text(if (realmHelper?.companyInfo?.busniessNumber != null) "Nr. Biznesit: ${realmHelper?.companyInfo?.busniessNumber}" else null)
+                    .text(if (realmHelper?.companyInfo?.vatNumber != null) "Nr. TVSH: ${realmHelper?.companyInfo?.vatNumber}" else null)
                     .divider()
                     //
                     .text("Fature: ${minvoicePost?.no_invoice}")
@@ -164,25 +164,57 @@ class EscPostPrintFragment : Fragment() {
                     .text("Bleresi: ${minvoicePost?.partie_name}")
                     .text("Njesia: ${minvoicePost?.partie_station_name}")
                     .text("Adresa: ${minvoicePost?.partie_address}")
-                    .text(if (client?.phone!= null)"Kontant: ${client?.phone}" else null)
-                    .text(if (client?.numberFiscal!= null)"Nr.Fiskal: ${client?.numberFiscal}" else null)
-                    .text(if (client?.numberBusniess!= null)"Nr. Biznesit: ${client?.numberBusniess}" else null)
-                    .text(if (client?.numberVat!= null)"Nr. TVSH: ${client?.numberVat}" else null)
+                    .text(if (client?.phone != null) "Kontant: ${client?.phone}" else null)
+                    .text(if (client?.numberFiscal != null) "Nr.Fiskal: ${client?.numberFiscal}" else null)
+                    .text(if (client?.numberBusniess != null) "Nr. Biznesit: ${client?.numberBusniess}" else null)
+                    .text(if (client?.numberVat != null) "Nr. TVSH: ${client?.numberVat}" else null)
                     .divider()
                     //
-                    .text("${if (isKode){"Kodi   "} else {""}}  Emertimi")
-                    .text("${if (isBarcode){"Barkodi         "} else {""}} Njesia  TVSH")
-                    .text("Sasia${if (isQuantity_UNIT){" Sasia.C"} else {""}} CmimiB${if (isDiscount){" Zbr"} else {""}}${if (isDiscount_Extra){" Zbr.Ex"} else {""}} C.mTVSH Vl.mTvsh",TicketBuilder.TextAlignment.CENTER)
+                    .text("${
+                        if (isBarcode) {
+                            "Barkodi         "
+                        } else {
+                            ""
+                        }
+                    } ${
+                        if (isName) {
+                            "    Emertimi"
+                        } else {
+                            ""
+                        }
+
+                    }             TVSH")
+                    .text("Sasia${
+                        if (isQuantity_UNIT) {
+                            " Sasia.C"
+                        } else {
+                            ""
+                        }
+                    } Cm. pa zb.${
+                        if (isDiscount) {
+                            " Zbr"
+                        } else {
+                            ""
+                        }
+                    }${
+                        if (isDiscount_Extra) {
+                            " Zbr.Ex"
+                        } else {
+                            ""
+                        }
+                    } Cmimi Vlera", TicketBuilder.TextAlignment.CENTER)
                     .divider()
                     //
                     .textList(getItems())
                     //
                     .dividerDouble()
-                    .menuLine("Totali pa Zbritje","${minvoicePost?.total_without_discount} EUR")
-                    .menuLine("Vlera e Zbritur","${minvoicePost?.amount_discount} EUR")
-                    .menuLine("TVSH","${minvoicePost?.amount_of_vat} EUR")
-                    .menuLine("Pagesa",if (pay!=null){"$pay EUR"} else null)
-                    .menuLine("Vlera Totale","${minvoicePost?.amount_with_vat} EUR")
+                    .menuLine("Totali pa Zbritje", "${minvoicePost?.total_without_discount} EUR")
+                    .menuLine("Vlera e Zbritur", "${minvoicePost?.amount_discount} EUR")
+                    .menuLine("TVSH", "${minvoicePost?.amount_of_vat} EUR")
+                    .menuLine("Pagesa", if (pay != null) {
+                        "$pay EUR"
+                    } else null)
+                    .menuLine("Vlera Totale", "${minvoicePost?.amount_with_vat} EUR")
 
                     .dividerDouble()
                     //
@@ -190,9 +222,9 @@ class EscPostPrintFragment : Fragment() {
                     .textList(createCashHoles())
                     .divider()
                     //
-                    .menuLine("Faturoi","Pranoi")
+                    .menuLine("Faturoi", "Pranoi")
                     .feedLine(1)
-                    .menuLine("____________","____________")
+                    .menuLine("____________", "____________")
                     .feedLine()
                     .divider()
                     //
@@ -212,19 +244,19 @@ class EscPostPrintFragment : Fragment() {
         }
     }
 
-    private fun getItems():List<String>{
-        if (itemsString != null){
+    private fun getItems(): List<String> {
+        if (itemsString != null) {
             return itemsString!!
         }
-        val items:MutableList<String> = mutableListOf()
+        val items: MutableList<String> = mutableListOf()
 
         minvoicePost?.items?.forEach {
-            if (it.relacioni == null ){
+            if (it.relacioni == null) {
                 it.relacioni = "1"
             }
             var discount = client?.getDiscount()
             discount = if (it.isCollection) {
-                "0"
+                ""
             } else {
                 client?.getDiscount()
             }
@@ -232,40 +264,119 @@ class EscPostPrintFragment : Fragment() {
             if (it.relacioni.toDouble() > 1) {
                 sasia = it.quantity
             }
-            items.add("${if (isKode) {"${it.no} " } else { "" }}  ${it.name}")
-            items.add("${if (isBarcode) { "${it.barcode}    "} else { "" }} ${it.unit}  ${it.vat_rate}")
-            items.add("$sasia${if (isQuantity_UNIT){"  ${it.quantity.toDouble() * it.relacioni.toDouble()}"} else {""}}  ${it.price_base}${if (isDiscount){"  $discount"} else {""}}${if (isDiscount_Extra){"  ${it.discount}"} else {""}}  ${it.price_vat}  ${it.totalPrice}")
+            items.add("${
+                if (isBarcode) {
+                    "${it.barcode}     "
+                }else if ("${it.barcode}".length == 8){
+                    "${it.barcode}           "
+                }else if ("${it.barcode}".length == 9){
+                    "${it.barcode}         "
+                }else if ("${it.barcode}".length == 10){
+                    "${it.barcode}       "
+                }else if ("${it.barcode}".length == 11){
+                    "${it.barcode}     "
+                }else if ("${it.barcode}".length == 12){
+                    "${it.barcode}    "
+                }else if ("${it.barcode}".length == 13){
+                    "${it.barcode}   "
+                }else if("${it.barcode}".length == 14){
+                    "${it.barcode}  "
+                }else {
+                    ""
+                }
+            } ${
+                if (isName) {
+                    if ("${it.name}".length > 20) {
+
+                        val barcode = it.barcode.replace("[^\\s]".toRegex(), " ")
+
+                        val strN: String = "${it.name.subSequence(0, 20)}" + "    ${it.vat_rate}" + "\t\t" + barcode + "     " + "${it.name.subSequence(20, "${it.name}".length)}"
+                        strN
+                    } else if ("${it.name}".length == 19) {
+                        "${it.name}" + "     ${it.vat_rate}"
+                    } else if ("${it.name}".length == 18) {
+                        "${it.name}" + "      ${it.vat_rate}"
+                    } else if ("${it.name}".length == 17) {
+                        "${it.name}" + "       ${it.vat_rate}"
+                    } else if ("${it.name}".length == 16) {
+                        "${it.name}" + "        ${it.vat_rate}"
+                    } else if ("${it.name}".length == 15) {
+                        "${it.name}" + "         ${it.vat_rate}"
+                    } else if ("${it.name}".length == 14) {
+                        "${it.name}" + "          ${it.vat_rate}"
+                    } else if ("${it.name}".length == 13) {
+                        "${it.name}" + "           ${it.vat_rate}"
+                    } else if ("${it.name}".length == 12) {
+                        "${it.name}" + "            ${it.vat_rate}"
+                    } else if ("${it.name}".length == 11) {
+                        "${it.name}" + "             ${it.vat_rate}"
+                    } else if ("${it.name}".length == 10) {
+                        "${it.name}" + "              ${it.vat_rate}"
+                    } else if ("${it.name}".length == 9) {
+                        "${it.name}" + "               ${it.vat_rate}"
+                    } else if ("${it.name}".length == 8) {
+                        "${it.name}" + "                ${it.vat_rate}"
+                    } else if ("${it.name}".length == 7) {
+                        "${it.name}" + "                 ${it.vat_rate}"
+                    } else if ("${it.name}".length == 6) {
+                        "${it.name}" + "                  ${it.vat_rate}"
+                    } else if ("${it.name}".length == 5) {
+                        "${it.name}" + "                   ${it.vat_rate}"
+                    } else if ("${it.name}".length == 4) {
+                        "${it.name}" + "                    ${it.vat_rate}"
+                    } else if ("${it.name}".length == 3) {
+                        "${it.name}" + "                     ${it.vat_rate}"
+                    } else if ("${it.name}".length == 2) {
+                        "${it.name}" + "                       ${it.vat_rate}"
+                    } else {
+                        "${it.name}" + "                         ${it.vat_rate}"
+                    }
+                } else {
+                    ""
+                }
+            } ")
+
+            items.add("$sasia${
+                if (isQuantity_UNIT) {
+                    "${it.quantity.toDouble() * it.relacioni.toDouble()}   "
+                } else {
+                    ""
+                }
+            }  ${round((it.price_base).toBigDecimal())}   ${
+
+                if (isDiscount) {
+                    "  $discount  "
+                } else {
+                    ""
+                }
+            }${
+                if (isDiscount_Extra) {
+                    "  ${it.discount} "
+                } else {
+                    ""
+                }
+            }    ${round((it.price_vat).toBigDecimal())}    ${round((it.totalPrice).toBigDecimal())}")
             items.add("")
         }
         itemsString = items
         return items
     }
-    private fun getImage():Bitmap?{
-        var bitmap:Bitmap?= null
-        try {
-            val img = Environment.getExternalStorageDirectory().absolutePath + "/Planet Accounting Faturat/logo.png"
-            val file =  File(img);
-             bitmap = BitmapFactory.decodeFile(file.absolutePath);
-        } catch (e:Exception){
-        }
 
-    return bitmap;
-    }
 
-    private fun createCashHoles():List<String>{
-        val items:MutableList<String> = mutableListOf()
+    private fun createCashHoles(): List<String> {
+        val items: MutableList<String> = mutableListOf()
         realmHelper?.companyInfo?.bankAccounts?.forEach {
             items.add("${it.name}: ${it.bankAccountNumber}")
         }
-        return  items
+        return items
     }
 
-    private  fun  initSettings(){
-        isKode = preferences?.kodeSettings?:true
-        isBarcode = preferences?.barcodeSettings?:true
-        isQuantity_UNIT = preferences?.quantitySettings?:true
-        isDiscount = preferences?.discountSettings?:true
-        isDiscount_Extra = preferences?.discountExtraSettings?:true
+    private fun initSettings() {
+        isKode = preferences?.kodeSettings ?: true
+        isBarcode = preferences?.barcodeSettings ?: true
+        isQuantity_UNIT = preferences?.quantitySettings ?: true
+        isDiscount = preferences?.discountSettings ?: true
+        isDiscount_Extra = preferences?.discountExtraSettings ?: true
     }
 
     private fun printTicketTest() {
@@ -276,7 +387,7 @@ class EscPostPrintFragment : Fragment() {
             ticket = TicketBuilder(printer)
                     .isCyrillic(true)
                     .header("PosPrinter")
-                    .image(BitmapFactory.decodeResource(getResources(),R.drawable.common_full_open_on_phone))
+                    .image(BitmapFactory.decodeResource(getResources(), R.drawable.common_full_open_on_phone))
                     .divider()
                     .text("Date: ${DateFormat.format("dd.MM.yyyy", date)}")
                     .text("Time: ${DateFormat.format("HH:mm", date)}")
@@ -338,4 +449,11 @@ class EscPostPrintFragment : Fragment() {
 //        messageView?.setTextColor(ContextCompat.getColor(context!!, color))
     }
 
+    fun cutTo2(value: Double): Double {
+        return String.format(Locale.ENGLISH, "%.2f", value).toDouble()
+    }
+
+    fun round(number: BigDecimal): BigDecimal? {
+        return number.setScale(2, RoundingMode.HALF_UP)
+    }
 }

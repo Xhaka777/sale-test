@@ -1,5 +1,6 @@
 package org.planetaccounting.saleAgent.utils;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
@@ -9,9 +10,15 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnKeyListener;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.datecs.fiscalprinter.FiscalPrinterException;
@@ -19,6 +26,8 @@ import com.datecs.fiscalprinter.FiscalResponse;
 import com.datecs.fiscalprinter.kos.FMP10KOS;
 import org.planetaccounting.saleAgent.Kontabiliteti;
 import org.planetaccounting.saleAgent.MainActivity;
+import org.planetaccounting.saleAgent.R;
+import org.planetaccounting.saleAgent.fiscalCoupon.PrintTremol;
 import org.planetaccounting.saleAgent.invoice.InvoiceActivity;
 import org.planetaccounting.saleAgent.model.InvoiceItem;
 import org.planetaccounting.saleAgent.model.stock.Item;
@@ -34,6 +43,7 @@ import java.util.UUID;
 
 import javax.inject.Inject;
 
+import TremolZFP.FP;
 import io.realm.Realm;
 
 
@@ -61,8 +71,10 @@ public class ActivityPrint extends Activity {
     private BluetoothSocket mBtSocket;
     private FMP10KOS mFMP;
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(org.planetaccounting.saleAgent.R.layout.activity_print);
 
@@ -75,7 +87,12 @@ public class ActivityPrint extends Activity {
         mBtAdapter = BluetoothAdapter.getDefaultAdapter();
         if (mBtAdapter != null) {
             if (mBtAdapter.isEnabled()) {
-                selectDevice();
+                if (true){
+                    //dialog for z-raport and x-raport
+                    showRaportDialog();
+                }else {
+                    selectDevice();
+                }
             } else {
                 enableBluetooth();
             }
@@ -85,6 +102,7 @@ public class ActivityPrint extends Activity {
             return;
         }
 
+
         findViewById(org.planetaccounting.saleAgent.R.id.btn_panic_operation).setOnClickListener(v -> performPanicOperation());
 
         findViewById(org.planetaccounting.saleAgent.R.id.btn_defining_items).setOnClickListener(v -> definingItems());
@@ -92,6 +110,85 @@ public class ActivityPrint extends Activity {
         findViewById(org.planetaccounting.saleAgent.R.id.btn_fiscal_receipt).setOnClickListener(v -> printFiscalReceipt());
 
         findViewById(org.planetaccounting.saleAgent.R.id.btn_z_report).setOnClickListener(v -> performZReport());
+    }
+    //me bo orientation portraint
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    private void showRaportDialog() {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.dialog_xz_raport, null);
+        dialogBuilder.setView(dialogView);
+        Button zRaporti = dialogView.findViewById(R.id.zRaporti_button);
+        Button xRaporti = dialogView.findViewById(R.id.xRaporti_button);
+
+        AlertDialog alertDialog = dialogBuilder.create();
+
+        zRaporti.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                android.app.AlertDialog.Builder mBuilder = new android.app.AlertDialog.Builder(ActivityPrint.this);
+                mBuilder.setTitle("");
+                String message = "A deshironi te shtypni Z-Raportin (Mbyll raportin) ";
+                mBuilder.setMessage(message);
+                mBuilder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Write your code here to invoke Yes event
+                        print_tremol_commands("Z");
+                        alertDialog.dismiss();
+                        dialog.cancel();
+                    }
+                });
+                mBuilder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Write your code here to invoke No event
+                        dialog.cancel();
+                    }
+                });
+                android.app.AlertDialog dialog = mBuilder.create();
+                dialog.show();
+            }
+        });
+
+        xRaporti.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                android.app.AlertDialog.Builder mBuilder = new android.app.AlertDialog.Builder(ActivityPrint.this);
+                mBuilder.setTitle("");
+                String message = "A deshironi te shtypni X-Raportin Ditor ";
+                mBuilder.setMessage(message);
+                mBuilder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        print_tremol_commands("X");
+                        alertDialog.dismiss();
+                    }
+                });
+
+                mBuilder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //Write your code here to invoke No event
+                        dialog.cancel();
+                    }
+                });
+                android.app.AlertDialog dialog = mBuilder.create();
+                dialog.show();
+            }
+        });
+
+        alertDialog.show();
+    }
+
+    //metoda te cilat i marrim te dhenat nga libraria edhe ja dergojme si parameter charin per raporte
+    public void print_tremol_commands(String command){
+        PrintTremol coupon = new PrintTremol(false, command);
+        try {
+            coupon.print_coupon();
+        }catch (Exception e){
+            System.out.println("gati jem :" + e);
+        }
     }
 
     @Override
@@ -237,7 +334,8 @@ public class ActivityPrint extends Activity {
         });
     }
 
-    private void definingItems() {
+    @SuppressLint("StaticFieldLeak")
+    private  void definingItems() {
 
         new AsyncTask<Void, Void, Void>() {
 
@@ -269,6 +367,7 @@ public class ActivityPrint extends Activity {
 //                        mFMP.command107Variant1Version0("D", "104", "1", "1.04", "", "104", "ITEM PLU #104");
                     Realm realm = Realm.getDefaultInstance();
                     stockItems = realm.where(Item.class).findAll();
+                    System.out.println(stockItems+"altin");
                     for (int i = 0; i < stockItems.size(); i++) {
                         for (int j = 0; j < stockItems.get(i).getItems().size(); j++) {
                             String name;

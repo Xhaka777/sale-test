@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#c6c6c6">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            tools:ignore="MissingConstraints">
+
+            <Button
+                android:id="@+id/find_device_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Find Device"
+                android:background="@drawable/action_round_layout"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="0.4"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/cut_paper_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Cut Paper"
+                        android:textAllCaps="false"
+                        android:background="@drawable/fiscal_printer_rounder"
+                        android:layout_marginRight="45dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_weight="0.4"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/status_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="Status"
+                        android:textAllCaps="false"
+                        android:layout_gravity="end"
+                        android:background="@drawable/fiscal_printer_rounder"
+                        android:layout_marginLeft="45dp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:layout_marginTop="20dp">-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="8dp"-->
+<!--                    android:layout_weight="0.5"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <Button-->
+<!--                        android:id="@+id/z_raporti_button"-->
+<!--                        android:layout_width="157dp"-->
+<!--                        android:layout_height="75dp"-->
+<!--                        android:layout_marginRight="25dp"-->
+<!--                        android:background="@drawable/fiscal_printer_rounder"-->
+<!--                        android:text="Z-Raporti"-->
+<!--                        android:textAllCaps="false" />-->
+
+<!--                </LinearLayout>-->
+
+<!--                <LinearLayout-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="8dp"-->
+<!--                    android:layout_weight="0.5"-->
+<!--                    android:orientation="vertical">-->
+
+<!--                    <Button-->
+<!--                        android:id="@+id/x_raporti_button"-->
+<!--                        android:layout_width="157dp"-->
+<!--                        android:layout_height="75dp"-->
+<!--                        android:layout_gravity="end"-->
+<!--                        android:layout_marginLeft="25dp"-->
+<!--                        android:background="@drawable/fiscal_printer_rounder"-->
+<!--                        android:text="X-Raporti"-->
+<!--                        android:textAllCaps="false" />-->
+
+<!--                </LinearLayout>-->
+
+<!--            </LinearLayout>-->
+
+            <Button
+                android:id="@+id/test_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Test"
+                android:background="@drawable/action_round_layout"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>
