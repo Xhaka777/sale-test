@@ -27,7 +27,7 @@
                 android:text="Aksionet"
                 android:textColor="#535353"
                 android:textSize="19sp"
-                android:textStyle="bold" />
+                android:fontFamily="@font/lato_bold" />
 
         </LinearLayout>
 
@@ -57,7 +57,8 @@
                         android:layout_margin="10dp"
                         android:text="Aksionet me produkte"
                         android:textColor="#000"
-                        android:textSize="20dp" />
+                        android:textSize="20dp"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <View
                         android:layout_width="match_parent"
@@ -81,7 +82,8 @@
                             android:gravity="center"
                             android:text="Nr."
                             android:textColor="#000"
-                            android:textSize="16dp" />
+                            android:textSize="16dp"
+                            android:fontFamily="@font/lato_regular"/>
 
                         <TextView
                             android:id="@+id/artikulli"
@@ -91,7 +93,8 @@
                             android:gravity="center"
                             android:text="Artikulli"
                             android:textColor="#000"
-                            android:textSize="16dp" />
+                            android:textSize="16dp"
+                            android:fontFamily="@font/lato_regular"/>
 
                         <TextView
                             android:id="@+id/nga"
@@ -101,7 +104,8 @@
                             android:gravity="center"
                             android:text="Nga"
                             android:textColor="#000"
-                            android:textSize="16dp" />
+                            android:textSize="16dp"
+                            android:fontFamily="@font/lato_regular"/>
 
                         <TextView
                             android:id="@+id/deri"
@@ -112,7 +116,8 @@
                             android:text="Deri"
                             android:textAlignment="center"
                             android:textColor="#000"
-                            android:textSize="16dp" />
+                            android:textSize="16dp"
+                            android:fontFamily="@font/lato_regular"/>
 
                     </LinearLayout>
 
@@ -149,7 +154,8 @@
                         android:layout_margin="10dp"
                         android:text="Aksionet me Brend"
                         android:textColor="#000"
-                        android:textSize="20dp" />
+                        android:textSize="20dp"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <View
                         android:layout_width="match_parent"
@@ -172,7 +178,8 @@
                             android:gravity="center"
                             android:text="Nr."
                             android:textColor="#000"
-                            android:textSize="16dp" />
+                            android:textSize="16dp"
+                            android:fontFamily="@font/lato_regular"/>
 
                         <TextView
                             android:layout_width="0dp"
@@ -181,7 +188,8 @@
                             android:gravity="center"
                             android:text="Brendi"
                             android:textColor="#000"
-                            android:textSize="16dp" />
+                            android:textSize="16dp"
+                            android:fontFamily="@font/lato_regular"/>
 
                         <TextView
                             android:layout_width="0dp"
@@ -190,7 +198,8 @@
                             android:gravity="center"
                             android:text="Nga"
                             android:textColor="#000"
-                            android:textSize="16dp" />
+                            android:textSize="16dp"
+                            android:fontFamily="@font/lato_regular"/>
 
                         <TextView
                             android:layout_width="0dp"
@@ -199,7 +208,8 @@
                             android:gravity="center_horizontal"
                             android:text="Deri"
                             android:textColor="#000"
-                            android:textSize="16dp" />
+                            android:textSize="16dp"
+                            android:fontFamily="@font/lato_regular"/>
                     </LinearLayout>
 
                     <View
@@ -231,7 +241,8 @@
                         android:layout_margin="10dp"
                         android:text="Aksionet me Kategori"
                         android:textColor="#000"
-                        android:textSize="20dp" />
+                        android:textSize="20dp"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <View
                         android:layout_width="match_parent"
@@ -254,7 +265,8 @@
                             android:gravity="center"
                             android:text="Nr."
                             android:textColor="#000"
-                            android:textSize="16dp" />
+                            android:textSize="16dp"
+                            android:fontFamily="@font/lato_regular"/>
 
                         <TextView
                             android:layout_width="0dp"
@@ -263,7 +275,8 @@
                             android:gravity="center"
                             android:text="Kategoria"
                             android:textColor="#000"
-                            android:textSize="16dp" />
+                            android:textSize="16dp"
+                            android:fontFamily="@font/lato_regular"/>
 
                         <TextView
                             android:layout_width="0dp"
@@ -272,7 +285,8 @@
                             android:gravity="center"
                             android:text="Nga"
                             android:textColor="#000"
-                            android:textSize="16dp" />
+                            android:textSize="16dp"
+                            android:fontFamily="@font/lato_regular"/>
 
                         <TextView
                             android:layout_width="0dp"
@@ -282,7 +296,8 @@
                             android:text="Deri"
                             android:textAlignment="center"
                             android:textColor="#000"
-                            android:textSize="16dp" />
+                            android:textSize="16dp"
+                            android:fontFamily="@font/lato_regular"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -315,7 +330,8 @@
                         android:layout_margin="10dp"
                         android:text="Aksionet me Kombinim"
                         android:textColor="#000"
-                        android:textSize="20dp" />
+                        android:textSize="20dp"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <View
                         android:layout_width="match_parent"
@@ -338,7 +354,8 @@
                             android:gravity="center"
                             android:text="Nr."
                             android:textColor="#000"
-                            android:textSize="16dp" />
+                            android:textSize="16dp"
+                            android:fontFamily="@font/lato_regular"/>
 
                         <TextView
                             android:layout_width="0dp"
@@ -347,7 +364,8 @@
                             android:gravity="center"
                             android:text="Kombinim"
                             android:textColor="#000"
-                            android:textSize="16dp" />
+                            android:textSize="16dp"
+                            android:fontFamily="@font/lato_regular"/>
 
                         <TextView
                             android:layout_width="0dp"
@@ -356,7 +374,8 @@
                             android:gravity="center"
                             android:text="Nga"
                             android:textColor="#000"
-                            android:textSize="16dp" />
+                            android:textSize="16dp"
+                            android:fontFamily="@font/lato_regular"/>
 
                         <TextView
                             android:layout_width="0dp"
@@ -366,7 +385,8 @@
                             android:text="Deri"
                             android:textAlignment="center"
                             android:textColor="#000"
-                            android:textSize="16dp" />
+                            android:textSize="16dp"
+                            android:fontFamily="@font/lato_regular"/>
                     </LinearLayout>
 
                     <View

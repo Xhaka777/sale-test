@@ -51,9 +51,10 @@ xmlns:android="http://schemas.android.com/apk/res/android">
                 android:layout_marginTop="16dp"
                 android:layout_marginLeft="16dp"
                 android:textSize="18sp"
-                android:textStyle="bold"
                 android:textColor="#000"
                 android:text="ActionType"
+                android:fontFamily="@font/lato_bold"
+                android:textStyle="bold"
                 />
 
             <TextView
@@ -64,6 +65,7 @@ xmlns:android="http://schemas.android.com/apk/res/android">
                 android:layout_marginLeft="16dp"
                 android:textSize="16sp"
                 android:text="ActionName"
+                android:fontFamily="@font/lato_regular"
                 />
             <View
                 android:layout_width="match_parent"
@@ -86,7 +88,7 @@ xmlns:android="http://schemas.android.com/apk/res/android">
                     android:textStyle="bold"
                     android:textColor="#000"
                     android:text="Statusi:"
-                    />
+                    android:fontFamily="@font/lato_regular" />
 
                 <TextView
                     android:id="@+id/staus"
@@ -95,7 +97,7 @@ xmlns:android="http://schemas.android.com/apk/res/android">
                     android:layout_marginLeft="6dp"
                     android:textSize="16sp"
                     android:text="Statusi"
-                    />
+                    android:fontFamily="@font/lato_regular"/>
             </LinearLayout>
 
 
@@ -114,7 +116,7 @@ xmlns:android="http://schemas.android.com/apk/res/android">
                     android:textStyle="bold"
                     android:textColor="#000"
                     android:text="Nga:"
-                    />
+                    android:fontFamily="@font/lato_regular"/>
 
                 <TextView
                     android:id="@+id/nga"
@@ -123,7 +125,7 @@ xmlns:android="http://schemas.android.com/apk/res/android">
                     android:layout_marginLeft="6dp"
                     android:textSize="16sp"
                     android:text="Nga"
-                    />
+                    android:fontFamily="@font/lato_regular"/>
             </LinearLayout>
 
             <LinearLayout
@@ -140,7 +142,7 @@ xmlns:android="http://schemas.android.com/apk/res/android">
                     android:textStyle="bold"
                     android:textColor="#000"
                     android:text="Deri:"
-                    />
+                    android:fontFamily="@font/lato_regular"/>
 
                 <TextView
                     android:id="@+id/deri"
@@ -149,7 +151,7 @@ xmlns:android="http://schemas.android.com/apk/res/android">
                     android:layout_marginLeft="6dp"
                     android:textSize="16sp"
                     android:text="Deri"
-                    />
+                    android:fontFamily="@font/lato_regular"/>
             </LinearLayout>
             <View
                 android:id="@+id/view2"
@@ -157,7 +159,6 @@ xmlns:android="http://schemas.android.com/apk/res/android">
                 android:layout_height="10dp"
                 android:layout_marginTop="16dp"
                 android:background="#fafafa" />
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -174,7 +175,7 @@ xmlns:android="http://schemas.android.com/apk/res/android">
                     android:textColor="#000"
                     android:text="Aksioni"
                     android:layout_weight="1"
-                    />
+                    android:fontFamily="@font/lato_regular"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -184,7 +185,7 @@ xmlns:android="http://schemas.android.com/apk/res/android">
                     android:textColor="#000"
                     android:layout_weight="1"
                     android:text="Shuma"
-                    />
+                    android:fontFamily="@font/lato_regular"/>
 
                 <TextView
                     android:layout_width="0dp"
@@ -194,8 +195,7 @@ xmlns:android="http://schemas.android.com/apk/res/android">
                     android:textColor="#000"
                     android:layout_weight="1"
                     android:text="Zbritja%"
-                    />
-
+                    android:fontFamily="@font/lato_regular"/>
 
             </LinearLayout>
 

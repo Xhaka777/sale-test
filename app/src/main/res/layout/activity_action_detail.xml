@@ -51,7 +51,8 @@
                     android:text="ActionType"
                     android:textColor="#000"
                     android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:fontFamily="@font/lato_regular"/>
 
                 <TextView
                     android:id="@+id/title_text"
@@ -60,7 +61,8 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
                     android:text="ActionName"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:fontFamily="@font/lato_regular"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -84,7 +86,8 @@
                         android:textAlignment="center"
                         android:textColor="#000"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <TextView
                         android:id="@+id/status"
@@ -96,7 +99,8 @@
                         android:text="Statusi"
                         android:textAlignment="center"
                         android:textColor="#fff"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:fontFamily="@font/lato_regular"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -112,7 +116,8 @@
                         android:text="Shifra:"
                         android:textColor="#000"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <TextView
                         android:id="@+id/shifra"
@@ -120,7 +125,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="6dp"
                         android:text="shifra"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:fontFamily="@font/lato_regular"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -136,7 +142,8 @@
                         android:text="Klienti:"
                         android:textColor="#000"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <TextView
                         android:id="@+id/client"
@@ -144,7 +151,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="6dp"
                         android:text="Klienti"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:fontFamily="@font/lato_regular"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -160,7 +168,8 @@
                         android:text="Zbritja:"
                         android:textColor="#000"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <TextView
                         android:id="@+id/discount"
@@ -168,7 +177,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="6dp"
                         android:text="Zbritja"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:fontFamily="@font/lato_regular"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -184,7 +194,8 @@
                         android:text="Sasia:"
                         android:textColor="#000"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <TextView
                         android:id="@+id/amount"
@@ -192,13 +203,15 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="6dp"
                         android:text="Sasia"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:fontFamily="@font/lato_regular"/>
                     <TextView
                         android:id="@+id/item_unit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="6dp"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp"
+                        android:fontFamily="@font/lato_regular"/>
 
                 </LinearLayout>
 
@@ -215,7 +228,8 @@
                         android:text="Lloji:"
                         android:textColor="#000"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <TextView
                         android:id="@+id/type"
@@ -223,7 +237,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="6dp"
                         android:text="Tipi"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:fontFamily="@font/lato_regular"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -239,7 +254,8 @@
                         android:text="Njesia:"
                         android:textColor="#000"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <TextView
                         android:id="@+id/unit"
@@ -247,7 +263,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="6dp"
                         android:text="Njesia"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:fontFamily="@font/lato_regular"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -263,7 +280,8 @@
                         android:text="Nga:"
                         android:textColor="#000"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <TextView
                         android:id="@+id/nga"
@@ -271,7 +289,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="6dp"
                         android:text="Nga"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:fontFamily="@font/lato_regular"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -287,7 +306,8 @@
                         android:text="Deri:"
                         android:textColor="#000"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <TextView
                         android:id="@+id/deri"
@@ -295,7 +315,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="6dp"
                         android:text="Deri"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:fontFamily="@font/lato_regular"/>
                 </LinearLayout>
 
                 <View
@@ -316,7 +337,8 @@
                     android:textSize="19sp"
                     android:textColor="#000"
                     android:textStyle="bold"
-                    android:visibility="gone"/>
+                    android:visibility="gone"
+                    android:fontFamily="@font/lato_regular"/>
 
                 <TextView
                     android:id="@+id/title_action_quantity"
@@ -329,7 +351,8 @@
                     android:textSize="19sp"
                     android:visibility="gone"
                     android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"/>
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/lato_regular"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -355,7 +378,8 @@
                         android:textStyle="bold"
                         android:textAlignment="center"
                         android:gravity="center_horizontal"
-                        android:layout_marginBottom="7dp"/>
+                        android:layout_marginBottom="7dp"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <TextView
                         android:id="@+id/to_text"
@@ -367,7 +391,8 @@
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textAlignment="center"
-                        android:gravity="center_horizontal"/>
+                        android:gravity="center_horizontal"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <TextView
                         android:id="@+id/discount_text"
@@ -379,7 +404,8 @@
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:textAlignment="center"
-                        android:gravity="center_horizontal"/>
+                        android:gravity="center_horizontal"
+                        android:fontFamily="@font/lato_regular"/>
 
 
                 </LinearLayout>
