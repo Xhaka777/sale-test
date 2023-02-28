@@ -15,6 +15,7 @@
         android:layout_marginTop="6dp"
         android:background="@android:color/transparent"
         android:text="@string/update"
+        android:fontFamily="@font/lato_bold"
 
         android:textColor="@color/colorLogoDark"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,6 +43,7 @@
         android:layout_marginRight="6dp"
         android:layout_marginTop="6dp"
         android:text="ÇKYQU"
+        android:fontFamily="@font/lato_bold"
         android:textColor="@color/colorLogoDark"
 
         android:background="@android:color/transparent"

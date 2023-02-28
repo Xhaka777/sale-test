@@ -6,6 +6,7 @@ import static org.planetaccounting.saleAgent.invoice.InvoiceActivity.PRINT_Z_RAP
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -28,6 +29,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,6 +53,7 @@ import org.planetaccounting.saleAgent.invoice.InvoiceActivityOriginal;
 import org.planetaccounting.saleAgent.kthemallin.ReturnPostObject;
 import org.planetaccounting.saleAgent.kthemallin.ktheMallin;
 import org.planetaccounting.saleAgent.login.LoginActivity;
+import org.planetaccounting.saleAgent.model.CompanyInfo;
 import org.planetaccounting.saleAgent.model.Error;
 import org.planetaccounting.saleAgent.model.ErrorPost;
 import org.planetaccounting.saleAgent.model.NotificationPost;
@@ -86,14 +89,18 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.function.BiFunction;
 import java.util.function.LongFunction;
 
 import javax.inject.Inject;
@@ -132,6 +139,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
 
     String dailyStation = "2";
     List<PazarData> pazarDataList = new ArrayList<>();
+    private Calendar calendar;
+    private DatePickerDialog.OnDateSetListener date;
 
     //Keshi i marr nga shitjet + Inkasimi - Shpenzimet - Depozitat = Bilanci Ditore.
     @SuppressLint("StaticFieldLeak")
@@ -142,7 +151,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
         AssetManager am = this.getApplicationContext().getAssets();
 
 
-        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/fa-solid-900.ttf");
+//        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/fa-solid-900.ttf");
+
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         Kontabiliteti.getKontabilitetiComponent().inject(this);
         mydb = new DatabaseOperations(getApplicationContext());
@@ -185,8 +195,8 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
             startActivity(i);
         });
         //Kontrollerat e internetit
-        binding.connectivityTextivew.setTypeface(typeface);
-        binding.networkIndicator.setTypeface(typeface);
+//        binding.connectivityTextivew.setTypeface(typeface);
+//        binding.networkIndicator.setTypeface(typeface);
 
         Utils.requestLocationPermission(this);
 
@@ -262,14 +272,27 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
         Date cDate = new Date();
         dDate = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(cDate);
         fDate = new SimpleDateFormat("dd-MM-yyyy").format(cDate);
-//        try {
-//            CompanyInfo companyInfo = realmHelper.getCompanyInfo();
-//            Glide.with(getApplicationContext()).load(companyInfo.getLogo()).into(binding.cLogoImg);
-//            saveCompanyPic(companyInfo.getLogo());
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
+        calendar = Calendar.getInstance();
+        date = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                calendar.set(Calendar.YEAR, year);
+                calendar.set(Calendar.MONTH, month);
+                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                fDate = new SimpleDateFormat("dd-MM-yyyy").format(calendar.getTime());
+                dDate = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(calendar.getTime());
+                getPazariDitor();
+            }
+        };
+        try {
+            CompanyInfo companyInfo = realmHelper.getCompanyInfo();
+            Glide.with(getApplicationContext()).load(companyInfo.getLogo()).into(binding.cLogoImg);
+            saveCompanyPic(companyInfo.getLogo());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         sync();
     }
 
@@ -387,7 +410,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
                 unSyncedList.add(savedInvoices.get(i));
             }
         }
-        calculateDailyBalance();
+//        calculateDailyBalance();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -566,6 +589,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
         Intent i = new Intent(getApplicationContext(), ActivityPrint.class);
         i.putExtra(ACTION, ACTION_ADD_ITEMS);
         startActivity(i);
+        finish();
     }
 
     private void getStock() {
@@ -712,7 +736,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
 
     private void uploadRetruns() {
 
-
         String returns = realmHelper.getRInvoicesString();
 
         List<InvoicePost> unSyncedReturnList = (ArrayList<InvoicePost>) gson.fromJson(returns,
@@ -732,9 +755,12 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
                         if (responseBody.getSuccess()) {
                             for (int i = 0; i < unSyncedReturnList.size(); i++) {
                                 unSyncedReturnList.get(i).setSynced(true);
+                                //duhet me nderru pjesen prej databases
+                                //me thirr pjesen per returnInvoice
                                 realmHelper.saveInvoices(unSyncedReturnList.get(i));
                             }
                             uploadInvoices();
+//                            getStock();
                         } else {
                             hideLoader();
                             Toast.makeText(getApplicationContext(), responseBody.getError().getText(), Toast.LENGTH_SHORT).show();
@@ -745,6 +771,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
                     });
         } else {
             uploadInvoices();
+//            getStock();
         }
 
     }
@@ -774,6 +801,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
                                 realmHelper.saveInvoices(unSyncedInvoicenList.get(i));
                             }
                             syncInkasimi();
+//                            getStock();
                         } else {
                             hideLoader();
                             Toast.makeText(getApplicationContext(), responseBody.getError().getText(), Toast.LENGTH_SHORT).show();
@@ -784,6 +812,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
                     });
         } else {
             syncInkasimi();
+//            getStock();
         }
     }
 
@@ -791,7 +820,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
     void calculateDailyBalance() {
 
         double dailyBalance = getCashFromSale() + getInkasimi() - getShpenzimet() - getDepozitat();
-        binding.pazariDitor.setText("" + cutTo2(dailyBalance));
+        binding.pazariDitor.setText("" + round(BigDecimal.valueOf(dailyBalance)));
 
     }
 
@@ -813,6 +842,10 @@ public class MainActivity extends AppCompatActivity implements MainActivityAdapt
             }
         }
         return amount;
+    }
+
+    public static BigDecimal round(BigDecimal number) {
+        return number.setScale(2, RoundingMode.HALF_DOWN);
     }
 
     private double getInkasimi() {

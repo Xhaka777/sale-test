@@ -23,8 +23,8 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
     private Context mContext;
     Listener listener;
 
-    private String[] title  = {"Fatura", "Kupon Fiskal" , "Porosi" ,"Stoku","Inkasimi","Depozitat","Raportet","Kthim malli","Transfere","Klientet","Targeti","Shpenzimet","Aksionet",};
-    private int[] icon  = {R.drawable.ic_fatura, R.drawable.ic_kupon ,R.drawable.ic_prosit ,R.drawable.ic_stokut,R.drawable.ic_inkasimet,R.drawable.ic_bank,R.drawable.ic_raportet,R.drawable.ic_return,R.drawable.ic_transferet,R.drawable.ic_klientet,R.drawable.ic_targetet,R.drawable.ic_shpenzim,R.drawable.ic_action};
+    private String[] title  = {"Fatura", "Kupon Fiskal" , "Porosi" ,"Stoku","Inkasimi","Kthim malli","Raportet","Targeti","Shpenzimet","Aksionet","Depozitat","Transfere","Klientet"};
+    private int[] icon  = {R.drawable.ic_fatura, R.drawable.ic_kupon ,R.drawable.ic_prosit ,R.drawable.ic_stokut,R.drawable.ic_inkasimet,R.drawable.ic_return,R.drawable.ic_raportet,R.drawable.ic_targetet,R.drawable.ic_shpenzim,R.drawable.ic_action,R.drawable.ic_bank,R.drawable.ic_transferet,R.drawable.ic_klientet};
 
     private ArrayList<MainAdaperModel> rols =  new ArrayList<>();
 
@@ -70,11 +70,6 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
         //blocking container for returns, transfers etc...
 
         if(rols.get(position).getIcon() == R.drawable.ic_transferet){
-            binding.container.setClickable(false);
-            binding.container.setEnabled(false);
-        }
-
-        if(rols.get(position).getIcon() == R.drawable.ic_return){
             binding.container.setClickable(false);
             binding.container.setEnabled(false);
         }
