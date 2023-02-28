@@ -64,7 +64,8 @@
                     android:layout_marginLeft="20dp"
                     android:text="@string/raportet"
                     android:textColor="#000"
-                    android:textSize="17sp"/>
+                    android:textSize="18sp"
+                    android:fontFamily="@font/lato_regular"/>
 
                 <EditText
                     android:id="@id/search_edittext"
@@ -75,16 +76,8 @@
                     android:drawableLeft="@drawable/ic_search"
                     android:imeOptions="flagNoFullscreen"
                     android:textColor="#000"
-                    android:hint="@string/kerko"/>
-
-<!--                <Button-->
-<!--                    android:id="@+id/sync"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_alignParentRight="true"-->
-<!--                    android:layout_centerVertical="true"-->
-<!--                    android:layout_marginRight="19dp"-->
-<!--                    android:background="@android:color/white" />-->
+                    android:hint="@string/kerko"
+                    android:fontFamily="@font/lato_regular"/>
 
             </LinearLayout>
 
@@ -117,7 +110,8 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato_regular"/>
 
 
                 <TextView
@@ -128,7 +122,8 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato_regular"/>
 
 
                 <TextView
@@ -139,7 +134,8 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato_regular"/>
 
 
                 <TextView
@@ -150,7 +146,8 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato_regular"/>
 
 
                 <TextView
@@ -161,7 +158,8 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato_regular"/>
 
 
                 <TextView
@@ -173,8 +171,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:textColor="#000"
-
-                    />
+                    android:fontFamily="@font/lato_regular" />
 
                 <ImageView
                     android:id="@+id/synced_indicator"

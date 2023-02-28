@@ -19,7 +19,9 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="19dp"
                 android:text="@string/raportet"
-                android:textColor="#000" />
+                android:textColor="#000"
+                android:textSize="20sp"
+                android:fontFamily="@font/lato_regular"/>
 
             <View
                 android:layout_width="match_parent"
@@ -51,7 +53,8 @@
                     android:background="@drawable/button_rounder_corner"
                     android:text="@string/lista_faturave"
 
-                    android:textColor="#FFF" />
+                    android:textColor="#FFF"
+                    android:fontFamily="@font/lato_bold"/>
 
                 <!--                <Button-->
                 <!--                    android:id="@+id/lista_porosive_button"-->
@@ -72,7 +75,8 @@
                     android:layout_weight="1"
                     android:background="@drawable/button_rounder_corner"
                     android:text="@string/lista_inkasimeve"
-                    android:textColor="#FFF" />
+                    android:textColor="#FFF"
+                    android:fontFamily="@font/lato_bold"/>
 
                 <Button
                     android:id="@+id/daily_market"
@@ -82,7 +86,8 @@
                     android:layout_weight="1"
                     android:background="@drawable/button_rounder_corner"
                     android:text="@string/pazari_ditor"
-                    android:textColor="#FFF" />
+                    android:textColor="#FFF"
+                    android:fontFamily="@font/lato_bold"/>
 
                 <Button
                     android:id="@+id/lista_ngarkimeve"
@@ -93,7 +98,8 @@
                     android:background="@drawable/button_round_corner_5"
                     android:text="@string/lista_ngarkimeve"
                     android:textColor="#FFF"
-                    android:enabled="false"/>
+                    android:enabled="false"
+                    android:fontFamily="@font/lato_bold"/>
 
             </LinearLayout>
 
@@ -114,7 +120,8 @@
                     android:background="@drawable/button_rounder_corner"
                     android:text="@string/lista_porosive"
                     android:textColor="#FFF"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    android:fontFamily="@font/lato_bold"/>
 
                 <Button
                     android:id="@+id/lista_klientave"
@@ -125,7 +132,8 @@
                     android:background="@drawable/button_rounder_corner"
                     android:text="@string/lista_klienteve"
                     android:textColor="#FFF"
-                    android:visibility="visible" />
+                    android:visibility="visible"
+                    android:fontFamily="@font/lato_bold"/>
 
                 <Button
                     android:id="@+id/lista_kthimit"
@@ -137,7 +145,8 @@
                     android:text="@string/l_kthimMalli"
                     android:textColor="#FFF"
                     android:visibility="visible"
-                    android:enabled="true"/>
+                    android:enabled="true"
+                    android:fontFamily="@font/lato_bold"/>
 
                 <Button
                     android:id="@+id/lista_shpenzimeve"
@@ -149,7 +158,7 @@
                     android:text="@string/lista_shpenzimeve"
                     android:textColor="#FFF"
                     android:enabled="false"
-                    />
+                    android:fontFamily="@font/lato_bold"/>
 
                 <Button
                     android:id="@+id/lista_depozitave"
@@ -161,7 +170,8 @@
                     android:text="@string/lista_depozitave"
                     android:textColor="#FFF"
                     android:visibility="visible"
-                    android:enabled="false"/>
+                    android:enabled="false"
+                    android:fontFamily="@font/lato_bold"/>
 
 
             </LinearLayout>

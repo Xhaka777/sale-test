@@ -19,7 +19,8 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:layout_margin="5dp"
-                android:textColor="#000" />
+                android:textColor="#000"
+                android:fontFamily="@font/lato_regular"/>
 
             <ImageView
                 android:layout_width="1dp"
@@ -33,7 +34,8 @@
                 android:layout_weight="1"
                 android:layout_margin="5dp"
                 android:gravity="center"
-                android:textColor="#000" />
+                android:textColor="#000"
+                android:fontFamily="@font/lato_regular"/>
 
             <ImageView
                 android:layout_width="1dp"
@@ -47,7 +49,8 @@
                 android:layout_weight="1"
                 android:layout_margin="5dp"
                 android:gravity="center"
-                android:textColor="#000" />
+                android:textColor="#000"
+                android:fontFamily="@font/lato_regular"/>
 
             <ImageView
                 android:layout_width="1dp"
@@ -61,7 +64,8 @@
                 android:layout_weight="1"
                 android:layout_margin="5dp"
                 android:gravity="center"
-                android:textColor="#000" />
+                android:textColor="#000"
+                android:fontFamily="@font/lato_regular"/>
 
             <ImageView
                 android:layout_width="1dp"
@@ -75,7 +79,8 @@
                 android:layout_weight="1"
                 android:layout_margin="5dp"
                 android:gravity="center"
-                android:textColor="#000" />
+                android:textColor="#000"
+                android:fontFamily="@font/lato_regular"/>
 
             <ImageView
                 android:layout_width="1dp"
@@ -89,7 +94,8 @@
                 android:layout_weight="1"
                 android:layout_margin="5dp"
                 android:gravity="center"
-                android:textColor="#000" />
+                android:textColor="#000"
+                android:fontFamily="@font/lato_regular"/>
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/synced_indicator"
