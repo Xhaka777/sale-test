@@ -2,6 +2,8 @@ package org.planetaccounting.saleAgent.kthemallin;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Build;
 import android.os.Handler;
@@ -12,12 +14,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
@@ -32,17 +33,23 @@ import org.planetaccounting.saleAgent.databinding.ReturnItemsBinding;
 import org.planetaccounting.saleAgent.events.FinishInvoiceActivity;
 import org.planetaccounting.saleAgent.invoice.InvoiceActivity;
 import org.planetaccounting.saleAgent.invoice.InvoiceActivityOriginal;
+import org.planetaccounting.saleAgent.model.Error;
+import org.planetaccounting.saleAgent.model.ErrorPost;
 import org.planetaccounting.saleAgent.model.InvoiceItem;
 import org.planetaccounting.saleAgent.model.clients.Client;
 import org.planetaccounting.saleAgent.model.invoice.InvoiceItemPost;
 import org.planetaccounting.saleAgent.model.invoice.InvoicePost;
 import org.planetaccounting.saleAgent.model.order.CheckQuantity;
 import org.planetaccounting.saleAgent.model.role.InvoiceRole;
+import org.planetaccounting.saleAgent.model.stock.Item;
+import org.planetaccounting.saleAgent.model.stock.StockPost;
 import org.planetaccounting.saleAgent.persistence.RealmHelper;
 import org.planetaccounting.saleAgent.utils.PlanetLocationManager;
 import org.planetaccounting.saleAgent.utils.Preferences;
 import org.planetaccounting.saleAgent.utils.ReturnPrintUtil;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
@@ -88,7 +95,6 @@ public class ktheMallin extends AppCompatActivity {
     String shDate;
     private DatePickerDialog.OnDateSetListener dateSh;
     private Calendar calendar;
-
     private java.util.Timer timer;
     int pageWidth = 595;
     int pageHeight = 842;
@@ -101,10 +107,18 @@ public class ktheMallin extends AppCompatActivity {
     ActionData actionData;
     private InvoiceActivityOriginal.InvoiceState invoiceState = InvoiceActivityOriginal.InvoiceState.FATUR;
     String stationID = "2";
-
     PlanetLocationManager planetLocationManager;
-
     private InvoiceRole invoiceRole;
+
+    String[] stocksName;
+    String[] stocksQuantity;
+
+    boolean isPrint = true;
+    Locale myLocale;
+    String currentLanguage = "sq", currentLang;
+
+    int count = 0;
+    int countNoName = 0;
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
@@ -129,6 +143,10 @@ public class ktheMallin extends AppCompatActivity {
         shopDropDownList();
 
         setRole();
+        //kjo metode i kthen krejt emrat e artikujve
+        getStocksName();
+        //kjo metode i merr krejt stoqet e artikujve
+        getStocksQuantity();
 
         planetLocationManager = new PlanetLocationManager(this);
 
@@ -165,9 +183,7 @@ public class ktheMallin extends AppCompatActivity {
 
         binding.shtoTextview.setOnClickListener(view -> {
             if (client != null) {
-
                 addInvoiceItem();
-
             } else {
                 Toast.makeText(getApplicationContext(), "Ju lutem zgjedhni klientin para se ti shtoni artikujt", Toast.LENGTH_SHORT).show();
             }
@@ -201,7 +217,6 @@ public class ktheMallin extends AppCompatActivity {
                 binding.dataShip.setText(f);
             }
         };
-
 
     }
 
@@ -317,21 +332,35 @@ public class ktheMallin extends AppCompatActivity {
 
         itemBinding.removeButton.setOnClickListener(view ->
         {
-            int pos = (int) itemBinding.getRoot().getTag();
-            if (stockItems.size() > 0) {
-                try {
-                    stockItems.remove(pos);
-                } catch (Exception e) {
+            doYouWantToDeleteThisArticleDialog(itemBinding.emertimiTextview.getText().toString(), itemBinding.sasiaTextview.getText().toString(), () -> {
+                int pos = (int) itemBinding.getRoot().getTag();
+                if (stockItems.size() > 0) {
+                    try {
+                        stockItems.remove(pos);
+                    } catch (Exception e) {
 
+                    }
                 }
-            }
-            binding.invoiceItemHolder.removeView(itemBinding.getRoot());
-            calculateTotal();
-            calculateVleraPaTvsh();
-            calculateVleraETVSH();
+                binding.invoiceItemHolder.removeView(itemBinding.getRoot());
+                calculateTotal();
+                calculateVleraPaTvsh();
+                calculateVleraETVSH();
+            });
         });
         itemBinding.getRoot().setTag(binding.invoiceItemHolder.getChildCount());
         binding.invoiceItemHolder.addView(itemBinding.getRoot());
+    }
+
+
+    //duhet me kqyr edhe getStockItemsName qe nuk esht invoice...
+    private void getStocksName() {
+        stocksName = realmHelper.getStockItemsName(true);
+        stocksName = removeNullElements(stocksName);
+    }
+
+    private void getStocksQuantity() {
+        stocksQuantity = realmHelper.getStockItemsQuantity(true);
+        stocksQuantity = removeNullElements(stocksQuantity);
     }
 
 
@@ -538,7 +567,7 @@ public class ktheMallin extends AppCompatActivity {
         return Double.parseDouble(String.format(Locale.ENGLISH, "%.2f", value));
     }
 
-    public static BigDecimal round(BigDecimal number){
+    public static BigDecimal round(BigDecimal number) {
         return number.setScale(2, RoundingMode.HALF_DOWN);
     }
 
@@ -558,6 +587,7 @@ public class ktheMallin extends AppCompatActivity {
             invoicePost.setPartie_station_id("0");
         }
         invoicePost.setPartie_station_name(binding.njersiaEdittext.getText().toString());
+        invoicePost.setComment(binding.komentiEdittext.getText().toString());
         invoicePost.setPartie_address(client.getAddress());
         invoicePost.setPartie_city(client.getCity());
         invoicePost.setPartie_state_id(client.getState());
@@ -589,6 +619,7 @@ public class ktheMallin extends AppCompatActivity {
             invoiceItemPost.setId_item(stockItems.get(i).getItems().get(stockItems.get(i).getSelectedPosition()).getId());
             invoiceItemPost.setName(stockItems.get(i).getName());
             invoiceItemPost.setQuantity(stockItems.get(i).getSasia());
+            invoiceItemPost.setQuantity_base(stockItems.get(i).getQuantity());
             invoiceItemPost.setUnit(stockItems.get(i).getSelectedUnit());
             double vleraPaTvsh = stockItems.get(i).getVleraPaTvsh() / Double.parseDouble(stockItems.get(i).getSasia());
             BigDecimal vleraNoTvsh = new BigDecimal(vleraPaTvsh);
@@ -608,6 +639,12 @@ public class ktheMallin extends AppCompatActivity {
             invoiceItemPost.setCollection(stockItems.get(i).isCollection());
             invoiceItemPost.setType(stockItems.get(i).getType());
             invoiceItemPosts.add(invoiceItemPost);
+
+
+            //sasin qe po e shtojme e jepim qitu
+            //pjesa per returnInvoice pe shton mir sasine ne stock
+            //mirpo kur po bohet reload po thirret api per stock apet edhe vlera po kthehn qysh ken...
+            //pasi ne web nuk po shtohet sasia me kthim
         }
         invoicePost.setTotal_without_discount(String.valueOf(totalNoDiscount));
         invoicePost.setItems(invoiceItemPosts);
@@ -627,17 +664,140 @@ public class ktheMallin extends AppCompatActivity {
                     if (responseBody.getSuccess()) {
                         invoicePost.setSynced(true);
                         Toast.makeText(getApplicationContext(), "Kthimi i mallit eshte ruajtur dhe sinkronizuar!", Toast.LENGTH_SHORT).show();
+                        getStock();
                     } else {
                         invoicePost.setSynced(false);
                         Toast.makeText(getApplicationContext(), "Kthimi i mallit eshte ruajtur por nuk eshte sinkronizuar!", Toast.LENGTH_SHORT).show();
                     }
                     realmHelper.returnInvoice(invoicePost);
+                    getStock();
                 }, throwable -> {
                     throwable.printStackTrace();
                     invoicePost.setSynced(false);
                     realmHelper.returnInvoice(invoicePost);
                     Toast.makeText(getApplicationContext(), "Kthimi i mallit eshte ruajtur por nuk eshte sinkronizuar!", Toast.LENGTH_SHORT).show();
                 });
+    }
+
+    private void getStock() {
+        apiService.getStock(new StockPost(preferences.getToken(), preferences.getUserId()))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(stockResponse -> {
+                    if (stockResponse.getSuccess()) {
+                        realmHelper.saveStockItems(stockResponse.getData().getItems());
+                        finish();
+                    } else {
+                        Toast.makeText(this, stockResponse.getError().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }, this::sendError);
+    }
+
+    private void checkedQuantity() {
+        binding.loader.setVisibility(View.VISIBLE);
+
+        if (stockItems.size() > 0) {
+            InvoiceItem stock = stockItems.get(stockItems.size() - 1);
+            String stockItemId = stockItems.get(stockItems.size() - 1).getItems().get(stockItems.get(stockItems.size() - 1).getSelectedPosition()).getId();
+
+            CheckQuantity checkQuantity = new CheckQuantity(preferences.getUserId(), preferences.getToken(), stock.getSasia(), preferences.getStationId(), dDate, stockItemId);
+
+            apiService.checkQuantity(checkQuantity)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(returnUploadResponse -> {
+                        if (!returnUploadResponse.getSuccess()) {
+                            Toast.makeText(getApplicationContext(), returnUploadResponse.getError().getText(), Toast.LENGTH_SHORT).show();
+                        } else {
+                            addInvoiceItem();
+                            Toast.makeText(getApplicationContext(), "Artikulli esht ne stock", Toast.LENGTH_SHORT).show();
+                        }
+                        binding.loader.setVisibility(View.GONE);
+                    }, new Action1<Throwable>() {
+                        @Override
+                        public void call(Throwable throwable) {
+                            throwable.printStackTrace();
+                        }
+                    });
+        } else {
+            binding.loader.setVisibility(View.GONE);
+            addInvoiceItem();
+        }
+    }
+
+    private void doYouWantToDeleteThisArticleDialog(String name, String sasia, DoYouWantToDeleteThisArticleListener doYouWantToDeleteThisArticleListener) {
+        ReturnItemsBinding itemsBinding = DataBindingUtil.inflate(getLayoutInflater(), R.layout.return_items, binding.invoiceItemHolder, false);
+        android.app.AlertDialog.Builder mBuilder = new android.app.AlertDialog.Builder(this);
+        mBuilder.setTitle("");
+        String message = getString(R.string.do_you_want_to_delete_this_article) + " " + name + " me sasi " + sasia;
+        mBuilder.setMessage(message);
+        //Setting Negative "NO" Button
+        mBuilder.setNegativeButton((R.string.no), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Write your code here to invoke No event
+                dialog.cancel();
+            }
+        });
+        mBuilder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                count++;
+                doYouWantToDeleteThisArticleListener.Yes();
+                dialog.cancel();
+            }
+        });
+        //Showing Alert Message
+        mBuilder.show();
+    }
+
+    private void sendError(Throwable throwable) {
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        throwable.printStackTrace(pw);
+        String sStackTrace = sw.toString();
+        ErrorPost errorPost = new ErrorPost();
+        errorPost.setToken(preferences.getToken());
+        errorPost.setUser_id(preferences.getUserId());
+        errorPost.setUser_id(preferences.getUserId());
+        ArrayList<Error> errors = new ArrayList<>();
+        Error error = new Error();
+        error.setMessage(sStackTrace);
+        error.setDate("");
+        errors.add(error);
+        errorPost.setErrors(errors);
+        apiService.sendError(errorPost)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(s -> {
+
+                }, throwable1 -> {
+
+                });
+    }
+
+    public String[] removeNullElements(String[] firstArray) {
+        ArrayList<String> list = new ArrayList<String>();
+        for (String s : firstArray)
+            if (s != null) {
+                if (!s.equals("")) {
+                    list.add(s);
+                }
+            }
+
+        return firstArray = list.toArray(new String[list.size()]);
+    }
+
+    public Integer[] removeNullIntElements(Integer[] firstArray) {
+        ArrayList<Integer> list = new ArrayList<>();
+        for (Integer s : firstArray) {
+            if (s != null) {
+                if (!s.equals(0)) {
+                    list.add(s);
+                }
+            }
+        }
+        return firstArray = list.toArray(new Integer[list.size()]);
     }
 
 
@@ -677,56 +837,8 @@ public class ktheMallin extends AppCompatActivity {
         binding.loader.setVisibility(View.GONE);
     }
 
-
-    //qitu e marr sasine aktuale te artikullit ne stock
-    private void checkedQuantity() {
-
-        binding.loader.setVisibility(View.VISIBLE);
-
-        if (stockItems.size() > 0) {
-            InvoiceItem stock = stockItems.get(stockItems.size() - 1);
-            String stockItemId = stockItems.get(stockItems.size() - 1).getItems().get(stockItems.get(stockItems.size() - 1).getSelectedPosition()).getId();
-
-            CheckQuantity checkQuantity = new CheckQuantity(
-                    preferences.getUserId(),
-                    preferences.getToken(),
-                    stock.getSasia(),
-                    stationID,
-                    dDate,
-                    stockItemId
-            );
-
-            apiService.checkQuantity(checkQuantity)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(invoiceUploadResponse -> {
-
-                        final int childCount = binding.invoiceItemHolder.getChildCount();
-                        ViewGroup v = (ViewGroup) binding.invoiceItemHolder.getChildAt(childCount - 1);
-
-                        ViewGroup v2 = (ViewGroup) v.getChildAt(0);
-                        ViewGroup v3 = (ViewGroup) v2.getChildAt(0);
-                        ViewGroup v4 = (ViewGroup) v3.getChildAt(1);
-                        ViewGroup v5 = (ViewGroup) v4.getChildAt(1);
-                        View v6 = v5.getChildAt(1);
-
-                        AutoCompleteTextView sasia_depo = (AutoCompleteTextView) v6;
-                        sasia_depo.setText(String.valueOf(BigDecimal.valueOf(invoiceUploadResponse.getCurrentQuantity())));
-                        if (!invoiceUploadResponse.getSuccess()) {
-                            Toast.makeText(this, invoiceUploadResponse.getError().getText(), Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(this, R.string.artikulli_eshte_ne_stok, Toast.LENGTH_SHORT).show();
-                        }
-                        binding.loader.setVisibility(View.GONE);
-                    }, new Action1<Throwable>() {
-                        @Override
-                        public void call(Throwable throwable) {
-                            throwable.printStackTrace();
-                        }
-                    });
-        } else {
-            binding.loader.setVisibility(View.GONE);
-        }
+    interface DoYouWantToDeleteThisArticleListener {
+        void Yes();
     }
 
 }

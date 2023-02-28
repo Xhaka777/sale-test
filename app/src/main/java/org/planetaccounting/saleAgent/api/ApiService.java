@@ -175,7 +175,6 @@ public interface ApiService {
     @POST("api/new_transfer_agent_saler")
     Observable<GetTransferCreateResposnse> createTransfer(@Body TransferCreatePost transferCreatePost);
 
-
     @POST("api/cancel_transfer_agent_saler")
     Observable<BaseTranserResponse> cancelTransfer(@Body TransferPost transferPost);
 
@@ -188,12 +187,17 @@ public interface ApiService {
     @POST("api/get_invoice_data")
     Observable<GetInvoiceForReportResponse> getRaportInvoiceDetail(@Body InvoiceForReportObject invoiceForReportObject);
 
+    @POST("api/get_return_list")
+    Observable<GetReportsListResponse> getRaportReturnList(@Body RaportsPostObject raportsPostObject);
+
+    @POST("api/get_return_data")
+    Observable<GetInvoiceForReportResponse> getRaportReturnDetail(@Body InvoiceForReportObject invoiceForReportObject);
+
     @POST("api/get_order_list")
     Observable<GetReportsListResponse> getRaportOrderList(@Body RaportsPostObject raportsPostObject);
 
     @POST("api/get_order_data")
     Observable<GetInvoiceForReportResponse> getRaportOrderDetail(@Body InvoiceForReportObject invoiceForReportObject);
-
 
     @POST("api/get_expense_list")
     Observable<GetReportsListResponse> getRaportExpenseList(@Body RaportsPostObject raportsPostObject);
