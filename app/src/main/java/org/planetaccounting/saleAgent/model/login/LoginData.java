@@ -52,7 +52,7 @@ public class LoginData {
 
     @SerializedName("last_return_invoice_number")
     @Expose
-    public String lastReturnInvoiceNumber;
+    public int lastReturnInvoiceNumber;
 
     @SerializedName("language")
     @Expose
@@ -133,7 +133,7 @@ public class LoginData {
         return role;
     }
 
-    public String getLastReturnInvoiceNumber() {
+    public int getLastReturnInvoiceNumber() {
         return lastReturnInvoiceNumber;
     }
 

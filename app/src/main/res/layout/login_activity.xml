@@ -75,18 +75,31 @@
 
                 <!--                </com.google.android.material.textfield.TextInputLayout>-->
 
-                <EditText
+<!--                <EditText-->
+<!--                    android:id="@+id/email_edittext"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:hint="Email" />-->
+
+<!--                <EditText-->
+<!--                    android:id="@+id/password_edittext"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:hint="Password"-->
+<!--                    android:inputType="textPassword" />-->
+
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/email_edittext"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:hint="Email" />
 
-                <EditText
+                <android.support.design.widget.TextInputEditText
                     android:id="@+id/password_edittext"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:hint="Password"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"/>
 
                 <Button
                     android:id="@+id/login_button"
@@ -96,7 +109,7 @@
                     android:background="@color/blue"
                     android:text="@string/ky_u"
                     android:textColor="#fff" />
-                android:background="@drawable/loginbutton"
+<!--                android:background="@drawable/loginbutton"-->
 
                 <ProgressBar
                     android:id="@+id/progress_bar"

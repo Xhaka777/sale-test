@@ -132,14 +132,16 @@ public class LoginActivity extends Activity {
                             preferences.saveLastInvoiceNumber(Integer.parseInt(loginResponse.getData().getLast_invoice_number()));
                             }
 
-                        preferences.saveLastReturnInvoiceNumber(Integer.parseInt(loginResponse.getData().getLastReturnInvoiceNumber()));
+                        preferences.saveLastReturnInvoiceNumber(loginResponse.getData().getLastReturnInvoiceNumber());
+                        //vlera e last_return esht 0
+                        //ne preferences un e marr 0 edhe e boj +1
+                        //ne realm vlera e
                         preferences.saveDefaultWarehouse(loginResponse.getData().getDefault_warehouse());
 
                         if (loginResponse.getData().getLanguage()!= null) {
                             localeManager.setNewLanguage(loginResponse.getData().getLanguage());
                             } else {
                             localeManager.setNewLanguage("en");
-
                         }
 
                         realmHelper.saveRole(loginResponse.getData().getRole());
@@ -182,6 +184,7 @@ public class LoginActivity extends Activity {
     private String getPassword() {
         return binding.passwordEdittext.getText().toString();
     }
+
     private void startMainActivity(){
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(intent);
