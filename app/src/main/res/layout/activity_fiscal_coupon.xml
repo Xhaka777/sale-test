@@ -39,7 +39,9 @@
 
                         android:text="Kuponi Fiskal"
                         android:textAllCaps="false"
-                        android:textColor="#000"/>
+                        android:textColor="#000"
+                        android:textSize="20dp"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <!--                    <info.hoang8f.android.segmented.SegmentedGroup xmlns:segmentedgroup="http://schemas.android.com/apk/res-auto"-->
                     <!--                        android:id="@+id/segment_group1"-->
@@ -116,7 +118,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="NR. :"
-                        android:textColor="#000" />
+                        android:textColor="#000"
+                        android:textSize="15sp"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <AutoCompleteTextView
                         android:id="@+id/numri_fatures"
@@ -124,7 +128,8 @@
                         android:layout_height="wrap_content"
                         android:enabled="false"
                         android:hint="@string/nr_fatures"
-                        android:textColor="#000" />
+                        android:textColor="#000"
+                        android:fontFamily="@font/lato_regular"/>
                 </LinearLayout>
 
                 <View
@@ -157,7 +162,8 @@
                             android:layout_height="wrap_content"
                             android:text="@string/klienti"
 
-                            android:textColor="#b3414042" />
+                            android:textColor="#b3414042"
+                            android:fontFamily="@font/lato_regular"/>
 
                         <AutoCompleteTextView
                             android:id="@+id/emri_klientit"
@@ -167,7 +173,8 @@
                             android:layout_marginTop="8dp"
                             android:layout_marginRight="8dp"
                             android:background="@drawable/edit_field_corner"
-                            android:hint="@string/klienti" />
+                            android:hint="@string/klienti"
+                            android:fontFamily="@font/lato_regular"/>
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -187,7 +194,8 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/njesia"
 
-                                    android:textColor="#b3414042" />
+                                    android:textColor="#b3414042"
+                                    android:fontFamily="@font/lato_regular"/>
 
                                 <AutoCompleteTextView
                                     android:id="@+id/njersia_edittext"
@@ -199,7 +207,8 @@
                                     android:background="@drawable/edit_field_corner"
 
 
-                                    android:hint="@string/njesia" />
+                                    android:hint="@string/njesia"
+                                    android:fontFamily="@font/lato_regular"/>
                             </LinearLayout>
 
                             <LinearLayout
@@ -215,7 +224,8 @@
                                     android:layout_gravity="center"
                                     android:gravity="center_vertical"
                                     android:text="@string/data"
-                                    android:textColor="#000" />
+                                    android:textColor="#000"
+                                    android:fontFamily="@font/lato_regular"/>
 
                                 <AutoCompleteTextView
                                     android:id="@+id/data_edittext"
@@ -226,7 +236,8 @@
                                     android:gravity="center_vertical"
                                     android:hint="@string/data"
                                     android:textColor="#000"
-                                    android:textSize="14sp" />
+                                    android:textSize="14sp"
+                                    android:fontFamily="@font/lato_regular"/>
 
                             </LinearLayout>
 
@@ -336,7 +347,8 @@
                         android:background="@drawable/button_rounder_corner_2"
                         android:padding="15dp"
                         android:text="@string/btn_shto"
-                        android:textColor="@android:color/white" />
+                        android:textColor="@android:color/white"
+                        android:fontFamily="@font/lato_bold"/>
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -349,7 +361,8 @@
                             android:layout_marginStart="20dp"
                             android:layout_marginLeft="20dp"
                             android:layout_marginTop="20dp"
-                            android:layout_marginRight="20dp" />
+                            android:layout_marginRight="20dp"
+                            android:fontFamily="@font/lato_regular"/>
 
                         <TextView
                             android:id="@+id/artikujt_sasia_totale"
@@ -357,7 +370,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
                             android:layout_marginLeft="20dp"
-                            android:layout_marginRight="20dp" />
+                            android:layout_marginRight="20dp"
+                            android:fontFamily="@font/lato_regular"/>
 
                         <TextView
                             android:id="@+id/zbritja_klientit"
@@ -370,7 +384,8 @@
                             android:layout_marginRight="20dp"
                             android:layout_marginBottom="20dp"
                             android:textColor="#000"
-                            android:textStyle="bold" />
+                            android:textStyle="bold"
+                            android:fontFamily="@font/lato_regular"/>
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -385,19 +400,22 @@
                                 android:id="@+id/vlera_pa_tvsh"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/vlera_pa_tvsh" />
+                                android:text="@string/vlera_pa_tvsh"
+                                android:fontFamily="@font/lato_regular"/>
 
                             <TextView
                                 android:id="@+id/vlera_e_zbritur"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/vlera_zbritur" />
+                                android:text="@string/vlera_zbritur"
+                                android:fontFamily="@font/lato_regular"/>
 
                             <TextView
                                 android:id="@+id/vlera_e_tvsh"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/vlera_tvsh" />
+                                android:text="@string/vlera_tvsh"
+                                android:fontFamily="@font/lato_regular"/>
 
                             <TextView
                                 android:id="@+id/vlera_totale"
@@ -406,7 +424,8 @@
                                 android:text="@string/vlera_totale"
                                 android:textColor="#000"
                                 android:textSize="20dp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                android:fontFamily="@font/lato_regular"/>
 
                         </LinearLayout>
 
@@ -436,7 +455,8 @@
                             android:text="Komenti"
                             android:layout_marginLeft="10dp"
 
-                            android:textColor="#b3414042" />
+                            android:textColor="#b3414042"
+                            android:fontFamily="@font/lato_regular"/>
 
                         <AutoCompleteTextView
                             android:id="@+id/komenti_edittext"
@@ -448,7 +468,8 @@
                             android:background="@drawable/edit_field_corner"
 
                             android:hint="Komenti"
-                            android:gravity="left"/>
+                            android:gravity="left"
+                            android:fontFamily="@font/lato_regular"/>
 
 
                     </LinearLayout>
@@ -482,7 +503,8 @@
                     android:padding="10dp"
                     android:text="@string/kupon_fiskal"
 
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/white"
+                    android:fontFamily="@font/lato_bold"/>
 
 
             </LinearLayout>
