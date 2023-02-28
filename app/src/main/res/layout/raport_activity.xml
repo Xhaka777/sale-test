@@ -128,6 +128,18 @@
                     android:visibility="visible" />
 
                 <Button
+                    android:id="@+id/lista_kthimit"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_rounder_corner"
+                    android:text="@string/l_kthimMalli"
+                    android:textColor="#FFF"
+                    android:visibility="visible"
+                    android:enabled="true"/>
+
+                <Button
                     android:id="@+id/lista_shpenzimeve"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
@@ -151,28 +163,6 @@
                     android:visibility="visible"
                     android:enabled="false"/>
 
-                <Button
-                    android:id="@+id/return_list"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_margin="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/button_round_corner_5"
-                    android:text="@string/l_kthimMalli"
-                    android:textColor="#FFF"
-                    android:visibility="visible"
-                    android:enabled="false"/>
-
-                <!--                <Button-->
-                <!--                    android:id="@+id/lista_klientave"-->
-                <!--                    android:layout_width="match_parent"-->
-                <!--                    android:layout_height="100dp"-->
-                <!--                    android:layout_margin="5dp"-->
-                <!--                    android:layout_weight="1"-->
-                <!--                    android:background="@drawable/button_rounder_corner"-->
-                <!--                    android:text="@string/lista_klienteve"-->
-                <!--                    android:textColor="#FFF"-->
-                <!--                    android:visibility="visible" />-->
 
             </LinearLayout>
         </LinearLayout>

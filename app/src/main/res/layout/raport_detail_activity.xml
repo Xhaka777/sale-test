@@ -63,9 +63,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:text="@string/raportet"
-                    android:textAllCaps="true"
                     android:textColor="#000"
-                    android:textSize="16sp" />
+                    android:textSize="17sp"/>
 
                 <EditText
                     android:id="@id/search_edittext"
@@ -78,14 +77,14 @@
                     android:textColor="#000"
                     android:hint="@string/kerko"/>
 
-                <Button
-                    android:id="@+id/sync"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="19dp"
-                    android:background="@android:color/white" />
+<!--                <Button-->
+<!--                    android:id="@+id/sync"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_alignParentRight="true"-->
+<!--                    android:layout_centerVertical="true"-->
+<!--                    android:layout_marginRight="19dp"-->
+<!--                    android:background="@android:color/white" />-->
 
             </LinearLayout>
 

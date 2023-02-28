@@ -19,6 +19,7 @@ import org.planetaccounting.saleAgent.clients.ClientsListActivity;
 import org.planetaccounting.saleAgent.databinding.RaportActivityBinding;
 import org.planetaccounting.saleAgent.helper.LocaleHelper;
 import org.planetaccounting.saleAgent.invoice.InvoiceListActivity;
+import org.planetaccounting.saleAgent.kthemallin.ReturnListActivity;
 import org.planetaccounting.saleAgent.ngarkime.NgarkimeListAdapter;
 import org.planetaccounting.saleAgent.ngarkime.ngarkimeActivity;
 import org.planetaccounting.saleAgent.order.OrdersListActivity;
@@ -48,7 +49,7 @@ public class RaportetActivity extends Activity {
         binding.listaShpenzimeve.setOnClickListener(view -> openVendorListActivity());
         binding.listaInkasimeve.setOnClickListener(view -> openInkasimiActivity());
         binding.listaDepozitave.setOnClickListener(view -> openDepozitActivity());
-        binding.returnList.setOnClickListener(view -> openReturnsActivity() );
+        binding.listaKthimit.setOnClickListener(view -> openReturnsActivity() );
         binding.dailyMarket.setOnClickListener(view -> openDailyMarket());
         binding.listaKlientave.setOnClickListener(view -> openClientListActivity());
         binding.listaNgarkimeve.setOnClickListener(view -> openLoadListActivity());
@@ -58,13 +59,13 @@ public class RaportetActivity extends Activity {
     }
     private void openInvoicesActivity() {
         Log.d("Hap Listen e faturav - ", " InvoiceListActivity");
-        Intent i = new Intent(getApplicationContext(), InvoiceListActivity.class).putExtra("from","inv");
+        Intent i = new Intent(getApplicationContext(), InvoiceListActivity.class);
         startActivity(i);
     }
 
     private void openReturnsActivity() {
         Log.d("Hap Listen e kthimit - ", " InvoiceListActivity");
-        Intent i = new Intent(getApplicationContext(), InvoiceListActivity.class).putExtra("from","ret");
+        Intent i = new Intent(getApplicationContext(), ReturnListActivity.class);
         startActivity(i);
     }
     private void openVendorListActivity() {

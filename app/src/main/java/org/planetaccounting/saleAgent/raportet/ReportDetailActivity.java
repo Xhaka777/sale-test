@@ -153,16 +153,16 @@ public class ReportDetailActivity extends Activity {
 
         }
 
-        binding.sync.setOnClickListener(view -> {
-            System.out.println("click " + type);
-            if (type == 0) {
-                syncShpenzimet();
-            } else if (type == 1) {
-                syncInkasimi();
-            } else if (type == 2) {
-                syncDepozitat();
-            }
-        });
+//        binding.sync.setOnClickListener(view -> {
+//            System.out.println("click " + type);
+//            if (type == 0) {
+//                syncShpenzimet();
+//            } else if (type == 1) {
+//                syncInkasimi();
+//            } else if (type == 2) {
+//                syncDepozitat();
+//            }
+//        });
 
         if (type == 0) {
 

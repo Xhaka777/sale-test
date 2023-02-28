@@ -72,10 +72,10 @@ public class RaportetListAdapter extends RecyclerView.Adapter<RaportetListAdapte
             binding.col6.setText("" + vendorPosts.get(position).getComment());
 
             if (vendorPosts.get(position).isSynced()) {
-                binding.syncedIndicator.setImageResource(R.drawable.ic_green);
+                binding.syncedIndicator.setImageResource(R.drawable.ic_close);
 
             } else {
-                binding.syncedIndicator.setImageResource(R.drawable.ic_red);
+                binding.syncedIndicator.setImageResource(R.drawable.ic_cancel);
             }
         } else if (type == 1) {
             binding.col1.setText(inkasimiDetails.get(position).getDate());
@@ -86,9 +86,9 @@ public class RaportetListAdapter extends RecyclerView.Adapter<RaportetListAdapte
             binding.col6.setText("" + inkasimiDetails.get(position).getComment());
 
             if (inkasimiDetails.get(position).isSynced()) {
-                binding.syncedIndicator.setImageResource(R.drawable.ic_green);
+                binding.syncedIndicator.setImageResource(R.drawable.ic_close);
             } else {
-                binding.syncedIndicator.setImageResource(R.drawable.ic_red);
+                binding.syncedIndicator.setImageResource(R.drawable.ic_cancel);
             }
         } else if (type == 2) {
             binding.col1.setText(depositPosts.get(position).getDate());
@@ -99,9 +99,9 @@ public class RaportetListAdapter extends RecyclerView.Adapter<RaportetListAdapte
             binding.col6.setText("" + depositPosts.get(position).getComment());
 
             if (depositPosts.get(position).isSynced()) {
-                binding.syncedIndicator.setImageResource(R.drawable.ic_green);
+                binding.syncedIndicator.setImageResource(R.drawable.ic_close);
             } else {
-                binding.syncedIndicator.setImageResource(R.drawable.ic_red);
+                binding.syncedIndicator.setImageResource(R.drawable.ic_cancel);
             }
         }
 //        binding.reprintInvoice.setOnClickListener(v -> EventBus.getDefault().post(new RePrintInvoiceEvent(invoices.get(position).getId())));
