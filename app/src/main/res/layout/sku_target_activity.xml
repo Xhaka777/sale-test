@@ -17,7 +17,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="19dp"
                 android:text="TARGETI SKU"
-                android:textColor="#000" />
+                android:textColor="#000"
+                android:fontFamily="@font/lato_regular"/>
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -57,7 +58,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="Lloji"
-                        android:textColor="#000" />
+                        android:textColor="#000"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <ImageView
                         android:layout_width="1dp"
@@ -71,13 +73,8 @@
                         android:layout_weight="3"
                         android:gravity="center"
                         android:text="Emertimi"
-                        android:textColor="#000" />
-
-                    <ImageView
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"
-                        android:background="#000" />
-
+                        android:textColor="#000"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <ImageView
                         android:layout_width="1dp"
@@ -91,7 +88,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="Targeti"
-                        android:textColor="#000" />
+                        android:textColor="#000"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <ImageView
                         android:layout_width="1dp"
@@ -105,7 +103,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="Realizimi"
-                        android:textColor="#000" />
+                        android:textColor="#000"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <ImageView
                         android:layout_width="1dp"
@@ -119,7 +118,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="Perqindja"
-                        android:textColor="#000" />
+                        android:textColor="#000"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <ImageView
                         android:layout_width="1dp"
@@ -133,7 +133,8 @@
                         android:layout_weight="1"
                         android:gravity="center"
                         android:text="Benefiti"
-                        android:textColor="#000" />
+                        android:textColor="#000"
+                        android:fontFamily="@font/lato_regular"/>
                 </LinearLayout>
 
                 <LinearLayout

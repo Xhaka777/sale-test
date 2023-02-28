@@ -16,9 +16,10 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="TARGETI TOTAL"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/lato_regular"
+                android:text="TARGETI TOTAL"
                 android:textColor="#000" />
 
             <View
@@ -51,7 +52,8 @@
                 android:gravity="center"
                 android:text="Targeti: 100000"
                 android:textColor="#000"
-                android:textSize="16dp" />
+                android:textSize="16dp"
+                android:fontFamily="@font/lato_regular"/>
 
             <ImageView
                 android:layout_width="1dp"
@@ -67,7 +69,8 @@
                 android:gravity="center"
                 android:text="Realizimi: 100000"
                 android:textColor="#000"
-                android:textSize="16dp" />
+                android:textSize="16dp"
+                android:fontFamily="@font/lato_regular"/>
 
             <ImageView
                 android:layout_width="1dp"
@@ -82,7 +85,8 @@
                 android:gravity="center"
                 android:text="Perqindje: 100000"
                 android:textColor="#000"
-                android:textSize="16dp" />
+                android:textSize="16dp"
+                android:fontFamily="@font/lato_regular"/>
 
             <ImageView
                 android:layout_width="1dp"
@@ -97,7 +101,8 @@
                 android:gravity="center"
                 android:text="Perfitimi: 100000"
                 android:textColor="#000"
-                android:textSize="16dp" />
+                android:textSize="16dp"
+                android:fontFamily="@font/lato_regular"/>
         </LinearLayout>
 
         <ScrollView
@@ -146,7 +151,8 @@
                         android:text="Data"
                         android:textColor="#000"
                         android:textSize="16dp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <ImageView
                         android:layout_width="1dp"
@@ -164,7 +170,8 @@
                         android:text="Realizimi Ditor"
                         android:textColor="#000"
                         android:textSize="16dp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <ImageView
                         android:layout_width="1dp"
@@ -182,7 +189,8 @@
                         android:text="Perqindja Ditore"
                         android:textColor="#000"
                         android:textSize="16dp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"
+                        android:fontFamily="@font/lato_regular"/>
                 </LinearLayout>
 
                 <ImageView
