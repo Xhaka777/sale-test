@@ -38,7 +38,8 @@
                         android:layout_marginRight="8dp"
 
                         android:text="@string/faturë"
-                        android:textColor="#000"/>
+                        android:textColor="#000"
+                        android:textSize="16sp"/>
 
                 </LinearLayout>
 

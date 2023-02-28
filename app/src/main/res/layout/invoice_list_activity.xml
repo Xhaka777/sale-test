@@ -33,7 +33,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:text="@string/lista_faturave"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:textSize="17sp"/>
 
                 <EditText
                     android:id="@+id/search_edittext"
@@ -99,10 +100,10 @@
                     android:textSize="16dp"
                     android:textStyle="bold" />
 
-                <ImageView
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="#000" />
+<!--                <ImageView-->
+<!--                    android:layout_width="1dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="#000" />-->
 
                 <TextView
                     android:id="@+id/invoice_nr"
@@ -117,10 +118,10 @@
                     android:textSize="16dp"
                     android:textStyle="bold" />
 
-                <ImageView
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="#000" />
+<!--                <ImageView-->
+<!--                    android:layout_width="1dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="#000" />-->
 
                 <TextView
                     android:id="@+id/client"
@@ -135,10 +136,10 @@
                     android:textSize="16dp"
                     android:textStyle="bold" />
 
-                <ImageView
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="#000" />
+<!--                <ImageView-->
+<!--                    android:layout_width="1dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="#000" />-->
 
                 <TextView
                     android:id="@+id/client_unit"
@@ -153,10 +154,10 @@
                     android:textSize="16dp"
                     android:textStyle="bold" />
 
-                <ImageView
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="#000" />
+<!--                <ImageView-->
+<!--                    android:layout_width="1dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="#000" />-->
 
                 <TextView
                     android:id="@+id/data"
@@ -171,10 +172,10 @@
                     android:textSize="16dp"
                     android:textStyle="bold" />
 
-                <ImageView
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="#000" />
+<!--                <ImageView-->
+<!--                    android:layout_width="1dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="#000" />-->
 
                 <TextView
                     android:id="@+id/amount"
@@ -189,10 +190,10 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <ImageView
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="#000"/>
+<!--                <ImageView-->
+<!--                    android:layout_width="1dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="#000"/>-->
 
                 <TextView
                     android:id="@+id/comment"
@@ -208,10 +209,10 @@
                     android:textStyle="bold"
                     android:visibility="gone"/>
 
-                <ImageView
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="#000" />
+<!--                <ImageView-->
+<!--                    android:layout_width="1dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:background="#000" />-->
 
                 <TextView
                     android:id="@+id/save"
@@ -241,27 +242,6 @@
             android:layout_below="@+id/title"
             android:background="#fff"
             android:paddingBottom="40dp" />
-
-<!--        <LinearLayout-->
-<!--            android:id="@+id/page_layout"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="40dp"-->
-<!--            android:layout_alignParentBottom="true"-->
-<!--            android:background="#fff"-->
-<!--            android:gravity="center">-->
-
-<!--&lt;!&ndash;            <TextView&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_width="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:layout_height="wrap_content"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:text="@string/numri_faqes"&ndash;&gt;-->
-<!--&lt;!&ndash;                android:textColor="#000" />&ndash;&gt;-->
-
-<!--            <TextView-->
-<!--                android:id="@+id/totali"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:textColor="#000" />-->
-<!--        </LinearLayout>-->
 
         <RelativeLayout
             android:id="@+id/loader"

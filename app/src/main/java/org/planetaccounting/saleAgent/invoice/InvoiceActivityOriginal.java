@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.databinding.DataBindingUtil;
@@ -179,7 +180,6 @@ public class InvoiceActivityOriginal extends AppCompatActivity {
 
     private boolean isPrintPDF = true;
     private boolean isPrint80mm = true;
-
 
 
     @SuppressLint("SetTextI18n")
@@ -593,13 +593,51 @@ public class InvoiceActivityOriginal extends AppCompatActivity {
 
             } else {
                 stockItems.add(pos, invoiceItem[0]);
-                checkIfArticleIsInAction(invoiceItem[0]);
-                fillInvoiceItemData(itemBinding, invoiceItem[0]);
-                itemBinding.sasiaTextview.requestFocus();
-                itemBinding.sasiaTextview.setSelection(itemBinding.sasiaTextview.getText().length());
+                //pjesa per aksion me artikull
+                for (int k = 0; k < actionData.getArticleItems().size(); k++) {
+                    float itemSasia = Float.parseFloat(itemBinding.sasiaTextview.getText().toString());
+                    float actionSasia = Float.parseFloat(actionData.getArticleItems().get(k).getQuantity());
+                    if (actionSasia <= itemSasia && actionData.getArticleItems().get(k).getGroupItem().equals(invoiceItem[0].getId())) {
+                        checkIfArticleIsInAction(invoiceItem[0]);
+                        System.out.println(invoiceItem[0].getQuantity());
+                    }
 
-                calculcation_form();
+                    fillInvoiceItemData(itemBinding, invoiceItem[0]);
+                    itemBinding.sasiaTextview.requestFocus();
+                    itemBinding.sasiaTextview.setSelection(itemBinding.sasiaTextview.getText().length());
+                    calculcation_form();
+                    System.out.println("aaaaaaaaaaaaaaaaa");
+                }
 
+                //pjesa per aksion me brend...
+                for (int k = 0; k < actionData.getArticleBrandItem().size(); k++) {
+                    float itemSasia = Float.parseFloat(itemBinding.sasiaTextview.getText().toString());
+                    float actionSasia = Float.parseFloat(actionData.getArticleBrandItem().get(k).getQuantity());
+                    if (actionSasia <= itemSasia && actionData.getArticleBrandItem().get(k).getBrandId().equals(invoiceItem[0].getBrand())) {
+                        checkIfArticleIsInAction(invoiceItem[0]);
+                    }
+
+                    fillInvoiceItemData(itemBinding, invoiceItem[0]);
+                    itemBinding.sasiaTextview.requestFocus();
+                    itemBinding.sasiaTextview.setSelection(itemBinding.sasiaTextview.getText().length());
+                    calculcation_form();
+                    System.out.println("bbbbbbbbbbbbbbbbbbb");
+                }
+
+                //pjesa per aksionin me kategori
+                for (int k = 0 ; k < actionData.getArticleCategoryItem().size(); k++){
+                    float itemSasia = Float.parseFloat(itemBinding.sasiaTextview.getText().toString());
+                    float actionSasia = Float.parseFloat(actionData.getArticleCategoryItem().get(k).getQuantity());
+                    if (actionSasia <= itemSasia && actionData.getArticleCategoryItem().get(k).getCategoryId().equals(invoiceItem[0].getCategory())){
+                        checkIfArticleIsInAction(invoiceItem[0]);
+                    }
+
+                    fillInvoiceItemData(itemBinding, invoiceItem[0]);
+                    itemBinding.sasiaTextview.requestFocus();
+                    itemBinding.sasiaTextview.setSelection(itemBinding.sasiaTextview.getText().length());
+                    calculcation_form();
+                    System.out.println("cccccccccccccccccccccc");
+                }
             }
         });
         itemBinding.emertimiTextview.showDropDown();
@@ -675,7 +713,35 @@ public class InvoiceActivityOriginal extends AppCompatActivity {
                                 invoiceItem[0].setDiscount(invoiceItem[0].getBaseDiscount());
                             }
                         }
-                        checkIfArticleIsInAction(invoiceItem[0]);
+                        for (int k = 0; k < actionData.getArticleItems().size(); k++) {
+                            float itemSasia = Float.parseFloat(itemBinding.sasiaTextview.getText().toString());
+                            float actionSasia = Float.parseFloat(actionData.getArticleItems().get(k).getQuantity());
+                            if (actionSasia <= itemSasia && actionData.getArticleItems().get(k).getGroupItem().equals(invoiceItem[0].getId())) {
+                                checkIfArticleIsInAction(invoiceItem[0]);
+                                System.out.println("sasia onText1");
+                            }
+                        }
+                        //pjesa per aksion me brend...
+                        for (int k = 0; k < actionData.getArticleBrandItem().size(); k++) {
+                            float itemSasia = Float.parseFloat(itemBinding.sasiaTextview.getText().toString());
+                            float actionSasia = Float.parseFloat(actionData.getArticleBrandItem().get(k).getQuantity());
+                            if (actionSasia <= itemSasia && actionData.getArticleBrandItem().get(k).getBrandId().equals(invoiceItem[0].getBrand())) {
+                                checkIfArticleIsInAction(invoiceItem[0]);
+                                System.out.println("sasia onText2");
+                            }
+                        }
+
+                        //pjesa per aksionme kategori
+                        for (int k = 0; k < actionData.getArticleCategoryItem().size(); k++){
+                            float itemSasia = Float.parseFloat(itemBinding.sasiaTextview.getText().toString());
+                            float actionSasia = Float.parseFloat(actionData.getArticleCategoryItem().get(k).getQuantity());
+                            if (actionSasia <= itemSasia && actionData.getArticleCategoryItem().get(k).getCategoryId().equals(invoiceItem[0].getCategory())){
+                                checkIfArticleIsInAction(invoiceItem[0]);
+                                System.out.println("sasia onText3");
+                            }
+                        }
+
+                        System.out.println("sasia onText4");
                         fillInvoiceItemData(itemBinding, invoiceItem[0]);
                         calculcation_form();
 
@@ -736,6 +802,7 @@ public class InvoiceActivityOriginal extends AppCompatActivity {
                             checkIfArticleIsInAction(invoiceItem[0]);
                             fillInvoiceItemData(itemBinding, invoiceItem[0]);
                             calculcation_form();
+                            System.out.println("sasia onFocus");
 
                             calculateArtikujtTotal();
                             calculateSasiaTotale();
@@ -761,6 +828,7 @@ public class InvoiceActivityOriginal extends AppCompatActivity {
                     if (itemBinding.zbritjaTextview.getText().toString().trim().isEmpty()) {
                         itemBinding.zbritjaTextview.setText("0");
                         invoiceItem[0].setDiscount(itemBinding.zbritjaTextview.getText().toString(), true);
+                        System.out.println("zbritja onFocus");
                     }
                 }
             }
@@ -790,6 +858,35 @@ public class InvoiceActivityOriginal extends AppCompatActivity {
                     }
                     if ((zbritja <= discount) && !(zbritja < 0)) {
                         invoiceItem[0].setDiscount(itemBinding.zbritjaTextview.getText().toString(), true);
+                        for (int k = 0; k < actionData.getArticleItems().size(); k++) {
+                            float itemSasia = Float.parseFloat(itemBinding.sasiaTextview.getText().toString());
+                            float actionSasia = Float.parseFloat(actionData.getArticleItems().get(k).getQuantity());
+                            if (actionSasia <= itemSasia && actionData.getArticleItems().get(k).getGroupItem().equals(invoiceItem[0].getId())) {
+                                checkIfArticleIsInAction(invoiceItem[0]);
+                                System.out.println("zbritja onTextChange1");
+                            }
+                        }
+
+                        //pjesa per aksion me brend...
+                        for (int k = 0; k < actionData.getArticleBrandItem().size(); k++) {
+                            float itemSasia = Float.parseFloat(itemBinding.sasiaTextview.getText().toString());
+                            float actionSasia = Float.parseFloat(actionData.getArticleBrandItem().get(k).getQuantity());
+                            if (actionSasia <= itemSasia && actionData.getArticleBrandItem().get(k).getBrandId().equals(invoiceItem[0].getBrand())) {
+                                checkIfArticleIsInAction(invoiceItem[0]);
+                                System.out.println("zbritja onTextChange2");
+                            }
+                        }
+
+                        for (int k = 0; k < actionData.getArticleCategoryItem().size(); k++){
+                            float itemSasia = Float.parseFloat(itemBinding.sasiaTextview.getText().toString());
+                            float actionSasia = Float.parseFloat(actionData.getArticleCategoryItem().get(k).getQuantity());
+                            if (actionSasia <= itemSasia && actionData.getArticleCategoryItem().get(k).getCategoryId().equals(invoiceItem[0].getCategory())){
+                                checkIfArticleIsInAction(invoiceItem[0]);
+                                System.out.println("zbritja onTextChange3");
+                            }
+                        }
+
+                        System.out.println("zbritja onTextChange4");
                     }
 
                 }
@@ -846,7 +943,6 @@ public class InvoiceActivityOriginal extends AppCompatActivity {
 //        itemBinding.basePrice.setText("" + String.format(Locale.ENGLISH, "%.4f", BigDecimal.valueOf(invoiceItem.getBasePrice())));
     }
 
-
     private void findCodeAndPosition(InvoiceItem invoiceItem) {
         for (int i = 0; i < invoiceItem.getItems().size(); i++) {
             if (invoiceItem.getDefaultUnit().equalsIgnoreCase(invoiceItem.getItems().get(i).getUnit())) {
@@ -867,7 +963,6 @@ public class InvoiceActivityOriginal extends AppCompatActivity {
     }
 
     //this part is for to show DropDown when clicked editText for secound time and more ...
-
     private void shopDropDownList() {
         binding.emriKlientit.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -896,8 +991,15 @@ public class InvoiceActivityOriginal extends AppCompatActivity {
                 checked = item;
                 invoiceItem.setSelectedItemCode(invoiceItem.getItems().get(checked).getNumber());
                 invoiceItem.setSelectedUnit(invoiceItem.getItems().get(checked).getUnit());
+                invoiceItem.setName(invoiceItem.getItems().get(checked).getName());
                 invoiceItem.setSelectedPosition(checked);
                 invoiceItem.setRelacion(String.valueOf(invoiceItem.getItems().get(checked).getRelacion()));
+
+//                for (int i = 0; i < invoiceItem.getItems().size(); i++) {//mi marr subitems...
+//                    if (invoiceItem.getItems().get(i).getName())
+//                }
+        //nese nuk bone duhet me thirr itemBinding.emriTextView.setText(...);
+
                 checkIfArticleIsInAction(invoiceItem);
                 hideLoader();
                 fillInvoiceItemData(binding, invoiceItem);
@@ -1137,7 +1239,7 @@ public class InvoiceActivityOriginal extends AppCompatActivity {
         double clientDiscount = Double.parseDouble(client.getDiscount()) * 0.01;
         double articleDiscount = Double.parseDouble(invoiceItem.getChildList().get(invoiceItem.getSelectedPosition()).getDiscount()) * 0.01;
         double vatRate = Double.parseDouble(invoiceItem.getChildList().get(invoiceItem.getSelectedPosition()).getVatRate()) * 0.01;
-        double tvsh = priceSale - (priceSale * clientDiscount);
+        double tvsh = priceSale + (priceSale * clientDiscount);//-
         tvsh = tvsh - (tvsh * articleDiscount);
         tvsh = tvsh + (tvsh * vatRate);
         return tvsh;
@@ -1559,6 +1661,25 @@ public class InvoiceActivityOriginal extends AppCompatActivity {
         LinearLayout buttonHolder = dialogView.findViewById(R.id.button_holder);
 
 
+        SharedPreferences sharedPreferences = getSharedPreferences("switchState", MODE_PRIVATE);
+        SharedPreferences sharedPreferences1 = getSharedPreferences("switchState1", MODE_PRIVATE);
+        boolean switchState = sharedPreferences.getBoolean("switchState", false);
+        boolean switchState1 = sharedPreferences1.getBoolean("switchState1", false);
+
+        if (switchState) {
+            //the switch was turned on on the first activity, so hide the layout
+            print.setVisibility(View.GONE);
+        } else {
+            //the switch was turned off in the setting activity, so show the layout
+            print.setVisibility(View.VISIBLE);
+        }
+
+        if (switchState1) {
+            print80mm.setVisibility(View.GONE);
+        } else {
+            print80mm.setVisibility(View.VISIBLE);
+        }
+
         AlertDialog alertDialog = dialogBuilder.create();
 
         print.setOnClickListener(view -> {
@@ -1758,7 +1879,6 @@ public class InvoiceActivityOriginal extends AppCompatActivity {
         } else {
             binding.loader.setVisibility(View.GONE);
             addInvoiceItem();
-
         }
     }
 
@@ -1865,19 +1985,12 @@ public class InvoiceActivityOriginal extends AppCompatActivity {
 
                                     }
                                 }
-
                             }
                         }
                     }
-
-
                 }
-
             }
-
-
         }
-
 
         // Form Totals
         calculateTotal();
@@ -1886,6 +1999,13 @@ public class InvoiceActivityOriginal extends AppCompatActivity {
         calculateVleraETVSH();
         hideLoader();
     }
+    //me bo ni metode qe e merr emrin e produktit...
+//    private InvoiceItem getArticleName(InvoiceItem invoiceItem){
+//        for (int i = 0 ; i < invoiceItem.getItems().size(); i++){
+//            if ()
+//        }
+//    }
+
 
     private InvoiceItem checkIfArticleIsInAction(InvoiceItem invoiceItem) {
         //check product action
@@ -1940,7 +2060,6 @@ public class InvoiceActivityOriginal extends AppCompatActivity {
                     invoiceItem.setDiscount(actionData.getArticleBrandItem().get(i).getDiscount());
                     break;
                 }
-
             }
         }
         //check category action
@@ -2358,5 +2477,4 @@ public class InvoiceActivityOriginal extends AppCompatActivity {
     public static BigDecimal round(BigDecimal number) {
         return number.setScale(2, RoundingMode.HALF_UP);
     }
-
 }

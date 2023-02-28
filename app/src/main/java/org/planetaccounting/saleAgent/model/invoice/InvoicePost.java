@@ -329,6 +329,16 @@ public class InvoicePost extends RealmObject {
         this.isFromServer =  true;
     }
 
+    public void setReturnFromReports(ReportsList reports){
+        this.id = reports.id;
+        this.no_invoice = reports.docNumber;
+        this.amount_with_vat = reports.amount;
+        this.partie_name = reports.partieName;
+        this.invoice_date = reports.date;
+        this.synced = true;
+        this.isFromServer = true;
+    }
+
     @Override
     public String toString() {
         return "InvoicePost{" +

@@ -14,7 +14,6 @@ import org.planetaccounting.saleAgent.databinding.InvoiceListItemBinding;
 import org.planetaccounting.saleAgent.events.RePrintInvoiceEvent;
 import org.planetaccounting.saleAgent.events.UploadInvoiceEvent;
 import org.planetaccounting.saleAgent.model.invoice.InvoicePost;
-
 import org.greenrobot.eventbus.EventBus;
 
 import java.math.BigDecimal;
@@ -54,10 +53,10 @@ public class InvoiceListAdapter extends RecyclerView.Adapter<InvoiceListAdapter.
         binding.invoiceNr.setText(invoices.get(position).getNo_invoice());
         binding.vlera.setText(round(BigDecimal.valueOf(Double.parseDouble(invoices.get(position).getAmount_with_vat()))) + "");
         if (invoices.get(position).getSynced()) {
-            binding.syncedIndicator.setImageResource(R.drawable.ic_green);
+            binding.syncedIndicator.setImageResource(R.drawable.ic_close);
 
         } else {
-            binding.syncedIndicator.setImageResource(R.drawable.ic_red);
+            binding.syncedIndicator.setImageResource(R.drawable.ic_cancel);
         }
         binding.reprintInvoice.setOnClickListener(v -> EventBus.getDefault().post(new RePrintInvoiceEvent(invoices.get(position).getId(),invoices.get(position).getIsFromServer())));
         binding.getRoot().setOnClickListener(view -> {

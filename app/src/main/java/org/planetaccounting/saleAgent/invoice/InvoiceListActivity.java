@@ -1,6 +1,7 @@
 package org.planetaccounting.saleAgent.invoice;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Build;
 import android.os.Bundle;
@@ -81,7 +82,7 @@ public class InvoiceListActivity extends AppCompatActivity {
     InvoiceListAdapter adapter;
     RecyclerView.LayoutManager mLayoutManager;
     double shuma;
-    int numberFaildAttempt ;
+    int numberFaildAttempt;
     String dDate;
     ArrayList<InvoicePost> inv;
     List<InvoicePost> invoicePosts = new ArrayList<>();
@@ -93,7 +94,7 @@ public class InvoiceListActivity extends AppCompatActivity {
     FrameLayout fragment;
 
     int totalPage = 0;
-    int currentPage =0;
+    int currentPage = 0;
     private boolean isLoading = false;
 
 
@@ -103,13 +104,10 @@ public class InvoiceListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-      binding = DataBindingUtil.setContentView(this ,R.layout.invoice_list_activity);
+        binding = DataBindingUtil.setContentView(this, R.layout.invoice_list_activity);
 
         from = getIntent().getStringExtra("from");
-        if (from.equals("ret")){
-           TextView titleBar =  (TextView) findViewById(R.id.title_bar);
-           titleBar.setText("Lista e kthimi te mallit");
-        }
+
 
         ((Kontabiliteti) getApplication()).getKontabilitetiComponent().inject(this);
         printManager = (PrintManager) this.getSystemService(Context.PRINT_SERVICE);
@@ -124,24 +122,14 @@ public class InvoiceListActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        if (from.equals("inv")){
+        String returns = realmHelper.getAllInvoicesString();
 
-            String returns = realmHelper.getAllInvoicesString();
+        inv = (ArrayList<InvoicePost>) new Gson().fromJson(returns,
+                new TypeToken<ArrayList<InvoicePost>>() {
+                }.getType());
 
-           inv = (ArrayList<InvoicePost>) new Gson().fromJson(returns,
-                    new TypeToken<ArrayList<InvoicePost>>() {
-                    }.getType());
+        getInvoicesRepors();
 
-            getInvoicesRepors();
-
-        } else {
-            String returns = realmHelper.getAllReturnInvoicesString();
-
-            inv = (ArrayList<InvoicePost>) new Gson().fromJson(returns,
-                    new TypeToken<ArrayList<InvoicePost>>() {
-                    }.getType());
-
-        }
 
         adapter = new InvoiceListAdapter(inv);
         recyclerView.setAdapter(adapter);
@@ -175,14 +163,14 @@ public class InvoiceListActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 searchResults.clear();
-                for (int j = 0; j < inv.size(); j++){
-                    if (inv.get(j).getPartie_name().toLowerCase().startsWith(s.toString().toLowerCase())){
+                for (int j = 0; j < inv.size(); j++) {
+                    if (inv.get(j).getPartie_name().toLowerCase().startsWith(s.toString().toLowerCase())) {
                         searchResults.add(inv.get(j));
                     }
                 }
-                if (s.length() > 0){
+                if (s.length() > 0) {
                     adapter.setCompanies(searchResults);
-                }else{
+                } else {
                     adapter.setCompanies(inv);
                 }
             }
@@ -192,27 +180,6 @@ public class InvoiceListActivity extends AppCompatActivity {
 
             }
         });
-
-//        Button congifBtn = findViewById(R.id.configBtn);
-//        congifBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(
-//                        InvoiceListActivity.this, R.style.BottomSheetDialogTheme);
-//                View bottomSheetView = LayoutInflater.from(getApplicationContext())
-//                        .inflate(R.layout.layout_bottom_sheet, (ConstraintLayout) findViewById(R.id.bottomSheetLayout));
-//
-//                bottomSheetView.findViewById(R.id.save_btn).setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        bottomSheetDialog.dismiss();
-//                    }
-//                });
-//                bottomSheetDialog.setContentView(bottomSheetView);
-//                bottomSheetDialog.show();
-//            }
-//        });
-
 
         recyclerView.addOnScrollListener(new PaginationScrollListener((LinearLayoutManager) mLayoutManager) {
             @Override
@@ -237,6 +204,7 @@ public class InvoiceListActivity extends AppCompatActivity {
         });
 
     }
+
     List<InvoicePost> savedInvoices;
 
     @Override
@@ -250,6 +218,7 @@ public class InvoiceListActivity extends AppCompatActivity {
         super.onStop();
         EventBus.getDefault().unregister(this);
     }
+
     private void uploadInvoices() {
 
         if (unSyncedList.size() > 0) {
@@ -280,12 +249,9 @@ public class InvoiceListActivity extends AppCompatActivity {
         }
     }
 
-    private void loadNextPage(){
+    private void loadNextPage() {
         isLoading = true;
-
-        if (from.equals("inv")){
-            getInvoicesRepors();
-        }
+        getInvoicesRepors();
     }
 
     private void getInvoicesRepors() {
@@ -294,42 +260,47 @@ public class InvoiceListActivity extends AppCompatActivity {
         raportsPostObject.setToken(preferences.getToken());
         raportsPostObject.setUser_id(preferences.getUserId());
 
-        if (currentPage == 0 ){
-            if (!inv.isEmpty()){
-                raportsPostObject.setLast_document_number(inv.get(inv.size()-1).getNo_invoice());
+        if (currentPage == 0) {
+            if (!inv.isEmpty()) {
+                raportsPostObject.setLast_document_number(inv.get(inv.size() - 1).getNo_invoice());
+                System.out.println("--1");
             }
             currentPage++;
             raportsPostObject.setPage(currentPage++);
-        } else  {
+            System.out.println("--2");
+        } else {
             raportsPostObject.setLast_document_number("");
             currentPage++;
             raportsPostObject.setPage(currentPage);
+            System.out.println("--3");
         }
-            apiService.getRaportInvoiceList(raportsPostObject)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(responseBody -> {
-                        isLoading = false;
+        apiService.getRaportInvoiceList(raportsPostObject)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(responseBody -> {
+                    isLoading = false;
 
-                        if (responseBody.getSuccess()) {
-                            currentPage=responseBody.getCurrentPage();
-                       totalPage  =responseBody.getTotalPage();
+                    if (responseBody.getSuccess()) {
+                        currentPage = responseBody.getCurrentPage();
+                        totalPage = responseBody.getTotalPage();
+                        System.out.println("--4");
 
-                            for (ReportsList report:responseBody.data) {
-                                InvoicePost invoice = new InvoicePost();
-                                invoice.setInvoiceFromReports(report);
-                                inv.add(invoice);
-                            }
-                            adapter.notifyItemRangeInserted(0, inv.size());
-                            adapter.notifyDataSetChanged();
-
-                        } else {
-
+                        for (ReportsList report : responseBody.data) {
+                            InvoicePost invoice = new InvoicePost();
+                            invoice.setInvoiceFromReports(report);
+                            inv.add(invoice);
+                            System.out.println("--5");
                         }
-                    }, throwable -> {
-                        isLoading = false;
+                        adapter.notifyItemRangeInserted(0, inv.size());
+                        adapter.notifyDataSetChanged();
 
-                    });
+                    } else {
+
+                    }
+                }, throwable -> {
+                    isLoading = false;
+
+                });
 
     }
 
@@ -339,13 +310,13 @@ public class InvoiceListActivity extends AppCompatActivity {
         raportsPostObject.setToken(preferences.getToken());
         raportsPostObject.setUser_id(preferences.getUserId());
 
-        if (currentPage == 0 ){
-            if (!inv.isEmpty()){
-                raportsPostObject.setLast_document_number(inv.get(inv.size()-1).getNo_invoice());
+        if (currentPage == 0) {
+            if (!inv.isEmpty()) {
+                raportsPostObject.setLast_document_number(inv.get(inv.size() - 1).getNo_invoice());
             }
             currentPage++;
             raportsPostObject.setPage(currentPage++);
-        } else  {
+        } else {
             raportsPostObject.setLast_document_number("");
             currentPage++;
             raportsPostObject.setPage(currentPage);
@@ -357,10 +328,10 @@ public class InvoiceListActivity extends AppCompatActivity {
                     isLoading = false;
 
                     if (responseBody.getSuccess()) {
-                        currentPage=responseBody.getCurrentPage();
-                        totalPage  =responseBody.getTotalPage();
+                        currentPage = responseBody.getCurrentPage();
+                        totalPage = responseBody.getTotalPage();
 
-                        for (ReportsList report:responseBody.data) {
+                        for (ReportsList report : responseBody.data) {
                             InvoicePost invoice = new InvoicePost();
                             invoice.setInvoiceFromReports(report);
                             inv.add(invoice);
@@ -380,7 +351,7 @@ public class InvoiceListActivity extends AppCompatActivity {
 
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    private void printInvoices(int id,boolean isPrint) {
+    private void printInvoices(int id, boolean isPrint) {
 
         InvoiceForReportObject invoiceForReportObject = new InvoiceForReportObject();
         invoiceForReportObject.setToken(preferences.getToken());
@@ -396,18 +367,16 @@ public class InvoiceListActivity extends AppCompatActivity {
 
                         Client client = realmHelper.getClientFromName(invoicePost.getPartie_name());
 
-                        if (from.equals("inv")){
 
-                            if (isPrint){
-                                InvoicePrintUtil util = new InvoicePrintUtil(invoicePost, webView, this, client, printManager);
-                            } else  {
-                                fragment.setVisibility(View.VISIBLE);
-                                for (Fragment fragment:getSupportFragmentManager().getFragments()
-                                ) {
-                                    getSupportFragmentManager().beginTransaction().remove(fragment).commit();
-                                }
-                                addFragment(R.id.fragment, EscPostPrintFragment.Companion.newInstace(invoicePost,preferences,realmHelper,client,invoicePost.getAmount_payed()));
+                        if (isPrint) {
+                            InvoicePrintUtil util = new InvoicePrintUtil(invoicePost, webView, this, client, printManager);
+                        } else {
+                            fragment.setVisibility(View.VISIBLE);
+                            for (Fragment fragment : getSupportFragmentManager().getFragments()
+                            ) {
+                                getSupportFragmentManager().beginTransaction().remove(fragment).commit();
                             }
+                            addFragment(R.id.fragment, EscPostPrintFragment.Companion.newInstace(invoicePost, preferences, realmHelper, client, invoicePost.getAmount_payed()));
                         }
 
                     } else {
@@ -445,7 +414,7 @@ public class InvoiceListActivity extends AppCompatActivity {
     }
 
 
-//    @Subscribe
+    //    @Subscribe
 //    public void onEvent(UploadInvoiceEvent event) {
 //
 ////        InvoiceListAdapter.binding.syncedIndicator.setClickable(false);
@@ -490,15 +459,14 @@ public class InvoiceListActivity extends AppCompatActivity {
 //
 //    }
     private PrintManager printManager;
+
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Subscribe
-    public void onEvent(RePrintInvoiceEvent event){
+    public void onEvent(RePrintInvoiceEvent event) {
 
-        if (event.getIsFromServer()){
-            if (from.equals("inv")){
-                showPrintDialog(event.getPosition());
-            }
-        } else  {
+        if (event.getIsFromServer()) {
+            showPrintDialog(event.getPosition());
+        } else {
 
             String invoice = realmHelper.getInvoiceById(event.getPosition());
             Gson gson = new Gson();
@@ -509,29 +477,24 @@ public class InvoiceListActivity extends AppCompatActivity {
 //            System.out.println(invoicePost.getItems().get(i).getQuantity().toString());
 //        }
 
-            if (from.equals("inv")){
-                showPrintDialog(new StatusClick() {
-                    @Override
-                    public void Printer() {
-                        InvoicePrintUtil util = new InvoicePrintUtil(invoicePost, webView, InvoiceListActivity.this, client, printManager);
-                    }
+            showPrintDialog(new StatusClick() {
+                @Override
+                public void Printer() {
+                    InvoicePrintUtil util = new InvoicePrintUtil(invoicePost, webView, InvoiceListActivity.this, client, printManager);
+                }
 
-                    @Override
-                    public void Printer80mm() {
-                        fragment.setVisibility(View.VISIBLE);
-                        for (Fragment fragment:getSupportFragmentManager().getFragments()
-                        ) {
-                            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
-                        }
-                        addFragment(R.id.fragment, EscPostPrintFragment.Companion.newInstace(invoicePost,preferences,realmHelper,client,invoicePost.getAmount_payed()));
+                @Override
+                public void Printer80mm() {
+                    fragment.setVisibility(View.VISIBLE);
+                    for (Fragment fragment : getSupportFragmentManager().getFragments()
+                    ) {
+                        getSupportFragmentManager().beginTransaction().remove(fragment).commit();
                     }
-                });
-            } else {
-                ReturnPrintUtil util = new ReturnPrintUtil(invoicePost, webView, this, client, printManager);
-            }
+                    addFragment(R.id.fragment, EscPostPrintFragment.Companion.newInstace(invoicePost, preferences, realmHelper, client, invoicePost.getAmount_payed()));
+                }
+            });
 
         }
-
 
 
     }
@@ -546,15 +509,34 @@ public class InvoiceListActivity extends AppCompatActivity {
         Button print80mm = (Button) dialogView.findViewById(R.id.print_80_button);
         LinearLayout buttonHolder = (LinearLayout) dialogView.findViewById(R.id.button_holder);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("switchState", MODE_PRIVATE);
+        SharedPreferences sharedPreferences1 = getSharedPreferences("switchState1", MODE_PRIVATE);
+        boolean switchState = sharedPreferences.getBoolean("switchState", false);
+        boolean switchState1 = sharedPreferences1.getBoolean("switchState1", false);
 
-        AlertDialog    alertDialog = dialogBuilder.create();
+        //per print pdf...
+        if (switchState) {
+            print.setVisibility(View.GONE);
+        } else {
+            print.setVisibility(View.VISIBLE);
+        }
+
+        //per switchin 80mm
+        if (switchState1) {
+            print80mm.setVisibility(View.GONE);
+        } else {
+            print80mm.setVisibility(View.VISIBLE);
+        }
+
+
+        AlertDialog alertDialog = dialogBuilder.create();
 
         print.setOnClickListener(view -> {
-            printInvoices(id,true);
+            printInvoices(id, true);
             alertDialog.dismiss();
         });
         print80mm.setOnClickListener(view -> {
-            printInvoices(id,false);
+            printInvoices(id, false);
             alertDialog.dismiss();
         });
 
@@ -572,11 +554,11 @@ public class InvoiceListActivity extends AppCompatActivity {
         LinearLayout buttonHolder = (LinearLayout) dialogView.findViewById(R.id.button_holder);
 
 
-        AlertDialog    alertDialog = dialogBuilder.create();
+        AlertDialog alertDialog = dialogBuilder.create();
 
         print.setOnClickListener(view -> {
             listener.Printer();
-        alertDialog.dismiss();
+            alertDialog.dismiss();
         });
         print80mm.setOnClickListener(view -> {
             listener.Printer80mm();
@@ -586,10 +568,12 @@ public class InvoiceListActivity extends AppCompatActivity {
         alertDialog.show();
     }
 
-    interface  StatusClick{
+    interface StatusClick {
         void Printer();
+
         void Printer80mm();
     }
+
     public void addFragment(int view, Fragment fragment) {
         try {
             FragmentManager fm = getSupportFragmentManager();

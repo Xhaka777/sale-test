@@ -240,6 +240,8 @@ public class InvoiceItemPost extends RealmObject {
         return type;
     }
 
+
+
     @Override
     public String toString() {
         return "InvoiceItemPost{" +
