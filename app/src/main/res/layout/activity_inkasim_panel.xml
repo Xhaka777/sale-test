@@ -25,7 +25,8 @@
                 android:text="Inkasimi"
                 android:gravity="center"
                 android:textSize="25sp"
-                android:textColor="#FFFFFF"/>
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/lato_regular"/>
         </LinearLayout>
 
         <LinearLayout
@@ -50,7 +51,8 @@
                     android:layout_height="25dp"
                     android:layout_marginTop="10dp"
                     android:text="Klienti"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:fontFamily="@font/lato_regular"/>
 
                 <AutoCompleteTextView
                     android:id="@+id/spinner"
@@ -58,7 +60,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="5dp"
-                    android:background="@drawable/edit_field_corner" />
+                    android:background="@drawable/edit_field_corner"
+                    android:fontFamily="@font/lato_regular"/>
 
                 <TextView
                     android:id="@+id/textView6"
@@ -66,7 +69,8 @@
                     android:layout_height="25dp"
                     android:layout_marginTop="10dp"
                     android:text="Njesia"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:fontFamily="@font/lato_regular"/>
 
                 <AutoCompleteTextView
                     android:id="@+id/Spinner2"
@@ -75,8 +79,7 @@
                     android:layout_height="50dp"
                     android:layout_marginTop="5dp"
                     android:background="@drawable/edit_field_corner"
-
-                    />
+                    android:fontFamily="@font/lato_regular" />
 
                 <EditText
                     android:id="@+id/amount"
@@ -88,18 +91,18 @@
                     android:inputType="numberDecimal"
                     android:background="@drawable/edit_field_corner"
 
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:fontFamily="@font/lato_regular"/>
 
                 <EditText
                     android:id="@+id/comment"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="5dp"
-                    android:hint="komenti"
+                    android:hint="Komenti"
                     android:textSize="20sp"
                     android:background="@drawable/edit_field_corner"
-
-                    />
+                    android:fontFamily="@font/lato_regular" />
 
 
                 <Button
@@ -110,7 +113,8 @@
                     android:onClick="Inkasimi"
                     android:text="Inkaso"
                     android:textColor="@android:color/white"
-                    android:background="@drawable/button_rounder_corner" />
+                    android:background="@drawable/button_rounder_corner"
+                    android:fontFamily="@font/lato_bold"/>
                 <ProgressBar
                     android:id="@+id/progress_bar"
                     android:layout_width="match_parent"
