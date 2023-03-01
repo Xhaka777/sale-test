@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.Target;
@@ -61,7 +63,6 @@ public class ClientsListAdapter extends RecyclerView.Adapter<ClientsListAdapter.
     private List<Client> clients = new ArrayList<>();
     private Context ctx;
 
-
     @Override
     public ClientsListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         ctx = parent.getContext();
@@ -84,20 +85,12 @@ public class ClientsListAdapter extends RecyclerView.Adapter<ClientsListAdapter.
         binding.bilanciTextview.setText("" + round(BigDecimal.valueOf(pBilanci)));
         Glide.with(ctx).load(clients.get(position).getLogo()).into(binding.imageClient);
 
-//        if (clients.get(position).getPhone() != null) {
-//            if (clients.get(position).getPhone().length() > 0) {
-//                binding.dail.setVisibility(View.VISIBLE);
-//            } else {
-//                binding.dail.setVisibility(View.GONE);
-//            }
-//        } else {
-//            binding.dail.setVisibility(View.GONE);
-//        }
-//        binding.dail.setOnClickListener(view -> {
-//            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + clients.get(position).getPhone()));
-//            ctx.startActivity(intent);
-//
-//        });
+        setLatoRegularFont(ctx, binding.numberTextview);
+        setLatoRegularFont(ctx, binding.uniqueNumberTextview);
+        setLatoRegularFont(ctx, binding.emriTextview);
+        setLatoRegularFont(ctx, binding.kontaktTextview);
+        setLatoRegularFont(ctx, binding.bilanciTextview);
+
         binding.getRoot().setOnClickListener(view -> EventBus.getDefault().post(new OpenClientsCardEvent(clients.get(position))));
 
     }
@@ -129,4 +122,10 @@ public class ClientsListAdapter extends RecyclerView.Adapter<ClientsListAdapter.
     public static BigDecimal round(BigDecimal number){
         return number.setScale(2, RoundingMode.HALF_UP);
     }
+
+    public static void setLatoRegularFont(Context context, TextView textView){
+        Typeface latoRegular = Typeface.createFromAsset(context.getAssets(), "fonts/lato_regular.ttf");
+        textView.setTypeface(latoRegular);
+    }
+
 }

@@ -2,13 +2,17 @@ package org.planetaccounting.saleAgent.clients;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -79,6 +83,25 @@ public class ClientsListActivity extends Activity {
 
             }
         });
+
+        TextView textView = findViewById(R.id.client_title);
+        EditText textView1 = findViewById(R.id.search_edittext);
+        TextView textView2 = findViewById(R.id.client_foto);
+        TextView textView3 = findViewById(R.id.client_shifra);
+        TextView textView4 = findViewById(R.id.client_unik);
+        TextView textView5 = findViewById(R.id.client_emri);
+        TextView textView6 = findViewById(R.id.client_kontakti);
+        TextView textView7 = findViewById(R.id.client_bilanci);
+
+        setLatoRegularFont(this ,textView);
+        setLatoRegularFontEdit(this,textView1);
+        setLatoRegularFont(this,textView2);
+        setLatoRegularFont(this,textView3);
+        setLatoRegularFont(this,textView4);
+        setLatoRegularFont(this,textView5);
+        setLatoRegularFont(this,textView6);
+        setLatoRegularFont(this,textView7);
+
     }
 
     @Override
@@ -101,6 +124,16 @@ public class ClientsListActivity extends Activity {
 
     }
 
+    public static void setLatoRegularFont(Context context, TextView textView){
+        Typeface latoRegular = Typeface.createFromAsset(context.getAssets(), "fonts/lato_regular.ttf");
+        textView.setTypeface(latoRegular);
+    }
+
+    public static void setLatoRegularFontEdit(Context context, EditText editText){
+        Typeface latoRegular = Typeface.createFromAsset(context.getAssets(), "fonts/lato_regular.ttf");
+        editText.setTypeface(latoRegular);
+    }
+    //sna duhet per momentin
 //    private void getClients() {
 //        apiService.getClients(new StockPost(preferences.getToken(), preferences.getUserId()))
 //                .subscribeOn(Schedulers.io())
