@@ -31,8 +31,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
-                    android:text="Lisa e Artikujve"
-                    android:textColor="#000" />
+                    android:text="Lista e Artikujve"
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato_regular"
+                    android:textSize="17sp"/>
                 <TextView
                     android:id="@+id/nga"
                     android:layout_width="wrap_content"
@@ -40,7 +42,8 @@
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:text="Nga"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato_regular"/>
                 <TextView
                     android:id="@+id/deri"
                     android:layout_width="wrap_content"
@@ -48,7 +51,8 @@
                     android:layout_marginLeft="20dp"
                     android:layout_weight="1"
                     android:text="Deri"
-                    android:textColor="#000" />
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato_regular"/>
 
                 <Button
                     android:id="@+id/print_button"
@@ -60,7 +64,8 @@
                     android:background="@drawable/button_rounder_corner"
                     android:textColor="@android:color/white"
                     android:padding="5dp"
-                    android:text="Printo Kartelen" />
+                    android:text="Printo Kartelen"
+                    android:fontFamily="@font/lato_bold"/>
 
             </LinearLayout>
 
@@ -98,21 +103,24 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:textColor="#000" />
+                        android:textColor="#000"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <TextView
                         android:id="@+id/roli_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Roli: Klient"
-                        android:textColor="#000" />
+                        android:textColor="#000"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <TextView
                         android:id="@+id/lloji_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Lloji: Kompani"
-                        android:textColor="#000" />
+                        android:textColor="#000"
+                        android:fontFamily="@font/lato_regular"/>
                 </LinearLayout>
 
 
@@ -128,31 +136,36 @@
                         android:id="@+id/id_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#000" />
+                        android:textColor="#000"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <TextView
                         android:id="@+id/nrk_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#000" />
+                        android:textColor="#000"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <TextView
                         android:id="@+id/nrb_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#000" />
+                        android:textColor="#000"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <TextView
                         android:id="@+id/nrf_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#000" />
+                        android:textColor="#000"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <TextView
                         android:id="@+id/nrtvsh_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#000" />
+                        android:textColor="#000"
+                        android:fontFamily="@font/lato_regular"/>
 
                 </LinearLayout>
 
@@ -168,20 +181,23 @@
                         android:id="@+id/adresa_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#000" />
+                        android:textColor="#000"
+                        android:fontFamily="@font/lato_regular"/>
 
 
                     <TextView
                         android:id="@+id/qyteti_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#000" />
+                        android:textColor="#000"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <TextView
                         android:id="@+id/shteti_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#000" />
+                        android:textColor="#000"
+                        android:fontFamily="@font/lato_regular"/>
 
                 </LinearLayout>
 
@@ -197,25 +213,29 @@
                         android:id="@+id/telefon_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#000" />
+                        android:textColor="#000"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <TextView
                         android:id="@+id/fax_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#000" />
+                        android:textColor="#000"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <TextView
                         android:id="@+id/web_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#000" />
+                        android:textColor="#000"
+                        android:fontFamily="@font/lato_regular"/>
 
                     <TextView
                         android:id="@+id/email_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#000" />
+                        android:textColor="#000"
+                        android:fontFamily="@font/lato_regular"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -240,55 +260,75 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="ID"
-                    android:textColor="#000" />
+                    android:textSize="16sp"
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato_regular"/>
 
                 <TextView
+                    android:id="@+id/data"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="DATA"
-                    android:textColor="#000" />
+                    android:text="Data"
+                    android:textSize="16sp"
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato_regular"/>
 
                 <TextView
+                    android:id="@+id/pershkrimi"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="6"
                     android:gravity="center"
-                    android:text="PERSHKRIMI"
-                    android:textColor="#000" />
+                    android:textSize="16sp"
+                    android:text="Pershkrimi"
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato_regular"/>
 
                 <TextView
+                    android:id="@+id/lloji"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="LLOJI"
-                    android:textColor="#000" />
+                    android:text="Lloji"
+                    android:textSize="16sp"
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato_regular"/>
 
                 <TextView
+                    android:id="@+id/valuta"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="VALUTA"
-                    android:textColor="#000" />
+                    android:text="Valuta"
+                    android:textSize="16sp"
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato_regular"/>
 
                 <TextView
+                    android:id="@+id/vlera"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="VLERA"
-                    android:textColor="#000" />
+                    android:text="Vlera"
+                    android:textSize="16sp"
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato_regular"/>
 
                 <TextView
+                    android:id="@+id/bilanci"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="BILANCI"
-                    android:textColor="#000" />
+                    android:text="Bilanci"
+                    android:textSize="16sp"
+                    android:textColor="#000"
+                    android:fontFamily="@font/lato_regular"/>
             </LinearLayout>
             <ImageView
                 android:layout_width="match_parent"

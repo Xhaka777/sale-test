@@ -2,9 +2,11 @@ package org.planetaccounting.saleAgent.clients;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import org.planetaccounting.saleAgent.databinding.ClientCardListItemBinding;
 import org.planetaccounting.saleAgent.model.clients.CardItem;
@@ -47,6 +49,15 @@ public class ClientCardAdapter extends RecyclerView.Adapter<ClientCardAdapter.Vi
         }
         binding.balance.setText(""+cutTo2(balance));
 
+        //pjesa e fontit...
+        setLatoRegularFont(ctx, binding.id);
+        setLatoRegularFont(ctx, binding.data);
+        setLatoRegularFont(ctx, binding.desc);
+        setLatoRegularFont(ctx, binding.type);
+        setLatoRegularFont(ctx, binding.afatiPageses);
+        setLatoRegularFont(ctx, binding.value);
+        setLatoRegularFont(ctx, binding.balance);
+
     }
 
     @Override
@@ -70,5 +81,10 @@ public class ClientCardAdapter extends RecyclerView.Adapter<ClientCardAdapter.Vi
     }
     public double cutTo2(double value) {
         return Double.parseDouble(String.format(Locale.ENGLISH,"%.2f", value));
+    }
+
+    public static void setLatoRegularFont(Context context, TextView textView){
+        Typeface latoRegular = Typeface.createFromAsset(context.getAssets(), "fonts/lato_regular.ttf");
+        textView.setTypeface(latoRegular);
     }
 }

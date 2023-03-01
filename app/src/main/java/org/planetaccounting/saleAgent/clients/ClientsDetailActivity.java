@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.print.PrintManager;
@@ -12,6 +13,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.DatePicker;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
@@ -93,6 +95,38 @@ public class ClientsDetailActivity extends Activity implements DatePickerDialog.
             }
         });
 
+        setLatoRegularFont(this, binding.emriKlientit);
+
+        setLatoRegularFont(this, binding.bilanciTextview);
+        setLatoRegularFont(this, binding.roliTextview);
+        setLatoRegularFont(this, binding.llojiTextview);
+        setLatoRegularFont(this, binding.idTextview);
+
+        setLatoRegularFont(this, binding.nrtvshTextview);
+        setLatoRegularFont(this, binding.nrbTextview);
+        setLatoRegularFont(this, binding.nrkTextview);
+        setLatoRegularFont(this, binding.nrfTextview);
+
+        setLatoRegularFont(this, binding.adresaTextview);
+        setLatoRegularFont(this, binding.qytetiTextview);
+        setLatoRegularFont(this, binding.shtetiTextview);
+        setLatoRegularFont(this, binding.telefonTextview);
+        setLatoRegularFont(this, binding.faxTextview);
+        setLatoRegularFont(this, binding.webTextview);
+        setLatoRegularFont(this, binding.emailTextview);
+
+        setLatoRegularFont(this, binding.id);
+        setLatoRegularFont(this, binding.data);
+        setLatoRegularFont(this, binding.pershkrimi);
+        setLatoRegularFont(this, binding.lloji);
+        setLatoRegularFont(this, binding.valuta);
+        setLatoRegularFont(this, binding.vlera);
+        setLatoRegularFont(this, binding.bilanci);
+
+        setLatoRegularFont(this, binding.nga);
+        setLatoRegularFont(this, binding.deri);
+        setLatoRegularFont(this, binding.printButton);
+
     }
 
 
@@ -133,5 +167,10 @@ public class ClientsDetailActivity extends Activity implements DatePickerDialog.
             binding.deri.setText("Deri: "+ deri);
         }
         getClientCard();
+    }
+
+    public static void setLatoRegularFont(Context context, TextView textView){
+        Typeface latoFont = Typeface.createFromAsset(context.getAssets(), "fonts/lato_regular.ttf");
+        textView.setTypeface(latoFont);
     }
 }
