@@ -18,10 +18,10 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="19dp"
+                android:fontFamily="@font/lato_regular"
                 android:text="@string/raportet"
                 android:textColor="#000"
-                android:textSize="20sp"
-                android:fontFamily="@font/lato_regular"/>
+                android:textSize="20sp" />
 
             <View
                 android:layout_width="match_parent"

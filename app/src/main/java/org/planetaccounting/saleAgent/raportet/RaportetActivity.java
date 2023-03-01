@@ -6,10 +6,12 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.databinding.DataBindingUtil;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.planetaccounting.saleAgent.MainActivity;
@@ -54,7 +56,20 @@ public class RaportetActivity extends Activity {
         binding.listaKlientave.setOnClickListener(view -> openClientListActivity());
         binding.listaNgarkimeve.setOnClickListener(view -> openLoadListActivity());
 
+        //for changing land
         currentLanguage = getIntent().getStringExtra(currentLang);
+
+        //setting fonts
+        setLatoRegularFont(this, binding.title);
+        setLatoRegularFont(this, binding.listaFaturaveButton);
+        setLatoRegularFont(this, binding.listaPorosiveButton);
+        setLatoRegularFont(this, binding.listaShpenzimeve);
+        setLatoRegularFont(this, binding.listaInkasimeve);
+        setLatoRegularFont(this, binding.listaDepozitave);
+        setLatoRegularFont(this, binding.listaKthimit);
+        setLatoRegularFont(this, binding.dailyMarket);
+        setLatoRegularFont(this, binding.listaKlientave);
+        setLatoRegularFont(this, binding.listaNgarkimeve);
 
     }
     private void openInvoicesActivity() {
@@ -68,24 +83,28 @@ public class RaportetActivity extends Activity {
         Intent i = new Intent(getApplicationContext(), ReturnListActivity.class);
         startActivity(i);
     }
+
     private void openVendorListActivity() {
         Log.d("Hap Listen e faturav - ", " InvoiceListActivity");
         Intent i = new Intent(getApplicationContext(), ReportDetailActivity.class);
         i.putExtra("type", 0);
         startActivity(i);
     }
+
     private void openInkasimiActivity() {
         Log.d("Hap Listen e faturav - ", " InvoiceListActivity");
         Intent i = new Intent(getApplicationContext(), ReportDetailActivity.class);
         i.putExtra("type", 1);
         startActivity(i);
     }
+
     private void openDepozitActivity() {
         Log.d("Hap Listen e faturav - ", " InvoiceListActivity");
         Intent i = new Intent(getApplicationContext(), ReportDetailActivity.class);
         i.putExtra("type", 2);
         startActivity(i);
     }
+
     private void openOrderListActivity() {
         if (isConnected) {
             Intent i = new Intent(getApplicationContext(), OrdersListActivity.class);
@@ -135,5 +154,10 @@ public class RaportetActivity extends Activity {
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(LocaleHelper.onAttach(newBase));
+    }
+
+    public static void setLatoRegularFont(Context context, TextView textView){
+        Typeface latoFont = Typeface.createFromAsset(context.getAssets(), "fonts/lato_regular.ttf");
+        textView.setTypeface(latoFont);
     }
 }

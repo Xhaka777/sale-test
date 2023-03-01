@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.databinding.DataBindingUtil;
 import android.databinding.adapters.AbsSpinnerBindingAdapter;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -16,6 +17,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -43,6 +45,7 @@ import org.planetaccounting.saleAgent.vendors.VendorPost;
 import org.planetaccounting.saleAgent.vendors.VendorPostObject;
 import org.w3c.dom.Comment;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -349,6 +352,17 @@ public class ReportDetailActivity extends Activity {
 
         currentLanguage = getIntent().getStringExtra(currentLang);
 
+        //setting fonts
+        setLatoRegularFont(this, binding.title);
+        setLatoRegularFont(this, binding.col1);
+        setLatoRegularFont(this, binding.col2);
+        setLatoRegularFont(this, binding.col3);
+        setLatoRegularFont(this, binding.col4);
+        setLatoRegularFont(this, binding.col5);
+        setLatoRegularFont(this, binding.col6);
+
+        setLatoRegularFont(this, binding.searchEdittext);
+
     }
 
 
@@ -612,4 +626,10 @@ public class ReportDetailActivity extends Activity {
         return Double.parseDouble(String.format(Locale.ENGLISH, "%.2f", value));
 
     }
+
+    public static void setLatoRegularFont(Context context, TextView textView){
+        Typeface latoFont = Typeface.createFromAsset(context.getAssets(), "fonts/lato_regular.ttf");
+        textView.setTypeface(latoFont);
+    }
+
 }

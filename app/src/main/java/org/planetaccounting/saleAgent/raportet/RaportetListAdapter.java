@@ -4,11 +4,13 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.planetaccounting.saleAgent.R;
@@ -108,6 +110,14 @@ public class RaportetListAdapter extends RecyclerView.Adapter<RaportetListAdapte
 //        binding.getRoot().setOnClickListener(view -> {
 //            EventBus.getDefault().post(new UploadInvoiceEvent(invoices.get(position).getId()));
 //        });
+        //Setting Font...
+        setLatoRegularFont(ctx, binding.col1);
+        setLatoRegularFont(ctx, binding.col2);
+        setLatoRegularFont(ctx, binding.col3);
+        setLatoRegularFont(ctx, binding.col4);
+        setLatoRegularFont(ctx, binding.col5);
+        setLatoRegularFont(ctx, binding.col6);
+
     }
 
     public void setVendorPosts(List<VendorPost> vendorPosts) {
@@ -155,5 +165,10 @@ public class RaportetListAdapter extends RecyclerView.Adapter<RaportetListAdapte
 
     public static BigDecimal round(BigDecimal number){
         return number.setScale(2, RoundingMode.HALF_UP);
+    }
+
+    public static void setLatoRegularFont(Context context, TextView textView){
+        Typeface latoFont = Typeface.createFromAsset(context.getAssets(), "fonts/lato_regular.ttf");
+        textView.setTypeface(latoFont);
     }
 }
